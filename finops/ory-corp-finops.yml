@@ -1,0 +1,107 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Ory
+providerId: ory-corp
+created: '2026-07-02'
+modified: '2026-07-02'
+reconciled: false
+tags:
+- Identity
+- Authentication
+- OAuth2
+- Authorization
+- Open Source
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of Ory spend. The Ory stack (Kratos, Hydra, Keto, Oathkeeper) is
+  open source (Apache-2.0) and free to self-host - in that model the cost is your
+  own compute, database, and network for running the services, with no Ory
+  invoice. Ory Network is the managed offering, billed as a flat plan subscription
+  (Production / Growth) that includes a monthly usage credit, plus metered overage
+  driven mainly by active daily active users (aDAU), machine-to-machine (M2M)
+  tokens, and permission checks. Enterprise agreements cover committed-usage
+  discounts, multi-region, and SLAs.
+notes: >-
+  Ory Network per-unit rates and included credits are subject to change; verify
+  against the Ory pricing page during reconciliation. For self-hosted deployments,
+  the dominant costs are infrastructure (compute + database) rather than an Ory
+  license fee.
+sources:
+- https://www.ory.com/pricing
+- https://www.ory.com/docs
+- https://github.com/ory
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Ory
+serviceCategory: Identity and Access Management
+billingModel:
+  pricingCategory: Subscription-Plus-Usage
+  billingFrequency: Annual
+  billingCurrency: USD
+  chargeCategories:
+  - Purchase
+  - Usage
+  - Adjustment
+focusColumns:
+  ServiceName: Ory Network
+  ServiceCategory: Identity and Access Management
+  ProviderName: Ory
+  PublisherName: Ory
+  InvoiceIssuerName: Ory
+  BillingCurrency: USD
+  ChargeCategory: Usage
+  PricingCategory: Subscription-Plus-Usage
+meters:
+- name: adau
+  description: Active daily active users on Ory Network, billed per aDAU/month above the plan credit.
+  unit: users
+  aggregation: sum
+  dimensions:
+  - workspace
+  - project
+- name: m2m_tokens
+  description: Machine-to-machine OAuth2 tokens issued, billed per token/month above the plan credit.
+  unit: tokens
+  aggregation: sum
+  dimensions:
+  - workspace
+  - project
+- name: permission_checks
+  description: Keto permission checks performed, billed per check/month above the plan credit.
+  unit: checks
+  aggregation: sum
+  dimensions:
+  - workspace
+  - project
+- name: plan_subscription
+  description: Flat annual Ory Network plan subscription (Production / Growth) with included monthly usage credit.
+  unit: contract
+  aggregation: sum
+  dimensions:
+  - workspace
+- name: self_hosted_compute
+  description: Infrastructure cost of running the self-hosted open-source Ory stack (no Ory invoice).
+  unit: hours
+  aggregation: sum
+  dimensions:
+  - deployment
+principles:
+- name: Visibility
+  description: Track aDAU, M2M token, and permission-check consumption per project against the plan's included credit; on self-hosted, monitor compute and database cost.
+- name: Allocation
+  description: Map projects and environments (prod/staging/dev) to teams and cost centers; tag Console API tokens per workload.
+- name: Optimization
+  description: Right-size the plan to your aDAU/M2M/permission-check volume, prune stale sessions and unused OAuth2 clients, batch permission checks, and self-host the open-source stack when volume makes it cheaper than metered cloud.
+- name: Accountability
+  description: Assign owners per project/workspace; review monthly usage against the included credit and per-unit overage, and against self-hosted infrastructure budgets.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

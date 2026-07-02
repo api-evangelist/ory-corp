@@ -1,0 +1,343 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ory Network API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{oryApiKey}}"
+    }
+  },
+  "items": [
+    {
+      "info": { "name": "Identity (Self-Service)", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Create browser login flow.", "type": "http" },
+          "http": { "method": "GET", "url": "https://your-project-slug.projects.oryapis.com/self-service/login/browser" },
+          "docs": "Initializes a browser-based login flow."
+        },
+        {
+          "info": { "name": "Submit login flow.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://your-project-slug.projects.oryapis.com/self-service/login?flow=:flow",
+            "params": [
+              { "name": "flow", "value": "", "type": "query", "description": "The login flow ID." }
+            ],
+            "body": { "type": "json", "data": "{\n  \"method\": \"password\",\n  \"identifier\": \"user@example.com\",\n  \"password\": \"\"\n}" }
+          },
+          "docs": "Submits credentials to complete a login flow."
+        },
+        {
+          "info": { "name": "Create browser registration flow.", "type": "http" },
+          "http": { "method": "GET", "url": "https://your-project-slug.projects.oryapis.com/self-service/registration/browser" },
+          "docs": "Initializes a browser-based registration flow."
+        },
+        {
+          "info": { "name": "Get current session (whoami).", "type": "http" },
+          "http": { "method": "GET", "url": "https://your-project-slug.projects.oryapis.com/sessions/whoami" },
+          "docs": "Returns the active session for the supplied cookie or session token."
+        },
+        {
+          "info": { "name": "List my sessions.", "type": "http" },
+          "http": { "method": "GET", "url": "https://your-project-slug.projects.oryapis.com/sessions" },
+          "docs": "Lists the caller's active sessions."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Identity (Admin)", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List identities.", "type": "http" },
+          "http": { "method": "GET", "url": "https://your-project-slug.projects.oryapis.com/admin/identities" },
+          "docs": "Lists identities in the project."
+        },
+        {
+          "info": { "name": "Create identity.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://your-project-slug.projects.oryapis.com/admin/identities",
+            "body": { "type": "json", "data": "{\n  \"schema_id\": \"default\",\n  \"traits\": { \"email\": \"user@example.com\" }\n}" }
+          },
+          "docs": "Creates a new identity."
+        },
+        {
+          "info": { "name": "Get identity.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://your-project-slug.projects.oryapis.com/admin/identities/:id",
+            "params": [{ "name": "id", "value": "", "type": "path", "description": "The identity ID." }]
+          },
+          "docs": "Retrieves an identity by ID."
+        },
+        {
+          "info": { "name": "Delete identity.", "type": "http" },
+          "http": {
+            "method": "DELETE",
+            "url": "https://your-project-slug.projects.oryapis.com/admin/identities/:id",
+            "params": [{ "name": "id", "value": "", "type": "path", "description": "The identity ID." }]
+          },
+          "docs": "Deletes an identity."
+        },
+        {
+          "info": { "name": "List all sessions.", "type": "http" },
+          "http": { "method": "GET", "url": "https://your-project-slug.projects.oryapis.com/admin/sessions" },
+          "docs": "Lists all sessions in the project."
+        },
+        {
+          "info": { "name": "Create recovery code for identity.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://your-project-slug.projects.oryapis.com/admin/recovery/code",
+            "body": { "type": "json", "data": "{\n  \"identity_id\": \"\"\n}" }
+          },
+          "docs": "Creates a recovery code for an identity."
+        }
+      ]
+    },
+    {
+      "info": { "name": "OAuth2 (Public)", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Token endpoint.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://your-project-slug.projects.oryapis.com/oauth2/token",
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Exchanges credentials or a code for OAuth2 tokens (form-encoded per RFC 6749)."
+        },
+        {
+          "info": { "name": "OIDC discovery.", "type": "http" },
+          "http": { "method": "GET", "url": "https://your-project-slug.projects.oryapis.com/.well-known/openid-configuration" },
+          "docs": "Returns the OpenID Connect provider metadata."
+        },
+        {
+          "info": { "name": "UserInfo.", "type": "http" },
+          "http": { "method": "GET", "url": "https://your-project-slug.projects.oryapis.com/userinfo" },
+          "docs": "Returns claims about the authenticated end-user."
+        }
+      ]
+    },
+    {
+      "info": { "name": "OAuth2 (Admin)", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List OAuth2 clients.", "type": "http" },
+          "http": { "method": "GET", "url": "https://your-project-slug.projects.oryapis.com/admin/oauth2/clients" },
+          "docs": "Lists OAuth2 clients."
+        },
+        {
+          "info": { "name": "Create OAuth2 client.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://your-project-slug.projects.oryapis.com/admin/oauth2/clients",
+            "body": { "type": "json", "data": "{\n  \"client_name\": \"my-app\",\n  \"grant_types\": [\"authorization_code\", \"refresh_token\"],\n  \"redirect_uris\": [\"https://app.example.com/callback\"]\n}" }
+          },
+          "docs": "Creates a new OAuth2 client."
+        },
+        {
+          "info": { "name": "Introspect token.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://your-project-slug.projects.oryapis.com/admin/oauth2/introspect",
+            "body": { "type": "json", "data": "{}" }
+          },
+          "docs": "Introspects an OAuth2 token to check whether it is active (form-encoded body)."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Permissions (Keto)", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Check permission.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://your-project-slug.projects.oryapis.com/relation-tuples/check?namespace=Document&object=doc1&relation=view&subject_id=user1",
+            "params": [
+              { "name": "namespace", "value": "Document", "type": "query" },
+              { "name": "object", "value": "doc1", "type": "query" },
+              { "name": "relation", "value": "view", "type": "query" },
+              { "name": "subject_id", "value": "user1", "type": "query" }
+            ]
+          },
+          "docs": "Checks whether a subject has a relation to an object."
+        },
+        {
+          "info": { "name": "Expand subject set.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://your-project-slug.projects.oryapis.com/relation-tuples/expand?namespace=Document&object=doc1&relation=view",
+            "params": [
+              { "name": "namespace", "value": "Document", "type": "query" },
+              { "name": "object", "value": "doc1", "type": "query" },
+              { "name": "relation", "value": "view", "type": "query" }
+            ]
+          },
+          "docs": "Expands a subject set into its members."
+        },
+        {
+          "info": { "name": "List namespaces.", "type": "http" },
+          "http": { "method": "GET", "url": "https://your-project-slug.projects.oryapis.com/namespaces" },
+          "docs": "Lists the configured permission namespaces."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Relationships (Keto Write)", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Create relationship tuple.", "type": "http" },
+          "http": {
+            "method": "PUT",
+            "url": "https://your-project-slug.projects.oryapis.com/admin/relation-tuples",
+            "body": { "type": "json", "data": "{\n  \"namespace\": \"Document\",\n  \"object\": \"doc1\",\n  \"relation\": \"view\",\n  \"subject_id\": \"user1\"\n}" }
+          },
+          "docs": "Creates or updates a relationship tuple."
+        },
+        {
+          "info": { "name": "Delete relationship tuples.", "type": "http" },
+          "http": {
+            "method": "DELETE",
+            "url": "https://your-project-slug.projects.oryapis.com/admin/relation-tuples?namespace=Document&object=doc1&relation=view",
+            "params": [
+              { "name": "namespace", "value": "Document", "type": "query" },
+              { "name": "object", "value": "doc1", "type": "query" },
+              { "name": "relation", "value": "view", "type": "query" }
+            ]
+          },
+          "docs": "Deletes relationship tuples matching a query."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Courier", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List courier messages.", "type": "http" },
+          "http": { "method": "GET", "url": "https://your-project-slug.projects.oryapis.com/admin/courier/messages" },
+          "docs": "Lists queued and dispatched courier messages."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Organizations", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List organizations.", "type": "http" },
+          "http": { "method": "GET", "url": "https://your-project-slug.projects.oryapis.com/admin/organizations" },
+          "docs": "Lists B2B organizations in the project."
+        },
+        {
+          "info": { "name": "Create organization.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://your-project-slug.projects.oryapis.com/admin/organizations",
+            "body": { "type": "json", "data": "{\n  \"label\": \"Acme Inc\",\n  \"domains\": [\"acme.example.com\"]\n}" }
+          },
+          "docs": "Creates a B2B organization for SSO."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Console - Projects", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List workspace projects.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.console.ory.sh/workspaces/:workspace/projects",
+            "params": [{ "name": "workspace", "value": "", "type": "path", "description": "The workspace ID." }]
+          },
+          "docs": "Lists the projects in a workspace."
+        },
+        {
+          "info": { "name": "Create project.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.console.ory.sh/projects",
+            "body": { "type": "json", "data": "{\n  \"name\": \"My Project\"\n}" }
+          },
+          "docs": "Creates a new Ory Network project."
+        },
+        {
+          "info": { "name": "Get project.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.console.ory.sh/projects/:projectId",
+            "params": [{ "name": "projectId", "value": "", "type": "path", "description": "The project ID." }]
+          },
+          "docs": "Retrieves a project by ID."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Console - Project Tokens", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List project API tokens.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.console.ory.sh/projects/:projectId/tokens",
+            "params": [{ "name": "projectId", "value": "", "type": "path", "description": "The project ID." }]
+          },
+          "docs": "Lists the API tokens for a project."
+        },
+        {
+          "info": { "name": "Create project API token.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.console.ory.sh/projects/:projectId/tokens",
+            "params": [{ "name": "projectId", "value": "", "type": "path", "description": "The project ID." }],
+            "body": { "type": "json", "data": "{\n  \"name\": \"ci-token\"\n}" }
+          },
+          "docs": "Creates a new project API token."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Console - Event Streams", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List event streams.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.console.ory.sh/projects/:projectId/eventStreams",
+            "params": [{ "name": "projectId", "value": "", "type": "path", "description": "The project ID." }]
+          },
+          "docs": "Lists event streams configured for a project."
+        },
+        {
+          "info": { "name": "Create event stream.", "type": "http" },
+          "http": {
+            "method": "POST",
+            "url": "https://api.console.ory.sh/projects/:projectId/eventStreams",
+            "params": [{ "name": "projectId", "value": "", "type": "path", "description": "The project ID." }],
+            "body": { "type": "json", "data": "{\n  \"type\": \"sns\",\n  \"topic_arn\": \"arn:aws:sns:us-east-1:000000000000:ory-events\",\n  \"role_arn\": \"arn:aws:iam::000000000000:role/ory\"\n}" }
+          },
+          "docs": "Creates an event stream that forwards Ory Network events to AWS SNS."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Console - Billing", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Get workspace subscription.", "type": "http" },
+          "http": {
+            "method": "GET",
+            "url": "https://api.console.ory.sh/workspaces/:workspace/subscription",
+            "params": [{ "name": "workspace", "value": "", "type": "path", "description": "The workspace ID." }]
+          },
+          "docs": "Returns the active subscription for a workspace."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

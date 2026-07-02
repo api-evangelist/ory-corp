@@ -1,0 +1,210 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Ory
+providerId: ory-corp
+created: '2026-07-02'
+modified: '2026-07-02'
+reconciled: false
+tags:
+- Identity
+- Authentication
+- OAuth2
+- Authorization
+- Open Source
+- Plans
+description: >-
+  Ory has two consumption models. The Ory stack (Kratos, Hydra, Keto, Oathkeeper)
+  is open source (Apache-2.0) and free to self-host with no vendor fee beyond your
+  own infrastructure. The Ory Network managed cloud is sold as tiered plans -
+  Developer (free), Production, and Growth (flat annual price with an included
+  monthly usage credit and metered overage), and Enterprise (custom). Ory Network
+  meters usage primarily on active daily active users (aDAU), machine-to-machine
+  (M2M) tokens, and permission checks. Prices below reflect the published Ory
+  pricing page and may change; verify at reconciliation.
+notes: >-
+  Self-hosting the Ory open-source projects incurs no Ory license fee - only your
+  own compute. Ory Network annual prices carry an included monthly credit that
+  offsets metered usage; overage is billed per-unit. Verify current tiers, credits,
+  and per-unit rates on https://www.ory.com/pricing.
+sources:
+- https://www.ory.com/pricing
+- https://www.ory.com/docs
+- https://github.com/ory
+plans:
+- id: ory-open-source
+  name: Open Source (Self-Hosted)
+  type: free
+  description: >-
+    The full Ory stack - Kratos (identity), Hydra (OAuth2/OIDC), Keto
+    (permissions), and Oathkeeper (access proxy) - Apache-2.0 licensed and
+    self-hostable via Docker/Kubernetes. No Ory fee; you provide and scale your
+    own infrastructure.
+  entries:
+  - label: Self-Hosted Usage
+    name: self_hosted_usage
+    type: usage
+    metric: requests
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: free (self-hosted; you provide infrastructure)
+    userMultiplied: false
+  elements:
+  - name: Ory Kratos (Identity)
+  - name: Ory Hydra (OAuth2 / OIDC)
+  - name: Ory Keto (Permissions)
+  - name: Ory Oathkeeper (Access Proxy)
+- id: ory-network-developer
+  name: Ory Network - Developer
+  type: free
+  description: >-
+    Free managed tier for building and testing. Includes development
+    environments and community support; no production environment.
+  entries:
+  - label: Development Environments
+    name: dev_environments
+    type: flat
+    metric: environments
+    limit: 2
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0
+    userMultiplied: false
+  elements:
+  - name: 2 Development Environments
+  - name: Community Support
+  - name: Identity, OAuth2, and Permissions APIs
+- id: ory-network-production
+  name: Ory Network - Production
+  type: subscription
+  description: >-
+    Entry paid tier at approximately $770/year (about $64/month) with a $21/month
+    included usage credit. Includes 1 production and 3 staging environments.
+    Metered usage above the credit is billed per unit.
+  entries:
+  - label: Base Subscription
+    name: production_base
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: $770/year (~$64/month), includes $21/month usage credit
+    userMultiplied: false
+  - label: Active Daily Active Users (aDAU)
+    name: production_adau
+    type: usage
+    metric: users
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0.14 per aDAU/month (after credit)
+    userMultiplied: false
+  - label: Machine-to-Machine Tokens
+    name: production_m2m
+    type: usage
+    metric: tokens
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0.007 per M2M token/month (after credit)
+    userMultiplied: false
+  - label: Permission Checks
+    name: production_permission_checks
+    type: usage
+    metric: checks
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0.000090 per permission check/month (after credit)
+    userMultiplied: false
+  elements:
+  - name: 1 Production Environment
+  - name: 3 Staging Environments
+  - name: Metered aDAU / M2M / Permission Checks
+- id: ory-network-growth
+  name: Ory Network - Growth
+  type: subscription
+  description: >-
+    Scale tier at approximately $9,350/year (about $779/month) with a $255/month
+    included usage credit and lower per-unit rates. Includes 2 production and 5
+    staging environments, advanced analytics, and B2B SSO (OIDC).
+  entries:
+  - label: Base Subscription
+    name: growth_base
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: $9,350/year (~$779/month), includes $255/month usage credit
+    userMultiplied: false
+  - label: Active Daily Active Users (aDAU)
+    name: growth_adau
+    type: usage
+    metric: users
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0.12 per aDAU/month (after credit)
+    userMultiplied: false
+  - label: Machine-to-Machine Tokens
+    name: growth_m2m
+    type: usage
+    metric: tokens
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0.006 per M2M token/month (after credit)
+    userMultiplied: false
+  - label: Permission Checks
+    name: growth_permission_checks
+    type: usage
+    metric: checks
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: $0.000085 per permission check/month (after credit)
+    userMultiplied: false
+  elements:
+  - name: 2 Production Environments
+  - name: 5 Staging Environments
+  - name: Advanced Analytics and Insights
+  - name: B2B SSO (OIDC)
+- id: ory-network-enterprise
+  name: Ory Network - Enterprise
+  type: enterprise
+  description: >-
+    Custom plan for large deployments - 99.99% uptime SLA, multi-region
+    deployments, committed-usage discounts, premium support with SLAs, and
+    negotiated terms. Contact Ory sales.
+  entries:
+  - label: Enterprise Agreement
+    name: enterprise
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: contact sales
+    userMultiplied: false
+  elements:
+  - name: 99.99% Uptime SLA
+  - name: Multi-Region Deployments
+  - name: Committed-Usage Discounts
+  - name: Premium Support with SLAs
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,69 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Ory
+providerId: ory-corp
+created: '2026-07-02'
+modified: '2026-07-02'
+reconciled: false
+tags:
+- Identity
+- Authentication
+- OAuth2
+- Authorization
+- Rate Limiting
+- Quotas
+description: >-
+  Ory Network applies per-project rate limits that differ by endpoint class and
+  plan tier. Public / frontend endpoints (self-service flows, OAuth2 token and
+  authorization, session whoami, permission checks) and privileged admin endpoints
+  (identity admin, OAuth2 admin, relationship writes, Console) are metered in
+  separate buckets, and admin surfaces are generally allowed higher throughput than
+  anonymous public surfaces. Limits scale up on paid Production, Growth, and
+  Enterprise plans. When self-hosting the open-source Ory stack, there is no
+  Ory-imposed rate limit - throughput is bounded only by your own infrastructure
+  and any proxy/gateway you place in front (for example Ory Oathkeeper or an
+  ingress). Requests over the limit receive HTTP 429 with a Retry-After header.
+notes: >-
+  Ory does not publish a single fixed numeric request-per-second figure for every
+  endpoint; effective limits depend on plan tier and endpoint class and can be
+  raised on Enterprise agreements. Verify current per-tier limits in the Ory
+  Network Console and Ory documentation at reconciliation.
+sources:
+- https://www.ory.com/docs/reference/api
+- https://www.ory.com/pricing
+- https://www.ory.com/docs/kratos/reference/api
+- https://github.com/ory
+responseCodes:
+  throttled: 429
+limits:
+- name: Public / Frontend Endpoints
+  scope: project
+  metric: requests
+  limit: per plan (tiered)
+  notes: Self-service flows, OAuth2 auth/token, sessions/whoami, and permission checks; anonymous or session-scoped.
+- name: Admin Endpoints
+  scope: project
+  metric: requests
+  limit: per plan (tiered, higher than public)
+  notes: Identity admin, OAuth2 admin, relationship writes, courier, and organization management using an Ory API key.
+- name: Console API
+  scope: workspace
+  metric: requests
+  limit: per plan (tiered)
+  notes: Project, token, event stream, and subscription management on api.console.ory.sh.
+- name: Self-Hosted Throughput
+  scope: deployment
+  metric: requests
+  limit: hardware-bound (no Ory-imposed limit)
+  notes: Open-source Kratos/Hydra/Keto/Oathkeeper; constrained by your own infrastructure.
+policies:
+- name: Tiered Limits
+  description: Rate limits increase from Developer to Production to Growth to Enterprise; Enterprise agreements can raise them further.
+- name: Endpoint-Class Buckets
+  description: Public/frontend and privileged/admin endpoints are throttled independently so admin automation does not starve end-user flows.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor the Retry-After header on 429 responses.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

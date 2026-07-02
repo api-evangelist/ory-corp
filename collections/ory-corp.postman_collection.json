@@ -1,0 +1,405 @@
+{
+  "info": {
+    "name": "Ory Network API",
+    "description": "Ory is open-source identity and access infrastructure (Kratos, Hydra, Keto, Oathkeeper) delivered as the Ory Network managed cloud. Project data-plane endpoints are served on https://{project-slug}.projects.oryapis.com; the Ory Network Console API is served on https://api.console.ory.sh. Admin, Keto write, courier, and Console endpoints require an Ory API key as a Bearer token.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      { "key": "token", "value": "{{oryApiKey}}", "type": "string" }
+    ]
+  },
+  "variable": [
+    { "key": "projectUrl", "value": "https://your-project-slug.projects.oryapis.com", "type": "string" },
+    { "key": "consoleUrl", "value": "https://api.console.ory.sh", "type": "string" },
+    { "key": "oryApiKey", "value": "", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "Identity (Self-Service)",
+      "item": [
+        {
+          "name": "Create browser login flow",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{projectUrl}}/self-service/login/browser", "host": ["{{projectUrl}}"], "path": ["self-service", "login", "browser"] },
+            "description": "Initializes a browser-based login flow."
+          }
+        },
+        {
+          "name": "Submit login flow",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"method\": \"password\",\n  \"identifier\": \"user@example.com\",\n  \"password\": \"\"\n}" },
+            "url": { "raw": "{{projectUrl}}/self-service/login?flow=:flow", "host": ["{{projectUrl}}"], "path": ["self-service", "login"], "query": [{ "key": "flow", "value": ":flow" }] },
+            "description": "Submits credentials to complete a login flow."
+          }
+        },
+        {
+          "name": "Create browser registration flow",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{projectUrl}}/self-service/registration/browser", "host": ["{{projectUrl}}"], "path": ["self-service", "registration", "browser"] },
+            "description": "Initializes a browser-based registration flow."
+          }
+        },
+        {
+          "name": "Get current session (whoami)",
+          "request": {
+            "method": "GET",
+            "header": [{ "key": "Accept", "value": "application/json" }],
+            "url": { "raw": "{{projectUrl}}/sessions/whoami", "host": ["{{projectUrl}}"], "path": ["sessions", "whoami"] },
+            "description": "Returns the active session for the supplied cookie or session token."
+          }
+        },
+        {
+          "name": "List my sessions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{projectUrl}}/sessions", "host": ["{{projectUrl}}"], "path": ["sessions"] },
+            "description": "Lists the caller's active sessions."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Identity (Admin)",
+      "item": [
+        {
+          "name": "List identities",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{projectUrl}}/admin/identities", "host": ["{{projectUrl}}"], "path": ["admin", "identities"] },
+            "description": "Lists identities in the project."
+          }
+        },
+        {
+          "name": "Create identity",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"schema_id\": \"default\",\n  \"traits\": {\n    \"email\": \"user@example.com\"\n  }\n}" },
+            "url": { "raw": "{{projectUrl}}/admin/identities", "host": ["{{projectUrl}}"], "path": ["admin", "identities"] },
+            "description": "Creates a new identity."
+          }
+        },
+        {
+          "name": "Get identity",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{projectUrl}}/admin/identities/:id", "host": ["{{projectUrl}}"], "path": ["admin", "identities", ":id"], "variable": [{ "key": "id", "value": "" }] },
+            "description": "Retrieves an identity by ID."
+          }
+        },
+        {
+          "name": "Delete identity",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "{{projectUrl}}/admin/identities/:id", "host": ["{{projectUrl}}"], "path": ["admin", "identities", ":id"], "variable": [{ "key": "id", "value": "" }] },
+            "description": "Deletes an identity."
+          }
+        },
+        {
+          "name": "List all sessions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{projectUrl}}/admin/sessions", "host": ["{{projectUrl}}"], "path": ["admin", "sessions"] },
+            "description": "Lists all sessions in the project."
+          }
+        },
+        {
+          "name": "Create recovery code for identity",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"identity_id\": \"\"\n}" },
+            "url": { "raw": "{{projectUrl}}/admin/recovery/code", "host": ["{{projectUrl}}"], "path": ["admin", "recovery", "code"] },
+            "description": "Creates a recovery code for an identity."
+          }
+        }
+      ]
+    },
+    {
+      "name": "OAuth2 (Public)",
+      "item": [
+        {
+          "name": "Token endpoint",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/x-www-form-urlencoded" }],
+            "body": { "mode": "urlencoded", "urlencoded": [
+              { "key": "grant_type", "value": "client_credentials" },
+              { "key": "client_id", "value": "" },
+              { "key": "client_secret", "value": "" }
+            ] },
+            "url": { "raw": "{{projectUrl}}/oauth2/token", "host": ["{{projectUrl}}"], "path": ["oauth2", "token"] },
+            "description": "Exchanges credentials or a code for OAuth2 tokens."
+          }
+        },
+        {
+          "name": "OIDC discovery",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{projectUrl}}/.well-known/openid-configuration", "host": ["{{projectUrl}}"], "path": [".well-known", "openid-configuration"] },
+            "description": "Returns the OpenID Connect provider metadata."
+          }
+        },
+        {
+          "name": "UserInfo",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{projectUrl}}/userinfo", "host": ["{{projectUrl}}"], "path": ["userinfo"] },
+            "description": "Returns claims about the authenticated end-user."
+          }
+        }
+      ]
+    },
+    {
+      "name": "OAuth2 (Admin)",
+      "item": [
+        {
+          "name": "List OAuth2 clients",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{projectUrl}}/admin/oauth2/clients", "host": ["{{projectUrl}}"], "path": ["admin", "oauth2", "clients"] },
+            "description": "Lists OAuth2 clients."
+          }
+        },
+        {
+          "name": "Create OAuth2 client",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"client_name\": \"my-app\",\n  \"grant_types\": [\"authorization_code\", \"refresh_token\"],\n  \"redirect_uris\": [\"https://app.example.com/callback\"]\n}" },
+            "url": { "raw": "{{projectUrl}}/admin/oauth2/clients", "host": ["{{projectUrl}}"], "path": ["admin", "oauth2", "clients"] },
+            "description": "Creates a new OAuth2 client."
+          }
+        },
+        {
+          "name": "Introspect token",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/x-www-form-urlencoded" }],
+            "body": { "mode": "urlencoded", "urlencoded": [{ "key": "token", "value": "" }] },
+            "url": { "raw": "{{projectUrl}}/admin/oauth2/introspect", "host": ["{{projectUrl}}"], "path": ["admin", "oauth2", "introspect"] },
+            "description": "Introspects an OAuth2 token to check whether it is active."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Permissions (Keto)",
+      "item": [
+        {
+          "name": "Check permission",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{projectUrl}}/relation-tuples/check?namespace=Document&object=doc1&relation=view&subject_id=user1", "host": ["{{projectUrl}}"], "path": ["relation-tuples", "check"], "query": [
+              { "key": "namespace", "value": "Document" },
+              { "key": "object", "value": "doc1" },
+              { "key": "relation", "value": "view" },
+              { "key": "subject_id", "value": "user1" }
+            ] },
+            "description": "Checks whether a subject has a relation to an object."
+          }
+        },
+        {
+          "name": "Expand subject set",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{projectUrl}}/relation-tuples/expand?namespace=Document&object=doc1&relation=view", "host": ["{{projectUrl}}"], "path": ["relation-tuples", "expand"], "query": [
+              { "key": "namespace", "value": "Document" },
+              { "key": "object", "value": "doc1" },
+              { "key": "relation", "value": "view" }
+            ] },
+            "description": "Expands a subject set into its members."
+          }
+        },
+        {
+          "name": "List namespaces",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{projectUrl}}/namespaces", "host": ["{{projectUrl}}"], "path": ["namespaces"] },
+            "description": "Lists the configured permission namespaces."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Relationships (Keto Write)",
+      "item": [
+        {
+          "name": "Create relationship tuple",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"namespace\": \"Document\",\n  \"object\": \"doc1\",\n  \"relation\": \"view\",\n  \"subject_id\": \"user1\"\n}" },
+            "url": { "raw": "{{projectUrl}}/admin/relation-tuples", "host": ["{{projectUrl}}"], "path": ["admin", "relation-tuples"] },
+            "description": "Creates or updates a relationship tuple."
+          }
+        },
+        {
+          "name": "Delete relationship tuples",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "{{projectUrl}}/admin/relation-tuples?namespace=Document&object=doc1&relation=view", "host": ["{{projectUrl}}"], "path": ["admin", "relation-tuples"], "query": [
+              { "key": "namespace", "value": "Document" },
+              { "key": "object", "value": "doc1" },
+              { "key": "relation", "value": "view" }
+            ] },
+            "description": "Deletes relationship tuples matching a query."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Courier",
+      "item": [
+        {
+          "name": "List courier messages",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{projectUrl}}/admin/courier/messages", "host": ["{{projectUrl}}"], "path": ["admin", "courier", "messages"] },
+            "description": "Lists queued and dispatched courier messages."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Organizations",
+      "item": [
+        {
+          "name": "List organizations",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{projectUrl}}/admin/organizations", "host": ["{{projectUrl}}"], "path": ["admin", "organizations"] },
+            "description": "Lists B2B organizations in the project."
+          }
+        },
+        {
+          "name": "Create organization",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"label\": \"Acme Inc\",\n  \"domains\": [\"acme.example.com\"]\n}" },
+            "url": { "raw": "{{projectUrl}}/admin/organizations", "host": ["{{projectUrl}}"], "path": ["admin", "organizations"] },
+            "description": "Creates a B2B organization for SSO."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Console - Projects",
+      "item": [
+        {
+          "name": "List workspace projects",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{consoleUrl}}/workspaces/:workspace/projects", "host": ["{{consoleUrl}}"], "path": ["workspaces", ":workspace", "projects"], "variable": [{ "key": "workspace", "value": "" }] },
+            "description": "Lists the projects in a workspace."
+          }
+        },
+        {
+          "name": "Create project",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"My Project\"\n}" },
+            "url": { "raw": "{{consoleUrl}}/projects", "host": ["{{consoleUrl}}"], "path": ["projects"] },
+            "description": "Creates a new Ory Network project."
+          }
+        },
+        {
+          "name": "Get project",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{consoleUrl}}/projects/:projectId", "host": ["{{consoleUrl}}"], "path": ["projects", ":projectId"], "variable": [{ "key": "projectId", "value": "" }] },
+            "description": "Retrieves a project by ID."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Console - Project Tokens",
+      "item": [
+        {
+          "name": "List project API tokens",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{consoleUrl}}/projects/:projectId/tokens", "host": ["{{consoleUrl}}"], "path": ["projects", ":projectId", "tokens"], "variable": [{ "key": "projectId", "value": "" }] },
+            "description": "Lists the API tokens for a project."
+          }
+        },
+        {
+          "name": "Create project API token",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"ci-token\"\n}" },
+            "url": { "raw": "{{consoleUrl}}/projects/:projectId/tokens", "host": ["{{consoleUrl}}"], "path": ["projects", ":projectId", "tokens"], "variable": [{ "key": "projectId", "value": "" }] },
+            "description": "Creates a new project API token."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Console - Event Streams",
+      "item": [
+        {
+          "name": "List event streams",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{consoleUrl}}/projects/:projectId/eventStreams", "host": ["{{consoleUrl}}"], "path": ["projects", ":projectId", "eventStreams"], "variable": [{ "key": "projectId", "value": "" }] },
+            "description": "Lists event streams configured for a project."
+          }
+        },
+        {
+          "name": "Create event stream",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"type\": \"sns\",\n  \"topic_arn\": \"arn:aws:sns:us-east-1:000000000000:ory-events\",\n  \"role_arn\": \"arn:aws:iam::000000000000:role/ory\"\n}" },
+            "url": { "raw": "{{consoleUrl}}/projects/:projectId/eventStreams", "host": ["{{consoleUrl}}"], "path": ["projects", ":projectId", "eventStreams"], "variable": [{ "key": "projectId", "value": "" }] },
+            "description": "Creates an event stream that forwards Ory Network events to AWS SNS."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Console - Billing",
+      "item": [
+        {
+          "name": "Get workspace subscription",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{consoleUrl}}/workspaces/:workspace/subscription", "host": ["{{consoleUrl}}"], "path": ["workspaces", ":workspace", "subscription"], "variable": [{ "key": "workspace", "value": "" }] },
+            "description": "Returns the active subscription for a workspace."
+          }
+        }
+      ]
+    }
+  ]
+}

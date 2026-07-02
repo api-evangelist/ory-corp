@@ -1,0 +1,326 @@
+aid: ory-corp
+url: https://raw.githubusercontent.com/api-evangelist/ory-corp/refs/heads/main/apis.yml
+name: Ory
+kind: company
+description: Ory builds open-source identity and access infrastructure and runs it as
+  the Ory Network managed cloud. The stack is composed of Ory Kratos (identities,
+  sessions, and self-service login/registration/recovery/verification/settings
+  flows), Ory Hydra (OAuth2 and OpenID Connect - clients, tokens, consent, and
+  introspection), Ory Keto (Google Zanzibar-style permissions and relationship
+  tuples), and Ory Oathkeeper (zero-trust access proxy). On the Ory Network, all
+  services are exposed on a single project-scoped base URL
+  (https://{project-slug}.projects.oryapis.com) with admin and public surfaces,
+  while workspaces, projects, organizations (B2B SSO), event streams, and billing
+  are managed through the Ory Network Console API (https://api.console.ory.sh).
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Identity
+- Authentication
+- OAuth2
+- OpenID Connect
+- Authorization
+- Permissions
+- IAM
+- Open Source
+created: '2026-07-02'
+modified: '2026-07-02'
+specificationVersion: '0.19'
+apis:
+- aid: ory-corp:ory-corp-identity-api
+  name: Ory Identity API (Kratos - Self-Service)
+  tags:
+  - Identity
+  - Sessions
+  - Self-Service
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.ory.com/docs/kratos/reference/api
+  baseURL: https://{project-slug}.projects.oryapis.com
+  properties:
+  - url: https://www.ory.com/docs/kratos/self-service
+    type: Documentation
+  - url: https://www.ory.com/docs/kratos/reference/api
+    type: APIReference
+  - url: openapi/ory-corp-openapi.yml
+    type: OpenAPI
+  - url: collections/ory-corp.postman_collection.json
+    type: PostmanCollection
+  - url: collections/ory-corp.opencollection.json
+    type: OpenCollection
+  description: Public-facing Ory Kratos frontend API for browser and native apps -
+    create and complete self-service login, registration, recovery, verification,
+    settings, and logout flows, and read the current session via /sessions/whoami
+    plus list and revoke the caller's own sessions.
+- aid: ory-corp:ory-corp-identity-admin-api
+  name: Ory Identity Admin API (Kratos)
+  tags:
+  - Identity
+  - Admin
+  - User Management
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.ory.com/docs/kratos/reference/api
+  baseURL: https://{project-slug}.projects.oryapis.com
+  properties:
+  - url: https://www.ory.com/docs/kratos/manage-identities/overview
+    type: Documentation
+  - url: https://www.ory.com/docs/kratos/reference/api
+    type: APIReference
+  - url: openapi/ory-corp-openapi.yml
+    type: OpenAPI
+  - url: collections/ory-corp.postman_collection.json
+    type: PostmanCollection
+  - url: collections/ory-corp.opencollection.json
+    type: OpenCollection
+  description: Privileged Kratos admin API to list, create, get, update, patch, and
+    delete identities, look up identities by external ID, manage identity credentials,
+    administer sessions (list, get, disable, extend), and issue recovery codes and
+    links on behalf of users.
+- aid: ory-corp:ory-corp-oauth2-api
+  name: Ory OAuth2 and OpenID Connect API (Hydra)
+  tags:
+  - OAuth2
+  - OpenID Connect
+  - Tokens
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.ory.com/docs/hydra/reference/api
+  baseURL: https://{project-slug}.projects.oryapis.com
+  properties:
+  - url: https://www.ory.com/docs/oauth2-openid-connect-do-you-need-use-cases-products
+    type: Documentation
+  - url: https://www.ory.com/docs/hydra/reference/api
+    type: APIReference
+  - url: openapi/ory-corp-openapi.yml
+    type: OpenAPI
+  - url: collections/ory-corp.postman_collection.json
+    type: PostmanCollection
+  - url: collections/ory-corp.opencollection.json
+    type: OpenCollection
+  description: Public OAuth2 / OIDC provider endpoints served by Ory Hydra - the
+    authorization endpoint (/oauth2/auth), token endpoint (/oauth2/token), token
+    revocation, the UserInfo endpoint, and the OpenID Connect discovery and JWKS
+    well-known documents.
+- aid: ory-corp:ory-corp-oauth2-admin-api
+  name: Ory OAuth2 Admin API (Hydra)
+  tags:
+  - OAuth2
+  - Clients
+  - Consent
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.ory.com/docs/hydra/reference/api
+  baseURL: https://{project-slug}.projects.oryapis.com
+  properties:
+  - url: https://www.ory.com/docs/hydra/guides/oauth2-clients
+    type: Documentation
+  - url: https://www.ory.com/docs/hydra/reference/api
+    type: APIReference
+  - url: openapi/ory-corp-openapi.yml
+    type: OpenAPI
+  - url: collections/ory-corp.postman_collection.json
+    type: PostmanCollection
+  - url: collections/ory-corp.opencollection.json
+    type: OpenCollection
+  description: Privileged Hydra admin API to manage OAuth2 clients (CRUD plus token
+    lifespans), introspect and revoke tokens, drive the login / consent / logout
+    request handshakes, manage JSON Web Key Sets, and administer JWT-bearer grant
+    trust relationships.
+- aid: ory-corp:ory-corp-permissions-api
+  name: Ory Permissions API (Keto)
+  tags:
+  - Authorization
+  - Permissions
+  - Zanzibar
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.ory.com/docs/keto/reference/rest-api
+  baseURL: https://{project-slug}.projects.oryapis.com
+  properties:
+  - url: https://www.ory.com/docs/keto/concepts/api-overview
+    type: Documentation
+  - url: https://www.ory.com/docs/keto/reference/rest-api
+    type: APIReference
+  - url: openapi/ory-corp-openapi.yml
+    type: OpenAPI
+  - url: collections/ory-corp.postman_collection.json
+    type: PostmanCollection
+  - url: collections/ory-corp.opencollection.json
+    type: OpenCollection
+  description: Google Zanzibar-style permission checks powered by Ory Keto - check a
+    single permission, run batched checks, expand a subject set into its members,
+    read relationship tuples, and list configured namespaces.
+- aid: ory-corp:ory-corp-relationships-api
+  name: Ory Relationships API (Keto Write)
+  tags:
+  - Authorization
+  - Relationship Tuples
+  - Admin
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.ory.com/docs/keto/reference/rest-api
+  baseURL: https://{project-slug}.projects.oryapis.com
+  properties:
+  - url: https://www.ory.com/docs/keto/reference/ory-permission-language
+    type: Documentation
+  - url: https://www.ory.com/docs/keto/reference/rest-api
+    type: APIReference
+  - url: openapi/ory-corp-openapi.yml
+    type: OpenAPI
+  - url: collections/ory-corp.postman_collection.json
+    type: PostmanCollection
+  - url: collections/ory-corp.opencollection.json
+    type: OpenCollection
+  description: Privileged Keto write API to create, update (patch), and delete
+    relationship tuples that define who has what relation to which object, plus a
+    syntax-check endpoint for the Ory Permission Language (OPL) namespace config.
+- aid: ory-corp:ory-corp-courier-api
+  name: Ory Courier Messages API
+  tags:
+  - Messages
+  - Email
+  - Admin
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.ory.com/docs/kratos/reference/api
+  baseURL: https://{project-slug}.projects.oryapis.com
+  properties:
+  - url: https://www.ory.com/docs/kratos/self-service/flows/verify-email-account-activation
+    type: Documentation
+  - url: https://www.ory.com/docs/kratos/reference/api
+    type: APIReference
+  - url: openapi/ory-corp-openapi.yml
+    type: OpenAPI
+  - url: collections/ory-corp.postman_collection.json
+    type: PostmanCollection
+  - url: collections/ory-corp.opencollection.json
+    type: OpenCollection
+  description: Admin API to list and inspect the courier messages (verification,
+    recovery, and other transactional emails/SMS) that Ory has queued or dispatched,
+    for auditing and delivery troubleshooting.
+- aid: ory-corp:ory-corp-organizations-api
+  name: Ory Organizations API (B2B SSO)
+  tags:
+  - Organizations
+  - B2B
+  - SSO
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.ory.com/docs/kratos/organizations
+  baseURL: https://{project-slug}.projects.oryapis.com
+  properties:
+  - url: https://www.ory.com/docs/kratos/organizations
+    type: Documentation
+  - url: https://www.ory.com/docs/reference/api
+    type: APIReference
+  - url: openapi/ory-corp-openapi.yml
+    type: OpenAPI
+  - url: collections/ory-corp.postman_collection.json
+    type: PostmanCollection
+  - url: collections/ory-corp.opencollection.json
+    type: OpenCollection
+  description: Admin API to create, list, get, update, and delete organizations that
+    scope B2B customers, each mapping members to their own OIDC/SAML SSO connections
+    and login policies within a single Ory Network project.
+- aid: ory-corp:ory-corp-projects-api
+  name: Ory Network Projects API (Console)
+  tags:
+  - Projects
+  - Workspaces
+  - Console
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.ory.com/docs/guides/manage-project-via-api
+  baseURL: https://api.console.ory.sh
+  properties:
+  - url: https://www.ory.com/docs/guides/manage-project-via-api
+    type: Documentation
+  - url: https://www.ory.com/docs/reference/api
+    type: APIReference
+  - url: openapi/ory-corp-openapi.yml
+    type: OpenAPI
+  - url: collections/ory-corp.postman_collection.json
+    type: PostmanCollection
+  - url: collections/ory-corp.opencollection.json
+    type: OpenCollection
+  description: Ory Network Console API to manage the control plane - list workspace
+    projects, and create, get, update (patch/put), and delete projects along with
+    their identity, OAuth2, and permission configuration.
+- aid: ory-corp:ory-corp-project-tokens-api
+  name: Ory Network Project API Tokens API
+  tags:
+  - API Keys
+  - Tokens
+  - Console
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.ory.com/docs/concepts/personal-access-token
+  baseURL: https://api.console.ory.sh
+  properties:
+  - url: https://www.ory.com/docs/concepts/personal-access-token
+    type: Documentation
+  - url: https://www.ory.com/docs/guides/manage-project-via-api
+    type: APIReference
+  - url: openapi/ory-corp-openapi.yml
+    type: OpenAPI
+  - url: collections/ory-corp.postman_collection.json
+    type: PostmanCollection
+  - url: collections/ory-corp.opencollection.json
+    type: OpenCollection
+  description: Console API to create, list, and delete the project API tokens
+    (ory_pat_/ory_wak_ keys) that authenticate calls to a project's admin and
+    Console endpoints.
+- aid: ory-corp:ory-corp-event-streams-api
+  name: Ory Network Event Streams API
+  tags:
+  - Events
+  - Streaming
+  - Console
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.ory.com/docs/guides/event-streams/aws-sns
+  baseURL: https://api.console.ory.sh
+  properties:
+  - url: https://www.ory.com/docs/guides/event-streams/aws-sns
+    type: Documentation
+  - url: https://www.ory.com/docs/reference/api
+    type: APIReference
+  - url: openapi/ory-corp-openapi.yml
+    type: OpenAPI
+  - url: collections/ory-corp.postman_collection.json
+    type: PostmanCollection
+  - url: collections/ory-corp.opencollection.json
+    type: OpenCollection
+  description: Console API to configure event streams that forward Ory Network events
+    (registrations, logins, session and token activity) to external sinks such as
+    AWS SNS - create, list, update, and delete event stream destinations per project.
+- aid: ory-corp:ory-corp-billing-api
+  name: Ory Network Subscriptions and Billing API
+  tags:
+  - Billing
+  - Subscriptions
+  - FinOps
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://www.ory.com/docs/guides/manage-project-via-api
+  baseURL: https://api.console.ory.sh
+  properties:
+  - url: https://www.ory.com/pricing
+    type: Documentation
+  - url: https://www.ory.com/docs/reference/api
+    type: APIReference
+  - url: openapi/ory-corp-openapi.yml
+    type: OpenAPI
+  - url: collections/ory-corp.postman_collection.json
+    type: PostmanCollection
+  - url: collections/ory-corp.opencollection.json
+    type: OpenCollection
+  description: Console API to read and manage a workspace or project subscription -
+    inspect the active plan, create or change a subscription, and retrieve the Stripe
+    customer/billing portal context for the Ory Network account.
+common:
+- type: GitHubOrganization
+  url: https://github.com/ory
+- type: LinkedIn
+  url: https://www.linkedin.com/company/ory
+- type: Website
+  url: https://www.ory.com
+- type: Documentation
+  url: https://www.ory.com/docs
+- type: Plans
+  url: plans/ory-corp-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/ory-corp-rate-limits.yml
+- type: FinOps
+  url: finops/ory-corp-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

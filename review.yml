@@ -1,0 +1,177 @@
+aid: ory-corp
+name: Ory
+review:
+  question: Does Ory expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-02'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. Ory's public API surface - the Ory
+    Network project data plane (Kratos identity and self-service flows, Hydra
+    OAuth2/OIDC, Keto permissions, courier) and the Ory Network Console API - is
+    request/response REST over HTTPS. There is no server-push transport
+    (WebSocket or SSE) on Ory's own API to model. Ory's asynchronous delivery is
+    outbound: Ory Actions fire HTTP webhooks during identity flows, and Ory
+    Network Event Streams forward events to external sinks such as AWS SNS. Those
+    are server-to-endpoint HTTP / cloud-messaging transports, not a WebSocket the
+    client connects to, so they are out of scope for an Ory AsyncAPI document.
+findings:
+  summary: |
+    Ory does not publish a documented public WebSocket API. Ory is open-source
+    identity and access infrastructure - Kratos (identities, sessions,
+    self-service flows), Hydra (OAuth2 / OIDC), Keto (Zanzibar-style
+    permissions), and Oathkeeper (access proxy) - delivered as the Ory Network
+    managed cloud. On Ory Network, all project services are served on a
+    project-scoped host (https://{project-slug}.projects.oryapis.com) split into
+    public/frontend and privileged /admin surfaces; the control plane (projects,
+    tokens, event streams, subscriptions) is served on the Ory Network Console
+    API (https://api.console.ory.sh). Every documented endpoint is
+    request/response REST over HTTPS, authenticated for privileged calls with an
+    Ory API key (ory_pat_ / ory_wak_) as a Bearer token. Ory delivers events
+    asynchronously by firing HTTP webhooks via Ory Actions during identity flows
+    and by forwarding events to external sinks (for example AWS SNS) via Ory
+    Network Event Streams - neither is a client-facing WebSocket. No realtime,
+    bidirectional, or streaming WebSocket (ws:// or wss://) endpoint is
+    documented on Ory's own API as of the review date.
+  openSource: |
+    The core Ory stack is open source (Apache-2.0) and self-hostable via
+    Docker/Kubernetes: Ory Kratos, Ory Hydra, Ory Keto, and Ory Oathkeeper live
+    under github.com/ory. Self-hosted deployments carry no Ory fee - only your
+    own infrastructure. The Ory Network is the managed cloud that runs the same
+    engines behind one project-scoped base URL, adding a Console control plane,
+    B2B organizations, event streams, and billing. Ory SDKs are auto-generated
+    from these OpenAPI specifications.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://{project-slug}.projects.oryapis.com
+      documented: true
+      note: Project data plane - Kratos self-service and admin, Hydra OAuth2/OIDC public and admin, Keto permissions and relationship writes, courier.
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.console.ory.sh
+      documented: true
+      note: Ory Network Console API - workspaces, projects, project tokens, event streams, subscriptions.
+    - protocol: Webhook
+      scheme: https
+      documented: true
+      note: Ory Actions fire outbound HTTP webhooks during identity flows (before/after login, registration, settings, recovery, verification). Server-to-endpoint HTTP, not WebSocket.
+    - protocol: Event Stream
+      scheme: https
+      documented: true
+      note: Ory Network Event Streams forward events to external sinks such as AWS SNS. Cloud messaging to a third-party sink, not a client-facing WebSocket.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented anywhere in Ory Kratos, Hydra, Keto, Oathkeeper, or the Ory Network Console API as of the review date.
+  endpointsConfirmedRest:
+    - GET    https://{project-slug}.projects.oryapis.com/sessions/whoami
+    - GET    https://{project-slug}.projects.oryapis.com/sessions
+    - DELETE https://{project-slug}.projects.oryapis.com/sessions/{id}
+    - GET    https://{project-slug}.projects.oryapis.com/self-service/login/browser
+    - POST   https://{project-slug}.projects.oryapis.com/self-service/login
+    - GET    https://{project-slug}.projects.oryapis.com/self-service/registration/browser
+    - POST   https://{project-slug}.projects.oryapis.com/self-service/registration
+    - GET    https://{project-slug}.projects.oryapis.com/admin/identities
+    - POST   https://{project-slug}.projects.oryapis.com/admin/identities
+    - GET    https://{project-slug}.projects.oryapis.com/admin/identities/{id}
+    - PUT    https://{project-slug}.projects.oryapis.com/admin/identities/{id}
+    - PATCH  https://{project-slug}.projects.oryapis.com/admin/identities/{id}
+    - DELETE https://{project-slug}.projects.oryapis.com/admin/identities/{id}
+    - GET    https://{project-slug}.projects.oryapis.com/admin/identities/by/external/{externalID}
+    - DELETE https://{project-slug}.projects.oryapis.com/admin/identities/{id}/credentials/{type}
+    - GET    https://{project-slug}.projects.oryapis.com/admin/identities/{id}/sessions
+    - DELETE https://{project-slug}.projects.oryapis.com/admin/identities/{id}/sessions
+    - GET    https://{project-slug}.projects.oryapis.com/admin/sessions
+    - GET    https://{project-slug}.projects.oryapis.com/admin/sessions/{id}
+    - DELETE https://{project-slug}.projects.oryapis.com/admin/sessions/{id}
+    - PATCH  https://{project-slug}.projects.oryapis.com/admin/sessions/{id}/extend
+    - POST   https://{project-slug}.projects.oryapis.com/admin/recovery/code
+    - POST   https://{project-slug}.projects.oryapis.com/admin/recovery/link
+    - GET    https://{project-slug}.projects.oryapis.com/oauth2/auth
+    - POST   https://{project-slug}.projects.oryapis.com/oauth2/token
+    - POST   https://{project-slug}.projects.oryapis.com/oauth2/revoke
+    - GET    https://{project-slug}.projects.oryapis.com/userinfo
+    - GET    https://{project-slug}.projects.oryapis.com/.well-known/openid-configuration
+    - GET    https://{project-slug}.projects.oryapis.com/.well-known/jwks.json
+    - GET    https://{project-slug}.projects.oryapis.com/admin/oauth2/clients
+    - POST   https://{project-slug}.projects.oryapis.com/admin/oauth2/clients
+    - GET    https://{project-slug}.projects.oryapis.com/admin/oauth2/clients/{id}
+    - PUT    https://{project-slug}.projects.oryapis.com/admin/oauth2/clients/{id}
+    - PATCH  https://{project-slug}.projects.oryapis.com/admin/oauth2/clients/{id}
+    - DELETE https://{project-slug}.projects.oryapis.com/admin/oauth2/clients/{id}
+    - POST   https://{project-slug}.projects.oryapis.com/admin/oauth2/introspect
+    - GET    https://{project-slug}.projects.oryapis.com/admin/oauth2/auth/requests/login
+    - PUT    https://{project-slug}.projects.oryapis.com/admin/oauth2/auth/requests/login/accept
+    - GET    https://{project-slug}.projects.oryapis.com/admin/oauth2/auth/requests/consent
+    - PUT    https://{project-slug}.projects.oryapis.com/admin/oauth2/auth/requests/consent/accept
+    - PUT    https://{project-slug}.projects.oryapis.com/admin/oauth2/auth/requests/logout/accept
+    - DELETE https://{project-slug}.projects.oryapis.com/admin/oauth2/tokens
+    - GET    https://{project-slug}.projects.oryapis.com/admin/keys/{set}
+    - POST   https://{project-slug}.projects.oryapis.com/admin/keys/{set}
+    - DELETE https://{project-slug}.projects.oryapis.com/admin/keys/{set}
+    - GET    https://{project-slug}.projects.oryapis.com/admin/trust/grants
+    - POST   https://{project-slug}.projects.oryapis.com/admin/trust/grants
+    - GET    https://{project-slug}.projects.oryapis.com/relation-tuples/check
+    - POST   https://{project-slug}.projects.oryapis.com/relation-tuples/check
+    - POST   https://{project-slug}.projects.oryapis.com/relation-tuples/batch/check
+    - GET    https://{project-slug}.projects.oryapis.com/relation-tuples/expand
+    - GET    https://{project-slug}.projects.oryapis.com/relation-tuples
+    - GET    https://{project-slug}.projects.oryapis.com/namespaces
+    - PUT    https://{project-slug}.projects.oryapis.com/admin/relation-tuples
+    - PATCH  https://{project-slug}.projects.oryapis.com/admin/relation-tuples
+    - DELETE https://{project-slug}.projects.oryapis.com/admin/relation-tuples
+    - POST   https://{project-slug}.projects.oryapis.com/opl/syntax/check
+    - GET    https://{project-slug}.projects.oryapis.com/admin/courier/messages
+    - GET    https://{project-slug}.projects.oryapis.com/admin/courier/messages/{id}
+    - GET    https://{project-slug}.projects.oryapis.com/admin/organizations
+    - POST   https://{project-slug}.projects.oryapis.com/admin/organizations
+    - GET    https://api.console.ory.sh/workspaces/{workspace}/projects
+    - POST   https://api.console.ory.sh/projects
+    - GET    https://api.console.ory.sh/projects/{projectId}
+    - PATCH  https://api.console.ory.sh/projects/{projectId}
+    - DELETE https://api.console.ory.sh/projects/{projectId}
+    - GET    https://api.console.ory.sh/projects/{projectId}/tokens
+    - POST   https://api.console.ory.sh/projects/{projectId}/tokens
+    - DELETE https://api.console.ory.sh/projects/{projectId}/tokens/{tokenId}
+  endpointsModeled:
+    - GET    https://api.console.ory.sh/projects/{projectId}/eventStreams
+    - POST   https://api.console.ory.sh/projects/{projectId}/eventStreams
+    - PATCH  https://api.console.ory.sh/projects/{projectId}/eventStreams/{eventStreamId}
+    - DELETE https://api.console.ory.sh/projects/{projectId}/eventStreams/{eventStreamId}
+    - GET    https://api.console.ory.sh/workspaces/{workspace}/subscription
+    - POST   https://api.console.ory.sh/workspaces/{workspace}/subscription
+sources:
+  - url: https://www.ory.com/docs/reference/api
+    type: Documentation
+    note: Ory REST HTTP API overview; project-scoped base URL {slug}.projects.oryapis.com; all REST. No WebSocket mentioned.
+  - url: https://www.ory.com/docs/kratos/reference/api
+    type: APIReference
+    note: Kratos self-service flows and admin identity/session management; confirmed via ory/client-go openapi (identities, sessions, recovery, courier).
+  - url: https://www.ory.com/docs/hydra/reference/api
+    type: APIReference
+    note: Hydra OAuth2/OIDC public and admin endpoints; confirmed clients, introspect, login/consent/logout requests, keys, trust grants, token/auth/revoke/userinfo/well-known.
+  - url: https://www.ory.com/docs/keto/reference/rest-api
+    type: APIReference
+    note: Keto read/check/expand/namespaces and /admin/relation-tuples write; batch check and /opl/syntax/check confirmed via ory/keto spec.
+  - url: https://www.ory.com/docs/guides/manage-project-via-api
+    type: Documentation
+    note: Ory Network Console API base https://api.console.ory.sh; project and project-token endpoints; ory_wak_ workspace API key Bearer auth.
+  - url: https://www.ory.com/docs/guides/event-streams/aws-sns
+    type: Documentation
+    note: Event Streams forward Ory Network events to AWS SNS. Outbound cloud messaging, not a client WebSocket.
+  - url: https://github.com/ory
+    type: SourceCode
+    note: Open-source (Apache-2.0) Kratos, Hydra, Keto, Oathkeeper; self-hostable.
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists, and Ory's own public API is
+    request/response REST (project data plane on oryapis.com plus the Console
+    API on api.console.ory.sh). No AsyncAPI document was created because there is
+    no server-push transport on Ory's own API to model; Ory's asynchronous
+    behavior is outbound HTTP webhooks (Ory Actions) and event forwarding to
+    external sinks (Ory Network Event Streams to AWS SNS), which carry their own
+    transports and are out of scope for an Ory AsyncAPI document.
