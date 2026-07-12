@@ -307,6 +307,14 @@ apis:
     inspect the active plan, create or change a subscription, and retrieve the Stripe
     customer/billing portal context for the Ory Network account.
 common:
+- type: TrustCenter
+  url: security/ory-corp-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/ory-corp-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/ory-corp-domain-security.yml
+- type: Authentication
+  url: authentication/ory-corp-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/ory
 - type: LinkedIn
@@ -321,6 +329,8 @@ common:
   url: rate-limits/ory-corp-rate-limits.yml
 - type: FinOps
   url: finops/ory-corp-finops.yml
+- url: https://www.ory.com/blog
+  type: Blog
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com

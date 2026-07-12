@@ -1,0 +1,15 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/ory-corp-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: oryApiKey
+  type: http
+  scheme: bearer
+  description: 'Ory API key. Project admin endpoints use an Ory project API key (ory_pat_...);
+    Console endpoints use a workspace API key (ory_wak_...). Passed as `Authorization: Bearer
+    <token>`.'
+  sources:
+  - openapi/ory-corp-openapi.yml
