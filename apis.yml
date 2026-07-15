@@ -307,6 +307,8 @@ apis:
     inspect the active plan, create or change a subscription, and retrieve the Stripe
     customer/billing portal context for the Ory Network account.
 common:
+- type: AgenticAccess
+  url: agentic-access/ory-corp-agentic-access.yml
 - type: TrustCenter
   url: security/ory-corp-trust-center.yml
 - type: VulnerabilityDisclosure
