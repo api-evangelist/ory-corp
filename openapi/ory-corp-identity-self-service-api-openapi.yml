@@ -1,0 +1,354 @@
+openapi: 3.0.3
+info:
+  title: Ory Network Billing Identity (Self-Service) API
+  description: 'Ory is open-source identity and access infrastructure, delivered as the Ory Network managed cloud. This document models the primary public and admin REST surfaces of an Ory Network project and the Ory Network Console (control plane).
+
+    Two base URLs are in play. Project data-plane endpoints - Ory Kratos (identities, sessions, self-service flows), Ory Hydra (OAuth2 / OIDC), Ory Keto (permissions and relationship tuples), and courier messages - are served on the project-scoped host https://{project-slug}.projects.oryapis.com. The Ory Network Console API (workspaces, projects, project tokens, event streams, subscriptions) is served on https://api.console.ory.sh.
+
+    Public self-service and OAuth2/OIDC endpoints are unauthenticated or use the end-user session; admin, Keto write, courier, and Console endpoints require an Ory API key / project or workspace API token passed as a Bearer token. Ory SDKs are auto-generated from these OpenAPI specifications. Endpoint set is representative and grounded in Ory''s published specs; consult the live reference for the exhaustive parameter and schema detail.'
+  version: '1.0'
+  contact:
+    name: Ory
+    url: https://www.ory.com
+  license:
+    name: Apache-2.0
+    url: https://github.com/ory/kratos/blob/master/LICENSE
+servers:
+- url: https://{project-slug}.projects.oryapis.com
+  description: Ory Network project (Kratos, Hydra, Keto, Courier)
+  variables:
+    project-slug:
+      default: your-project-slug
+      description: The slug of your Ory Network project.
+- url: https://api.console.ory.sh
+  description: Ory Network Console API (control plane)
+security:
+- oryApiKey: []
+tags:
+- name: Identity (Self-Service)
+  description: Public Kratos flows for login, registration, recovery, verification, settings, logout, and sessions.
+paths:
+  /self-service/login/browser:
+    get:
+      operationId: createBrowserLoginFlow
+      tags:
+      - Identity (Self-Service)
+      summary: Create a browser login flow
+      security: []
+      responses:
+        '200':
+          description: The initialized login flow.
+  /self-service/login/api:
+    get:
+      operationId: createNativeLoginFlow
+      tags:
+      - Identity (Self-Service)
+      summary: Create a native (API) login flow
+      security: []
+      responses:
+        '200':
+          description: The initialized login flow.
+  /self-service/login/flows:
+    get:
+      operationId: getLoginFlow
+      tags:
+      - Identity (Self-Service)
+      summary: Get a login flow
+      security: []
+      parameters:
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The login flow.
+  /self-service/login:
+    post:
+      operationId: updateLoginFlow
+      tags:
+      - Identity (Self-Service)
+      summary: Submit a login flow
+      security: []
+      parameters:
+      - name: flow
+        in: query
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: The session and identity after successful login.
+        '400':
+          description: The login flow with validation errors.
+  /self-service/registration/browser:
+    get:
+      operationId: createBrowserRegistrationFlow
+      tags:
+      - Identity (Self-Service)
+      summary: Create a browser registration flow
+      security: []
+      responses:
+        '200':
+          description: The initialized registration flow.
+  /self-service/registration:
+    post:
+      operationId: updateRegistrationFlow
+      tags:
+      - Identity (Self-Service)
+      summary: Submit a registration flow
+      security: []
+      parameters:
+      - name: flow
+        in: query
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: The identity (and session) after successful registration.
+  /self-service/recovery/browser:
+    get:
+      operationId: createBrowserRecoveryFlow
+      tags:
+      - Identity (Self-Service)
+      summary: Create a browser account recovery flow
+      security: []
+      responses:
+        '200':
+          description: The initialized recovery flow.
+  /self-service/recovery:
+    post:
+      operationId: updateRecoveryFlow
+      tags:
+      - Identity (Self-Service)
+      summary: Submit a recovery flow
+      security: []
+      parameters:
+      - name: flow
+        in: query
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: The recovery flow state.
+  /self-service/verification/browser:
+    get:
+      operationId: createBrowserVerificationFlow
+      tags:
+      - Identity (Self-Service)
+      summary: Create a browser email verification flow
+      security: []
+      responses:
+        '200':
+          description: The initialized verification flow.
+  /self-service/verification:
+    post:
+      operationId: updateVerificationFlow
+      tags:
+      - Identity (Self-Service)
+      summary: Submit a verification flow
+      security: []
+      parameters:
+      - name: flow
+        in: query
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: The verification flow state.
+  /self-service/settings/browser:
+    get:
+      operationId: createBrowserSettingsFlow
+      tags:
+      - Identity (Self-Service)
+      summary: Create a browser settings (profile) flow
+      responses:
+        '200':
+          description: The initialized settings flow.
+  /self-service/settings:
+    post:
+      operationId: updateSettingsFlow
+      tags:
+      - Identity (Self-Service)
+      summary: Submit a settings flow
+      parameters:
+      - name: flow
+        in: query
+        required: true
+        schema:
+          type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: The updated identity and settings flow.
+  /self-service/logout/browser:
+    get:
+      operationId: createBrowserLogoutFlow
+      tags:
+      - Identity (Self-Service)
+      summary: Create a browser logout flow
+      responses:
+        '200':
+          description: The logout URL and token.
+  /sessions/whoami:
+    get:
+      operationId: toSession
+      tags:
+      - Identity (Self-Service)
+      summary: Get the current session
+      responses:
+        '200':
+          description: The active session for the supplied cookie or token.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Session'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /sessions:
+    get:
+      operationId: listMySessions
+      tags:
+      - Identity (Self-Service)
+      summary: List the caller's sessions
+      responses:
+        '200':
+          description: The caller's active sessions.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Session'
+    delete:
+      operationId: disableMyOtherSessions
+      tags:
+      - Identity (Self-Service)
+      summary: Revoke all other sessions
+      responses:
+        '200':
+          description: The number of sessions revoked.
+  /sessions/{id}:
+    delete:
+      operationId: disableMySession
+      tags:
+      - Identity (Self-Service)
+      summary: Revoke one of the caller's sessions
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Session revoked.
+components:
+  schemas:
+    Session:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        active:
+          type: boolean
+        expires_at:
+          type: string
+          format: date-time
+        authenticated_at:
+          type: string
+          format: date-time
+        identity:
+          $ref: '#/components/schemas/Identity'
+    Identity:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        schema_id:
+          type: string
+        state:
+          type: string
+          enum:
+          - active
+          - inactive
+        traits:
+          type: object
+          additionalProperties: true
+        verifiable_addresses:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+            status:
+              type: string
+            message:
+              type: string
+            reason:
+              type: string
+  responses:
+    Unauthorized:
+      description: Missing or invalid credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    oryApiKey:
+      type: http
+      scheme: bearer
+      description: 'Ory API key. Project admin endpoints use an Ory project API key (ory_pat_...); Console endpoints use a workspace API key (ory_wak_...). Passed as `Authorization: Bearer <token>`.'

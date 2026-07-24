@@ -1,0 +1,425 @@
+openapi: 3.0.3
+info:
+  title: Ory Network Billing Identity (Admin) API
+  description: 'Ory is open-source identity and access infrastructure, delivered as the Ory Network managed cloud. This document models the primary public and admin REST surfaces of an Ory Network project and the Ory Network Console (control plane).
+
+    Two base URLs are in play. Project data-plane endpoints - Ory Kratos (identities, sessions, self-service flows), Ory Hydra (OAuth2 / OIDC), Ory Keto (permissions and relationship tuples), and courier messages - are served on the project-scoped host https://{project-slug}.projects.oryapis.com. The Ory Network Console API (workspaces, projects, project tokens, event streams, subscriptions) is served on https://api.console.ory.sh.
+
+    Public self-service and OAuth2/OIDC endpoints are unauthenticated or use the end-user session; admin, Keto write, courier, and Console endpoints require an Ory API key / project or workspace API token passed as a Bearer token. Ory SDKs are auto-generated from these OpenAPI specifications. Endpoint set is representative and grounded in Ory''s published specs; consult the live reference for the exhaustive parameter and schema detail.'
+  version: '1.0'
+  contact:
+    name: Ory
+    url: https://www.ory.com
+  license:
+    name: Apache-2.0
+    url: https://github.com/ory/kratos/blob/master/LICENSE
+servers:
+- url: https://{project-slug}.projects.oryapis.com
+  description: Ory Network project (Kratos, Hydra, Keto, Courier)
+  variables:
+    project-slug:
+      default: your-project-slug
+      description: The slug of your Ory Network project.
+- url: https://api.console.ory.sh
+  description: Ory Network Console API (control plane)
+security:
+- oryApiKey: []
+tags:
+- name: Identity (Admin)
+  description: Privileged Kratos identity and session management.
+paths:
+  /admin/identities:
+    get:
+      operationId: listIdentities
+      tags:
+      - Identity (Admin)
+      summary: List identities
+      responses:
+        '200':
+          description: A page of identities.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Identity'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: createIdentity
+      tags:
+      - Identity (Admin)
+      summary: Create an identity
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IdentityInput'
+      responses:
+        '201':
+          description: The created identity.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Identity'
+        '409':
+          description: Conflict - an identity with these credentials exists.
+    patch:
+      operationId: batchPatchIdentities
+      tags:
+      - Identity (Admin)
+      summary: Create and delete identities in a batch
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '200':
+          description: The batch patch result.
+  /admin/identities/{id}:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get:
+      operationId: getIdentity
+      tags:
+      - Identity (Admin)
+      summary: Get an identity
+      responses:
+        '200':
+          description: The identity.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Identity'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      operationId: updateIdentity
+      tags:
+      - Identity (Admin)
+      summary: Replace an identity
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IdentityInput'
+      responses:
+        '200':
+          description: The updated identity.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Identity'
+    patch:
+      operationId: patchIdentity
+      tags:
+      - Identity (Admin)
+      summary: Patch an identity (JSON Patch)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                additionalProperties: true
+      responses:
+        '200':
+          description: The patched identity.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Identity'
+    delete:
+      operationId: deleteIdentity
+      tags:
+      - Identity (Admin)
+      summary: Delete an identity
+      responses:
+        '204':
+          description: Identity deleted.
+  /admin/identities/by/external/{externalID}:
+    get:
+      operationId: getIdentityByExternalID
+      tags:
+      - Identity (Admin)
+      summary: Get an identity by external ID
+      parameters:
+      - name: externalID
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The identity.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Identity'
+  /admin/identities/{id}/credentials/{type}:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    - name: type
+      in: path
+      required: true
+      schema:
+        type: string
+        enum:
+        - password
+        - oidc
+        - totp
+        - webauthn
+        - lookup_secret
+        - code
+    delete:
+      operationId: deleteIdentityCredentials
+      tags:
+      - Identity (Admin)
+      summary: Delete a credential of an identity
+      responses:
+        '204':
+          description: Credential deleted.
+  /admin/identities/{id}/sessions:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get:
+      operationId: listIdentitySessions
+      tags:
+      - Identity (Admin)
+      summary: List an identity's sessions
+      responses:
+        '200':
+          description: The identity's sessions.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Session'
+    delete:
+      operationId: deleteIdentitySessions
+      tags:
+      - Identity (Admin)
+      summary: Revoke all of an identity's sessions
+      responses:
+        '204':
+          description: Sessions revoked.
+  /admin/sessions:
+    get:
+      operationId: listSessions
+      tags:
+      - Identity (Admin)
+      summary: List all sessions
+      responses:
+        '200':
+          description: A page of sessions.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Session'
+  /admin/sessions/{id}:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get:
+      operationId: getSession
+      tags:
+      - Identity (Admin)
+      summary: Get a session
+      responses:
+        '200':
+          description: The session.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Session'
+    delete:
+      operationId: disableSession
+      tags:
+      - Identity (Admin)
+      summary: Deactivate a session
+      responses:
+        '204':
+          description: Session deactivated.
+  /admin/sessions/{id}/extend:
+    patch:
+      operationId: extendSession
+      tags:
+      - Identity (Admin)
+      summary: Extend a session
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: The extended session.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Session'
+  /admin/recovery/code:
+    post:
+      operationId: createRecoveryCodeForIdentity
+      tags:
+      - Identity (Admin)
+      summary: Create a recovery code for an identity
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                identity_id:
+                  type: string
+                  format: uuid
+      responses:
+        '201':
+          description: The recovery code and flow URL.
+  /admin/recovery/link:
+    post:
+      operationId: createRecoveryLinkForIdentity
+      tags:
+      - Identity (Admin)
+      summary: Create a recovery link for an identity
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                identity_id:
+                  type: string
+                  format: uuid
+      responses:
+        '200':
+          description: The recovery link.
+components:
+  schemas:
+    IdentityInput:
+      type: object
+      required:
+      - schema_id
+      - traits
+      properties:
+        schema_id:
+          type: string
+        state:
+          type: string
+          enum:
+          - active
+          - inactive
+        traits:
+          type: object
+          additionalProperties: true
+        credentials:
+          type: object
+          additionalProperties: true
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: integer
+            status:
+              type: string
+            message:
+              type: string
+            reason:
+              type: string
+    Session:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        active:
+          type: boolean
+        expires_at:
+          type: string
+          format: date-time
+        authenticated_at:
+          type: string
+          format: date-time
+        identity:
+          $ref: '#/components/schemas/Identity'
+    Identity:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        schema_id:
+          type: string
+        state:
+          type: string
+          enum:
+          - active
+          - inactive
+        traits:
+          type: object
+          additionalProperties: true
+        verifiable_addresses:
+          type: array
+          items:
+            type: object
+            additionalProperties: true
+        created_at:
+          type: string
+          format: date-time
+        updated_at:
+          type: string
+          format: date-time
+  responses:
+    Unauthorized:
+      description: Missing or invalid credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  securitySchemes:
+    oryApiKey:
+      type: http
+      scheme: bearer
+      description: 'Ory API key. Project admin endpoints use an Ory project API key (ory_pat_...); Console endpoints use a workspace API key (ory_wak_...). Passed as `Authorization: Bearer <token>`.'

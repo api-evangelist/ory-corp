@@ -1,0 +1,170 @@
+openapi: 3.0.3
+info:
+  title: Ory Network Billing Projects API
+  description: 'Ory is open-source identity and access infrastructure, delivered as the Ory Network managed cloud. This document models the primary public and admin REST surfaces of an Ory Network project and the Ory Network Console (control plane).
+
+    Two base URLs are in play. Project data-plane endpoints - Ory Kratos (identities, sessions, self-service flows), Ory Hydra (OAuth2 / OIDC), Ory Keto (permissions and relationship tuples), and courier messages - are served on the project-scoped host https://{project-slug}.projects.oryapis.com. The Ory Network Console API (workspaces, projects, project tokens, event streams, subscriptions) is served on https://api.console.ory.sh.
+
+    Public self-service and OAuth2/OIDC endpoints are unauthenticated or use the end-user session; admin, Keto write, courier, and Console endpoints require an Ory API key / project or workspace API token passed as a Bearer token. Ory SDKs are auto-generated from these OpenAPI specifications. Endpoint set is representative and grounded in Ory''s published specs; consult the live reference for the exhaustive parameter and schema detail.'
+  version: '1.0'
+  contact:
+    name: Ory
+    url: https://www.ory.com
+  license:
+    name: Apache-2.0
+    url: https://github.com/ory/kratos/blob/master/LICENSE
+servers:
+- url: https://{project-slug}.projects.oryapis.com
+  description: Ory Network project (Kratos, Hydra, Keto, Courier)
+  variables:
+    project-slug:
+      default: your-project-slug
+      description: The slug of your Ory Network project.
+- url: https://api.console.ory.sh
+  description: Ory Network Console API (control plane)
+security:
+- oryApiKey: []
+tags:
+- name: Projects
+  description: Ory Network Console project management.
+paths:
+  /workspaces/{workspace}/projects:
+    get:
+      operationId: listWorkspaceProjects
+      tags:
+      - Projects
+      summary: List a workspace's projects
+      servers:
+      - url: https://api.console.ory.sh
+      parameters:
+      - name: workspace
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: The workspace's projects.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Project'
+  /projects:
+    post:
+      operationId: createProject
+      tags:
+      - Projects
+      summary: Create a project
+      servers:
+      - url: https://api.console.ory.sh
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Project'
+      responses:
+        '201':
+          description: The created project.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+  /projects/{projectId}:
+    parameters:
+    - name: projectId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get:
+      operationId: getProject
+      tags:
+      - Projects
+      summary: Get a project
+      servers:
+      - url: https://api.console.ory.sh
+      responses:
+        '200':
+          description: The project.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Project'
+    patch:
+      operationId: patchProject
+      tags:
+      - Projects
+      summary: Patch a project's configuration
+      servers:
+      - url: https://api.console.ory.sh
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                additionalProperties: true
+      responses:
+        '200':
+          description: The updated project.
+    put:
+      operationId: setProject
+      tags:
+      - Projects
+      summary: Replace a project's configuration
+      servers:
+      - url: https://api.console.ory.sh
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Project'
+      responses:
+        '200':
+          description: The updated project.
+    delete:
+      operationId: purgeProject
+      tags:
+      - Projects
+      summary: Delete a project
+      servers:
+      - url: https://api.console.ory.sh
+      responses:
+        '204':
+          description: Project deleted.
+components:
+  schemas:
+    Project:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        name:
+          type: string
+        slug:
+          type: string
+        workspace_id:
+          type: string
+          format: uuid
+        environment:
+          type: string
+          enum:
+          - prod
+          - stage
+          - dev
+        state:
+          type: string
+  securitySchemes:
+    oryApiKey:
+      type: http
+      scheme: bearer
+      description: 'Ory API key. Project admin endpoints use an Ory project API key (ory_pat_...); Console endpoints use a workspace API key (ory_wak_...). Passed as `Authorization: Bearer <token>`.'

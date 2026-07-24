@@ -1,0 +1,141 @@
+openapi: 3.0.3
+info:
+  title: Ory Network Billing Event Streams API
+  description: 'Ory is open-source identity and access infrastructure, delivered as the Ory Network managed cloud. This document models the primary public and admin REST surfaces of an Ory Network project and the Ory Network Console (control plane).
+
+    Two base URLs are in play. Project data-plane endpoints - Ory Kratos (identities, sessions, self-service flows), Ory Hydra (OAuth2 / OIDC), Ory Keto (permissions and relationship tuples), and courier messages - are served on the project-scoped host https://{project-slug}.projects.oryapis.com. The Ory Network Console API (workspaces, projects, project tokens, event streams, subscriptions) is served on https://api.console.ory.sh.
+
+    Public self-service and OAuth2/OIDC endpoints are unauthenticated or use the end-user session; admin, Keto write, courier, and Console endpoints require an Ory API key / project or workspace API token passed as a Bearer token. Ory SDKs are auto-generated from these OpenAPI specifications. Endpoint set is representative and grounded in Ory''s published specs; consult the live reference for the exhaustive parameter and schema detail.'
+  version: '1.0'
+  contact:
+    name: Ory
+    url: https://www.ory.com
+  license:
+    name: Apache-2.0
+    url: https://github.com/ory/kratos/blob/master/LICENSE
+servers:
+- url: https://{project-slug}.projects.oryapis.com
+  description: Ory Network project (Kratos, Hydra, Keto, Courier)
+  variables:
+    project-slug:
+      default: your-project-slug
+      description: The slug of your Ory Network project.
+- url: https://api.console.ory.sh
+  description: Ory Network Console API (control plane)
+security:
+- oryApiKey: []
+tags:
+- name: Event Streams
+  description: Ory Network event stream configuration.
+paths:
+  /projects/{projectId}/eventStreams:
+    parameters:
+    - name: projectId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    get:
+      operationId: listEventStreams
+      tags:
+      - Event Streams
+      summary: List event streams
+      servers:
+      - url: https://api.console.ory.sh
+      responses:
+        '200':
+          description: The configured event streams.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/EventStream'
+    post:
+      operationId: createEventStream
+      tags:
+      - Event Streams
+      summary: Create an event stream
+      servers:
+      - url: https://api.console.ory.sh
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventStream'
+      responses:
+        '201':
+          description: The created event stream.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventStream'
+  /projects/{projectId}/eventStreams/{eventStreamId}:
+    parameters:
+    - name: projectId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    - name: eventStreamId
+      in: path
+      required: true
+      schema:
+        type: string
+        format: uuid
+    patch:
+      operationId: setEventStream
+      tags:
+      - Event Streams
+      summary: Update an event stream
+      servers:
+      - url: https://api.console.ory.sh
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EventStream'
+      responses:
+        '200':
+          description: The updated event stream.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EventStream'
+    delete:
+      operationId: deleteEventStream
+      tags:
+      - Event Streams
+      summary: Delete an event stream
+      servers:
+      - url: https://api.console.ory.sh
+      responses:
+        '204':
+          description: Event stream deleted.
+components:
+  schemas:
+    EventStream:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        type:
+          type: string
+          enum:
+          - sns
+        topic_arn:
+          type: string
+        aws_iam_role_arn:
+          type: string
+        role_arn:
+          type: string
+  securitySchemes:
+    oryApiKey:
+      type: http
+      scheme: bearer
+      description: 'Ory API key. Project admin endpoints use an Ory project API key (ory_pat_...); Console endpoints use a workspace API key (ory_wak_...). Passed as `Authorization: Bearer <token>`.'

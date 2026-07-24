@@ -1,0 +1,110 @@
+openapi: 3.0.3
+info:
+  title: Ory Network Billing Courier API
+  description: 'Ory is open-source identity and access infrastructure, delivered as the Ory Network managed cloud. This document models the primary public and admin REST surfaces of an Ory Network project and the Ory Network Console (control plane).
+
+    Two base URLs are in play. Project data-plane endpoints - Ory Kratos (identities, sessions, self-service flows), Ory Hydra (OAuth2 / OIDC), Ory Keto (permissions and relationship tuples), and courier messages - are served on the project-scoped host https://{project-slug}.projects.oryapis.com. The Ory Network Console API (workspaces, projects, project tokens, event streams, subscriptions) is served on https://api.console.ory.sh.
+
+    Public self-service and OAuth2/OIDC endpoints are unauthenticated or use the end-user session; admin, Keto write, courier, and Console endpoints require an Ory API key / project or workspace API token passed as a Bearer token. Ory SDKs are auto-generated from these OpenAPI specifications. Endpoint set is representative and grounded in Ory''s published specs; consult the live reference for the exhaustive parameter and schema detail.'
+  version: '1.0'
+  contact:
+    name: Ory
+    url: https://www.ory.com
+  license:
+    name: Apache-2.0
+    url: https://github.com/ory/kratos/blob/master/LICENSE
+servers:
+- url: https://{project-slug}.projects.oryapis.com
+  description: Ory Network project (Kratos, Hydra, Keto, Courier)
+  variables:
+    project-slug:
+      default: your-project-slug
+      description: The slug of your Ory Network project.
+- url: https://api.console.ory.sh
+  description: Ory Network Console API (control plane)
+security:
+- oryApiKey: []
+tags:
+- name: Courier
+  description: Admin access to queued and dispatched courier messages.
+paths:
+  /admin/courier/messages:
+    get:
+      operationId: listCourierMessages
+      tags:
+      - Courier
+      summary: List courier messages
+      parameters:
+      - name: status
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - queued
+          - sent
+          - processing
+          - abandoned
+      responses:
+        '200':
+          description: A page of courier messages.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/CourierMessage'
+  /admin/courier/messages/{id}:
+    get:
+      operationId: getCourierMessage
+      tags:
+      - Courier
+      summary: Get a courier message
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+          format: uuid
+      responses:
+        '200':
+          description: The courier message.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CourierMessage'
+components:
+  schemas:
+    CourierMessage:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+        status:
+          type: string
+          enum:
+          - queued
+          - sent
+          - processing
+          - abandoned
+        type:
+          type: string
+          enum:
+          - email
+          - phone
+        recipient:
+          type: string
+        subject:
+          type: string
+        template_type:
+          type: string
+        created_at:
+          type: string
+          format: date-time
+  securitySchemes:
+    oryApiKey:
+      type: http
+      scheme: bearer
+      description: 'Ory API key. Project admin endpoints use an Ory project API key (ory_pat_...); Console endpoints use a workspace API key (ory_wak_...). Passed as `Authorization: Bearer <token>`.'

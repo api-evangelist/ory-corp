@@ -1,0 +1,212 @@
+openapi: 3.0.3
+info:
+  title: Ory Network Billing Permissions API
+  description: 'Ory is open-source identity and access infrastructure, delivered as the Ory Network managed cloud. This document models the primary public and admin REST surfaces of an Ory Network project and the Ory Network Console (control plane).
+
+    Two base URLs are in play. Project data-plane endpoints - Ory Kratos (identities, sessions, self-service flows), Ory Hydra (OAuth2 / OIDC), Ory Keto (permissions and relationship tuples), and courier messages - are served on the project-scoped host https://{project-slug}.projects.oryapis.com. The Ory Network Console API (workspaces, projects, project tokens, event streams, subscriptions) is served on https://api.console.ory.sh.
+
+    Public self-service and OAuth2/OIDC endpoints are unauthenticated or use the end-user session; admin, Keto write, courier, and Console endpoints require an Ory API key / project or workspace API token passed as a Bearer token. Ory SDKs are auto-generated from these OpenAPI specifications. Endpoint set is representative and grounded in Ory''s published specs; consult the live reference for the exhaustive parameter and schema detail.'
+  version: '1.0'
+  contact:
+    name: Ory
+    url: https://www.ory.com
+  license:
+    name: Apache-2.0
+    url: https://github.com/ory/kratos/blob/master/LICENSE
+servers:
+- url: https://{project-slug}.projects.oryapis.com
+  description: Ory Network project (Kratos, Hydra, Keto, Courier)
+  variables:
+    project-slug:
+      default: your-project-slug
+      description: The slug of your Ory Network project.
+- url: https://api.console.ory.sh
+  description: Ory Network Console API (control plane)
+security:
+- oryApiKey: []
+tags:
+- name: Permissions
+  description: Keto permission checks, expand, and namespace reads.
+paths:
+  /relation-tuples/check:
+    get:
+      operationId: checkPermission
+      tags:
+      - Permissions
+      summary: Check a permission
+      parameters:
+      - name: namespace
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: object
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: relation
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: subject_id
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Whether the relationship exists.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  allowed:
+                    type: boolean
+    post:
+      operationId: checkPermissionOrError
+      tags:
+      - Permissions
+      summary: Check a permission (POST body)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RelationTuple'
+      responses:
+        '200':
+          description: Whether the relationship exists.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  allowed:
+                    type: boolean
+  /relation-tuples/batch/check:
+    post:
+      operationId: batchCheckPermission
+      tags:
+      - Permissions
+      summary: Batch-check permissions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tuples:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/RelationTuple'
+      responses:
+        '200':
+          description: The per-tuple results.
+  /relation-tuples/expand:
+    get:
+      operationId: expandPermissions
+      tags:
+      - Permissions
+      summary: Expand a subject set
+      parameters:
+      - name: namespace
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: object
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: relation
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: max-depth
+        in: query
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: The expansion tree.
+  /relation-tuples:
+    get:
+      operationId: listRelationTuples
+      tags:
+      - Permissions
+      summary: Query relationship tuples
+      parameters:
+      - name: namespace
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: object
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: relation
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The matching relationship tuples.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  relation_tuples:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/RelationTuple'
+  /namespaces:
+    get:
+      operationId: listRelationshipNamespaces
+      tags:
+      - Permissions
+      summary: List permission namespaces
+      responses:
+        '200':
+          description: The configured namespaces.
+components:
+  schemas:
+    RelationTuple:
+      type: object
+      required:
+      - namespace
+      - object
+      - relation
+      properties:
+        namespace:
+          type: string
+        object:
+          type: string
+        relation:
+          type: string
+        subject_id:
+          type: string
+        subject_set:
+          type: object
+          properties:
+            namespace:
+              type: string
+            object:
+              type: string
+            relation:
+              type: string
+  securitySchemes:
+    oryApiKey:
+      type: http
+      scheme: bearer
+      description: 'Ory API key. Project admin endpoints use an Ory project API key (ory_pat_...); Console endpoints use a workspace API key (ory_wak_...). Passed as `Authorization: Bearer <token>`.'

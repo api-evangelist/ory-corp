@@ -1,0 +1,334 @@
+openapi: 3.0.3
+info:
+  title: Ory Network Billing OAuth2 (Admin) API
+  description: 'Ory is open-source identity and access infrastructure, delivered as the Ory Network managed cloud. This document models the primary public and admin REST surfaces of an Ory Network project and the Ory Network Console (control plane).
+
+    Two base URLs are in play. Project data-plane endpoints - Ory Kratos (identities, sessions, self-service flows), Ory Hydra (OAuth2 / OIDC), Ory Keto (permissions and relationship tuples), and courier messages - are served on the project-scoped host https://{project-slug}.projects.oryapis.com. The Ory Network Console API (workspaces, projects, project tokens, event streams, subscriptions) is served on https://api.console.ory.sh.
+
+    Public self-service and OAuth2/OIDC endpoints are unauthenticated or use the end-user session; admin, Keto write, courier, and Console endpoints require an Ory API key / project or workspace API token passed as a Bearer token. Ory SDKs are auto-generated from these OpenAPI specifications. Endpoint set is representative and grounded in Ory''s published specs; consult the live reference for the exhaustive parameter and schema detail.'
+  version: '1.0'
+  contact:
+    name: Ory
+    url: https://www.ory.com
+  license:
+    name: Apache-2.0
+    url: https://github.com/ory/kratos/blob/master/LICENSE
+servers:
+- url: https://{project-slug}.projects.oryapis.com
+  description: Ory Network project (Kratos, Hydra, Keto, Courier)
+  variables:
+    project-slug:
+      default: your-project-slug
+      description: The slug of your Ory Network project.
+- url: https://api.console.ory.sh
+  description: Ory Network Console API (control plane)
+security:
+- oryApiKey: []
+tags:
+- name: OAuth2 (Admin)
+  description: Privileged Hydra client, token, consent, and key management.
+paths:
+  /admin/oauth2/clients:
+    get:
+      operationId: listOAuth2Clients
+      tags:
+      - OAuth2 (Admin)
+      summary: List OAuth2 clients
+      responses:
+        '200':
+          description: A page of OAuth2 clients.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/OAuth2Client'
+    post:
+      operationId: createOAuth2Client
+      tags:
+      - OAuth2 (Admin)
+      summary: Create an OAuth2 client
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OAuth2Client'
+      responses:
+        '201':
+          description: The created client.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OAuth2Client'
+  /admin/oauth2/clients/{id}:
+    parameters:
+    - name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      operationId: getOAuth2Client
+      tags:
+      - OAuth2 (Admin)
+      summary: Get an OAuth2 client
+      responses:
+        '200':
+          description: The client.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OAuth2Client'
+    put:
+      operationId: setOAuth2Client
+      tags:
+      - OAuth2 (Admin)
+      summary: Replace an OAuth2 client
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OAuth2Client'
+      responses:
+        '200':
+          description: The updated client.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OAuth2Client'
+    patch:
+      operationId: patchOAuth2Client
+      tags:
+      - OAuth2 (Admin)
+      summary: Patch an OAuth2 client
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                additionalProperties: true
+      responses:
+        '200':
+          description: The patched client.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OAuth2Client'
+    delete:
+      operationId: deleteOAuth2Client
+      tags:
+      - OAuth2 (Admin)
+      summary: Delete an OAuth2 client
+      responses:
+        '204':
+          description: Client deleted.
+  /admin/oauth2/introspect:
+    post:
+      operationId: introspectOAuth2Token
+      tags:
+      - OAuth2 (Admin)
+      summary: Introspect an OAuth2 token
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+                scope:
+                  type: string
+      responses:
+        '200':
+          description: The introspection result (active flag and claims).
+  /admin/oauth2/auth/requests/login:
+    get:
+      operationId: getOAuth2LoginRequest
+      tags:
+      - OAuth2 (Admin)
+      summary: Get an OAuth2 login request
+      parameters:
+      - name: login_challenge
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The login request.
+  /admin/oauth2/auth/requests/login/accept:
+    put:
+      operationId: acceptOAuth2LoginRequest
+      tags:
+      - OAuth2 (Admin)
+      summary: Accept an OAuth2 login request
+      parameters:
+      - name: login_challenge
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The redirect to continue the flow.
+  /admin/oauth2/auth/requests/consent:
+    get:
+      operationId: getOAuth2ConsentRequest
+      tags:
+      - OAuth2 (Admin)
+      summary: Get an OAuth2 consent request
+      parameters:
+      - name: consent_challenge
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The consent request.
+  /admin/oauth2/auth/requests/consent/accept:
+    put:
+      operationId: acceptOAuth2ConsentRequest
+      tags:
+      - OAuth2 (Admin)
+      summary: Accept an OAuth2 consent request
+      parameters:
+      - name: consent_challenge
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The redirect to complete consent.
+  /admin/oauth2/auth/requests/logout/accept:
+    put:
+      operationId: acceptOAuth2LogoutRequest
+      tags:
+      - OAuth2 (Admin)
+      summary: Accept an OAuth2 logout request
+      parameters:
+      - name: logout_challenge
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: The redirect to complete logout.
+  /admin/oauth2/tokens:
+    delete:
+      operationId: deleteOAuth2Tokens
+      tags:
+      - OAuth2 (Admin)
+      summary: Delete OAuth2 access tokens for a client
+      parameters:
+      - name: client_id
+        in: query
+        required: true
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Tokens deleted.
+  /admin/keys/{set}:
+    parameters:
+    - name: set
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      operationId: getJsonWebKeySet
+      tags:
+      - OAuth2 (Admin)
+      summary: Get a JSON Web Key Set
+      responses:
+        '200':
+          description: The key set.
+    post:
+      operationId: createJsonWebKeySet
+      tags:
+      - OAuth2 (Admin)
+      summary: Generate a JSON Web Key Set
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '201':
+          description: The created key set.
+    delete:
+      operationId: deleteJsonWebKeySet
+      tags:
+      - OAuth2 (Admin)
+      summary: Delete a JSON Web Key Set
+      responses:
+        '204':
+          description: Key set deleted.
+  /admin/trust/grants:
+    get:
+      operationId: listTrustedJwtGrantIssuers
+      tags:
+      - OAuth2 (Admin)
+      summary: List trusted JWT-bearer grant issuers
+      responses:
+        '200':
+          description: The trusted issuers.
+    post:
+      operationId: trustJwtGrantIssuer
+      tags:
+      - OAuth2 (Admin)
+      summary: Trust a JWT-bearer grant issuer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: true
+      responses:
+        '201':
+          description: The created trust relationship.
+components:
+  schemas:
+    OAuth2Client:
+      type: object
+      properties:
+        client_id:
+          type: string
+        client_name:
+          type: string
+        client_secret:
+          type: string
+        redirect_uris:
+          type: array
+          items:
+            type: string
+            format: uri
+        grant_types:
+          type: array
+          items:
+            type: string
+        response_types:
+          type: array
+          items:
+            type: string
+        scope:
+          type: string
+        token_endpoint_auth_method:
+          type: string
+  securitySchemes:
+    oryApiKey:
+      type: http
+      scheme: bearer
+      description: 'Ory API key. Project admin endpoints use an Ory project API key (ory_pat_...); Console endpoints use a workspace API key (ory_wak_...). Passed as `Authorization: Bearer <token>`.'

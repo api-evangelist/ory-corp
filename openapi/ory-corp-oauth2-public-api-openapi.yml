@@ -1,0 +1,141 @@
+openapi: 3.0.3
+info:
+  title: Ory Network Billing OAuth2 (Public) API
+  description: 'Ory is open-source identity and access infrastructure, delivered as the Ory Network managed cloud. This document models the primary public and admin REST surfaces of an Ory Network project and the Ory Network Console (control plane).
+
+    Two base URLs are in play. Project data-plane endpoints - Ory Kratos (identities, sessions, self-service flows), Ory Hydra (OAuth2 / OIDC), Ory Keto (permissions and relationship tuples), and courier messages - are served on the project-scoped host https://{project-slug}.projects.oryapis.com. The Ory Network Console API (workspaces, projects, project tokens, event streams, subscriptions) is served on https://api.console.ory.sh.
+
+    Public self-service and OAuth2/OIDC endpoints are unauthenticated or use the end-user session; admin, Keto write, courier, and Console endpoints require an Ory API key / project or workspace API token passed as a Bearer token. Ory SDKs are auto-generated from these OpenAPI specifications. Endpoint set is representative and grounded in Ory''s published specs; consult the live reference for the exhaustive parameter and schema detail.'
+  version: '1.0'
+  contact:
+    name: Ory
+    url: https://www.ory.com
+  license:
+    name: Apache-2.0
+    url: https://github.com/ory/kratos/blob/master/LICENSE
+servers:
+- url: https://{project-slug}.projects.oryapis.com
+  description: Ory Network project (Kratos, Hydra, Keto, Courier)
+  variables:
+    project-slug:
+      default: your-project-slug
+      description: The slug of your Ory Network project.
+- url: https://api.console.ory.sh
+  description: Ory Network Console API (control plane)
+security:
+- oryApiKey: []
+tags:
+- name: OAuth2 (Public)
+  description: Public OAuth2 / OpenID Connect provider endpoints (Hydra).
+paths:
+  /oauth2/auth:
+    get:
+      operationId: oAuth2Authorize
+      tags:
+      - OAuth2 (Public)
+      summary: OAuth2 authorization endpoint
+      security: []
+      responses:
+        '302':
+          description: Redirect to login/consent or back to the client with a code.
+  /oauth2/token:
+    post:
+      operationId: oauth2TokenExchange
+      tags:
+      - OAuth2 (Public)
+      summary: OAuth2 token endpoint
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                grant_type:
+                  type: string
+                code:
+                  type: string
+                refresh_token:
+                  type: string
+                client_id:
+                  type: string
+                client_secret:
+                  type: string
+      responses:
+        '200':
+          description: The issued tokens.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenResponse'
+  /oauth2/revoke:
+    post:
+      operationId: revokeOAuth2Token
+      tags:
+      - OAuth2 (Public)
+      summary: Revoke an OAuth2 token
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+      responses:
+        '200':
+          description: Token revoked.
+  /userinfo:
+    get:
+      operationId: getOidcUserInfo
+      tags:
+      - OAuth2 (Public)
+      summary: OpenID Connect UserInfo
+      responses:
+        '200':
+          description: Claims about the authenticated end-user.
+  /.well-known/openid-configuration:
+    get:
+      operationId: discoverOidcConfiguration
+      tags:
+      - OAuth2 (Public)
+      summary: OpenID Connect discovery document
+      security: []
+      responses:
+        '200':
+          description: The OIDC provider metadata.
+  /.well-known/jwks.json:
+    get:
+      operationId: discoverJsonWebKeys
+      tags:
+      - OAuth2 (Public)
+      summary: JSON Web Key Set
+      security: []
+      responses:
+        '200':
+          description: The public signing keys.
+components:
+  schemas:
+    TokenResponse:
+      type: object
+      properties:
+        access_token:
+          type: string
+        token_type:
+          type: string
+        expires_in:
+          type: integer
+        refresh_token:
+          type: string
+        id_token:
+          type: string
+        scope:
+          type: string
+  securitySchemes:
+    oryApiKey:
+      type: http
+      scheme: bearer
+      description: 'Ory API key. Project admin endpoints use an Ory project API key (ory_pat_...); Console endpoints use a workspace API key (ory_wak_...). Passed as `Authorization: Bearer <token>`.'

@@ -1,0 +1,143 @@
+openapi: 3.0.3
+info:
+  title: Ory Network Billing Relationships API
+  description: 'Ory is open-source identity and access infrastructure, delivered as the Ory Network managed cloud. This document models the primary public and admin REST surfaces of an Ory Network project and the Ory Network Console (control plane).
+
+    Two base URLs are in play. Project data-plane endpoints - Ory Kratos (identities, sessions, self-service flows), Ory Hydra (OAuth2 / OIDC), Ory Keto (permissions and relationship tuples), and courier messages - are served on the project-scoped host https://{project-slug}.projects.oryapis.com. The Ory Network Console API (workspaces, projects, project tokens, event streams, subscriptions) is served on https://api.console.ory.sh.
+
+    Public self-service and OAuth2/OIDC endpoints are unauthenticated or use the end-user session; admin, Keto write, courier, and Console endpoints require an Ory API key / project or workspace API token passed as a Bearer token. Ory SDKs are auto-generated from these OpenAPI specifications. Endpoint set is representative and grounded in Ory''s published specs; consult the live reference for the exhaustive parameter and schema detail.'
+  version: '1.0'
+  contact:
+    name: Ory
+    url: https://www.ory.com
+  license:
+    name: Apache-2.0
+    url: https://github.com/ory/kratos/blob/master/LICENSE
+servers:
+- url: https://{project-slug}.projects.oryapis.com
+  description: Ory Network project (Kratos, Hydra, Keto, Courier)
+  variables:
+    project-slug:
+      default: your-project-slug
+      description: The slug of your Ory Network project.
+- url: https://api.console.ory.sh
+  description: Ory Network Console API (control plane)
+security:
+- oryApiKey: []
+tags:
+- name: Relationships
+  description: Keto relationship-tuple writes and OPL syntax checks.
+paths:
+  /admin/relation-tuples:
+    put:
+      operationId: createRelationTuple
+      tags:
+      - Relationships
+      summary: Create or update a relationship tuple
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RelationTuple'
+      responses:
+        '201':
+          description: The created relationship tuple.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RelationTuple'
+    patch:
+      operationId: patchRelationTuples
+      tags:
+      - Relationships
+      summary: Patch multiple relationship tuples
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  action:
+                    type: string
+                    enum:
+                    - insert
+                    - delete
+                  relation_tuple:
+                    $ref: '#/components/schemas/RelationTuple'
+      responses:
+        '204':
+          description: Tuples patched.
+    delete:
+      operationId: deleteRelationTuples
+      tags:
+      - Relationships
+      summary: Delete relationship tuples by query
+      parameters:
+      - name: namespace
+        in: query
+        required: true
+        schema:
+          type: string
+      - name: object
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: relation
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '204':
+          description: Tuples deleted.
+  /opl/syntax/check:
+    post:
+      operationId: checkOplSyntax
+      tags:
+      - Relationships
+      summary: Check Ory Permission Language syntax
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema:
+              type: string
+      responses:
+        '200':
+          description: The parse result and any syntax errors.
+components:
+  schemas:
+    RelationTuple:
+      type: object
+      required:
+      - namespace
+      - object
+      - relation
+      properties:
+        namespace:
+          type: string
+        object:
+          type: string
+        relation:
+          type: string
+        subject_id:
+          type: string
+        subject_set:
+          type: object
+          properties:
+            namespace:
+              type: string
+            object:
+              type: string
+            relation:
+              type: string
+  securitySchemes:
+    oryApiKey:
+      type: http
+      scheme: bearer
+      description: 'Ory API key. Project admin endpoints use an Ory project API key (ory_pat_...); Console endpoints use a workspace API key (ory_wak_...). Passed as `Authorization: Bearer <token>`.'
