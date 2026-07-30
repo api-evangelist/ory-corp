@@ -12,7 +12,20 @@ description: Ory builds open-source identity and access infrastructure and runs 
   (https://{project-slug}.projects.oryapis.com) with admin and public surfaces,
   while workspaces, projects, organizations (B2B SSO), event streams, and billing
   are managed through the Ory Network Console API (https://api.console.ory.sh).
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/ory-corp.png
 tags:
 - Identity
 - Authentication
@@ -26,286 +39,583 @@ created: '2026-07-02'
 modified: '2026-07-02'
 specificationVersion: '0.19'
 apis:
-- aid: ory-corp:ory-corp-identity-api
-  name: Ory Identity API (Kratos - Self-Service)
-  tags:
-  - Identity
-  - Sessions
-  - Self-Service
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.ory.com/docs/kratos/reference/api
-  baseURL: https://{project-slug}.projects.oryapis.com
-  properties:
-  - url: https://www.ory.com/docs/kratos/self-service
-    type: Documentation
-  - url: https://www.ory.com/docs/kratos/reference/api
-    type: APIReference
-  - url: openapi/ory-corp-openapi.yml
-    type: OpenAPI
-  - url: collections/ory-corp.postman_collection.json
-    type: PostmanCollection
-  - url: collections/ory-corp.opencollection.json
-    type: OpenCollection
-  description: Public-facing Ory Kratos frontend API for browser and native apps -
-    create and complete self-service login, registration, recovery, verification,
-    settings, and logout flows, and read the current session via /sessions/whoami
-    plus list and revoke the caller's own sessions.
-- aid: ory-corp:ory-corp-identity-admin-api
-  name: Ory Identity Admin API (Kratos)
-  tags:
-  - Identity
-  - Admin
-  - User Management
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.ory.com/docs/kratos/reference/api
-  baseURL: https://{project-slug}.projects.oryapis.com
-  properties:
-  - url: https://www.ory.com/docs/kratos/manage-identities/overview
-    type: Documentation
-  - url: https://www.ory.com/docs/kratos/reference/api
-    type: APIReference
-  - url: openapi/ory-corp-openapi.yml
-    type: OpenAPI
-  - url: collections/ory-corp.postman_collection.json
-    type: PostmanCollection
-  - url: collections/ory-corp.opencollection.json
-    type: OpenCollection
-  description: Privileged Kratos admin API to list, create, get, update, patch, and
-    delete identities, look up identities by external ID, manage identity credentials,
-    administer sessions (list, get, disable, extend), and issue recovery codes and
-    links on behalf of users.
-- aid: ory-corp:ory-corp-oauth2-api
-  name: Ory OAuth2 and OpenID Connect API (Hydra)
-  tags:
-  - OAuth2
-  - OpenID Connect
-  - Tokens
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.ory.com/docs/hydra/reference/api
-  baseURL: https://{project-slug}.projects.oryapis.com
-  properties:
-  - url: https://www.ory.com/docs/oauth2-openid-connect-do-you-need-use-cases-products
-    type: Documentation
-  - url: https://www.ory.com/docs/hydra/reference/api
-    type: APIReference
-  - url: openapi/ory-corp-openapi.yml
-    type: OpenAPI
-  - url: collections/ory-corp.postman_collection.json
-    type: PostmanCollection
-  - url: collections/ory-corp.opencollection.json
-    type: OpenCollection
-  description: Public OAuth2 / OIDC provider endpoints served by Ory Hydra - the
-    authorization endpoint (/oauth2/auth), token endpoint (/oauth2/token), token
-    revocation, the UserInfo endpoint, and the OpenID Connect discovery and JWKS
-    well-known documents.
-- aid: ory-corp:ory-corp-oauth2-admin-api
-  name: Ory OAuth2 Admin API (Hydra)
-  tags:
-  - OAuth2
-  - Clients
-  - Consent
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.ory.com/docs/hydra/reference/api
-  baseURL: https://{project-slug}.projects.oryapis.com
-  properties:
-  - url: https://www.ory.com/docs/hydra/guides/oauth2-clients
-    type: Documentation
-  - url: https://www.ory.com/docs/hydra/reference/api
-    type: APIReference
-  - url: openapi/ory-corp-openapi.yml
-    type: OpenAPI
-  - url: collections/ory-corp.postman_collection.json
-    type: PostmanCollection
-  - url: collections/ory-corp.opencollection.json
-    type: OpenCollection
-  description: Privileged Hydra admin API to manage OAuth2 clients (CRUD plus token
-    lifespans), introspect and revoke tokens, drive the login / consent / logout
-    request handshakes, manage JSON Web Key Sets, and administer JWT-bearer grant
-    trust relationships.
-- aid: ory-corp:ory-corp-permissions-api
-  name: Ory Permissions API (Keto)
-  tags:
-  - Authorization
-  - Permissions
-  - Zanzibar
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.ory.com/docs/keto/reference/rest-api
-  baseURL: https://{project-slug}.projects.oryapis.com
-  properties:
-  - url: https://www.ory.com/docs/keto/concepts/api-overview
-    type: Documentation
-  - url: https://www.ory.com/docs/keto/reference/rest-api
-    type: APIReference
-  - url: openapi/ory-corp-openapi.yml
-    type: OpenAPI
-  - url: collections/ory-corp.postman_collection.json
-    type: PostmanCollection
-  - url: collections/ory-corp.opencollection.json
-    type: OpenCollection
-  description: Google Zanzibar-style permission checks powered by Ory Keto - check a
-    single permission, run batched checks, expand a subject set into its members,
-    read relationship tuples, and list configured namespaces.
-- aid: ory-corp:ory-corp-relationships-api
-  name: Ory Relationships API (Keto Write)
-  tags:
-  - Authorization
-  - Relationship Tuples
-  - Admin
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.ory.com/docs/keto/reference/rest-api
-  baseURL: https://{project-slug}.projects.oryapis.com
-  properties:
-  - url: https://www.ory.com/docs/keto/reference/ory-permission-language
-    type: Documentation
-  - url: https://www.ory.com/docs/keto/reference/rest-api
-    type: APIReference
-  - url: openapi/ory-corp-openapi.yml
-    type: OpenAPI
-  - url: collections/ory-corp.postman_collection.json
-    type: PostmanCollection
-  - url: collections/ory-corp.opencollection.json
-    type: OpenCollection
-  description: Privileged Keto write API to create, update (patch), and delete
-    relationship tuples that define who has what relation to which object, plus a
-    syntax-check endpoint for the Ory Permission Language (OPL) namespace config.
-- aid: ory-corp:ory-corp-courier-api
-  name: Ory Courier Messages API
-  tags:
-  - Messages
-  - Email
-  - Admin
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.ory.com/docs/kratos/reference/api
-  baseURL: https://{project-slug}.projects.oryapis.com
-  properties:
-  - url: https://www.ory.com/docs/kratos/self-service/flows/verify-email-account-activation
-    type: Documentation
-  - url: https://www.ory.com/docs/kratos/reference/api
-    type: APIReference
-  - url: openapi/ory-corp-openapi.yml
-    type: OpenAPI
-  - url: collections/ory-corp.postman_collection.json
-    type: PostmanCollection
-  - url: collections/ory-corp.opencollection.json
-    type: OpenCollection
-  description: Admin API to list and inspect the courier messages (verification,
-    recovery, and other transactional emails/SMS) that Ory has queued or dispatched,
-    for auditing and delivery troubleshooting.
-- aid: ory-corp:ory-corp-organizations-api
-  name: Ory Organizations API (B2B SSO)
-  tags:
-  - Organizations
-  - B2B
-  - SSO
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.ory.com/docs/kratos/organizations
-  baseURL: https://{project-slug}.projects.oryapis.com
-  properties:
-  - url: https://www.ory.com/docs/kratos/organizations
-    type: Documentation
-  - url: https://www.ory.com/docs/reference/api
-    type: APIReference
-  - url: openapi/ory-corp-openapi.yml
-    type: OpenAPI
-  - url: collections/ory-corp.postman_collection.json
-    type: PostmanCollection
-  - url: collections/ory-corp.opencollection.json
-    type: OpenCollection
-  description: Admin API to create, list, get, update, and delete organizations that
-    scope B2B customers, each mapping members to their own OIDC/SAML SSO connections
-    and login policies within a single Ory Network project.
-- aid: ory-corp:ory-corp-projects-api
-  name: Ory Network Projects API (Console)
-  tags:
-  - Projects
-  - Workspaces
-  - Console
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.ory.com/docs/guides/manage-project-via-api
-  baseURL: https://api.console.ory.sh
-  properties:
-  - url: https://www.ory.com/docs/guides/manage-project-via-api
-    type: Documentation
-  - url: https://www.ory.com/docs/reference/api
-    type: APIReference
-  - url: openapi/ory-corp-openapi.yml
-    type: OpenAPI
-  - url: collections/ory-corp.postman_collection.json
-    type: PostmanCollection
-  - url: collections/ory-corp.opencollection.json
-    type: OpenCollection
-  description: Ory Network Console API to manage the control plane - list workspace
-    projects, and create, get, update (patch/put), and delete projects along with
-    their identity, OAuth2, and permission configuration.
-- aid: ory-corp:ory-corp-project-tokens-api
-  name: Ory Network Project API Tokens API
-  tags:
-  - API Keys
-  - Tokens
-  - Console
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.ory.com/docs/concepts/personal-access-token
-  baseURL: https://api.console.ory.sh
-  properties:
-  - url: https://www.ory.com/docs/concepts/personal-access-token
-    type: Documentation
-  - url: https://www.ory.com/docs/guides/manage-project-via-api
-    type: APIReference
-  - url: openapi/ory-corp-openapi.yml
-    type: OpenAPI
-  - url: collections/ory-corp.postman_collection.json
-    type: PostmanCollection
-  - url: collections/ory-corp.opencollection.json
-    type: OpenCollection
-  description: Console API to create, list, and delete the project API tokens
-    (ory_pat_/ory_wak_ keys) that authenticate calls to a project's admin and
-    Console endpoints.
-- aid: ory-corp:ory-corp-event-streams-api
-  name: Ory Network Event Streams API
-  tags:
-  - Events
-  - Streaming
-  - Console
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.ory.com/docs/guides/event-streams/aws-sns
-  baseURL: https://api.console.ory.sh
-  properties:
-  - url: https://www.ory.com/docs/guides/event-streams/aws-sns
-    type: Documentation
-  - url: https://www.ory.com/docs/reference/api
-    type: APIReference
-  - url: openapi/ory-corp-openapi.yml
-    type: OpenAPI
-  - url: collections/ory-corp.postman_collection.json
-    type: PostmanCollection
-  - url: collections/ory-corp.opencollection.json
-    type: OpenCollection
-  description: Console API to configure event streams that forward Ory Network events
-    (registrations, logins, session and token activity) to external sinks such as
-    AWS SNS - create, list, update, and delete event stream destinations per project.
 - aid: ory-corp:ory-corp-billing-api
-  name: Ory Network Subscriptions and Billing API
+  name: Ory Billing API
+  description: Ory Network workspace / project subscriptions.
+  humanURL: https://www.ory.com/docs/kratos/reference/api
+  baseURL: https://{project-slug}.projects.oryapis.com
   tags:
   - Billing
-  - Subscriptions
-  - FinOps
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://www.ory.com/docs/guides/manage-project-via-api
-  baseURL: https://api.console.ory.sh
   properties:
-  - url: https://www.ory.com/pricing
-    type: Documentation
-  - url: https://www.ory.com/docs/reference/api
-    type: APIReference
-  - url: openapi/ory-corp-openapi.yml
-    type: OpenAPI
-  - url: collections/ory-corp.postman_collection.json
-    type: PostmanCollection
-  - url: collections/ory-corp.opencollection.json
-    type: OpenCollection
-  description: Console API to read and manage a workspace or project subscription -
-    inspect the active plan, create or change a subscription, and retrieve the Stripe
-    customer/billing portal context for the Ory Network account.
+  - type: OpenAPI
+    url: openapi/ory-corp-billing-api-openapi.yml
+  - type: Documentation
+    url: https://www.ory.com/docs/kratos/self-service
+  - type: APIReference
+    url: https://www.ory.com/docs/kratos/reference/api
+  - type: PostmanCollection
+    url: collections/ory-corp.postman_collection.json
+  - type: OpenCollection
+    url: collections/ory-corp.opencollection.json
+  - type: Documentation
+    url: https://www.ory.com/docs/kratos/manage-identities/overview
+  - type: Documentation
+    url: https://www.ory.com/docs/oauth2-openid-connect-do-you-need-use-cases-products
+  - type: APIReference
+    url: https://www.ory.com/docs/hydra/reference/api
+  - type: Documentation
+    url: https://www.ory.com/docs/hydra/guides/oauth2-clients
+  - type: Documentation
+    url: https://www.ory.com/docs/keto/concepts/api-overview
+  - type: APIReference
+    url: https://www.ory.com/docs/keto/reference/rest-api
+  - type: Documentation
+    url: https://www.ory.com/docs/keto/reference/ory-permission-language
+  - type: Documentation
+    url: https://www.ory.com/docs/kratos/self-service/flows/verify-email-account-activation
+  - type: Documentation
+    url: https://www.ory.com/docs/kratos/organizations
+  - type: APIReference
+    url: https://www.ory.com/docs/reference/api
+  - type: Documentation
+    url: https://www.ory.com/docs/guides/manage-project-via-api
+  - type: Documentation
+    url: https://www.ory.com/docs/concepts/personal-access-token
+  - type: APIReference
+    url: https://www.ory.com/docs/guides/manage-project-via-api
+  - type: Documentation
+    url: https://www.ory.com/docs/guides/event-streams/aws-sns
+  - type: Documentation
+    url: https://www.ory.com/pricing
+- aid: ory-corp:ory-corp-courier-api
+  name: Ory Courier API
+  description: Admin access to queued and dispatched courier messages.
+  humanURL: https://www.ory.com/docs/kratos/reference/api
+  baseURL: https://{project-slug}.projects.oryapis.com
+  tags:
+  - Courier
+  properties:
+  - type: OpenAPI
+    url: openapi/ory-corp-courier-api-openapi.yml
+  - type: Documentation
+    url: https://www.ory.com/docs/kratos/self-service
+  - type: APIReference
+    url: https://www.ory.com/docs/kratos/reference/api
+  - type: PostmanCollection
+    url: collections/ory-corp.postman_collection.json
+  - type: OpenCollection
+    url: collections/ory-corp.opencollection.json
+  - type: Documentation
+    url: https://www.ory.com/docs/kratos/manage-identities/overview
+  - type: Documentation
+    url: https://www.ory.com/docs/oauth2-openid-connect-do-you-need-use-cases-products
+  - type: APIReference
+    url: https://www.ory.com/docs/hydra/reference/api
+  - type: Documentation
+    url: https://www.ory.com/docs/hydra/guides/oauth2-clients
+  - type: Documentation
+    url: https://www.ory.com/docs/keto/concepts/api-overview
+  - type: APIReference
+    url: https://www.ory.com/docs/keto/reference/rest-api
+  - type: Documentation
+    url: https://www.ory.com/docs/keto/reference/ory-permission-language
+  - type: Documentation
+    url: https://www.ory.com/docs/kratos/self-service/flows/verify-email-account-activation
+  - type: Documentation
+    url: https://www.ory.com/docs/kratos/organizations
+  - type: APIReference
+    url: https://www.ory.com/docs/reference/api
+  - type: Documentation
+    url: https://www.ory.com/docs/guides/manage-project-via-api
+  - type: Documentation
+    url: https://www.ory.com/docs/concepts/personal-access-token
+  - type: APIReference
+    url: https://www.ory.com/docs/guides/manage-project-via-api
+  - type: Documentation
+    url: https://www.ory.com/docs/guides/event-streams/aws-sns
+  - type: Documentation
+    url: https://www.ory.com/pricing
+- aid: ory-corp:ory-corp-event-streams-api
+  name: Ory Event Streams API
+  description: Ory Network event stream configuration.
+  humanURL: https://www.ory.com/docs/kratos/reference/api
+  baseURL: https://{project-slug}.projects.oryapis.com
+  tags:
+  - Event Streams
+  properties:
+  - type: OpenAPI
+    url: openapi/ory-corp-event-streams-api-openapi.yml
+  - type: Documentation
+    url: https://www.ory.com/docs/kratos/self-service
+  - type: APIReference
+    url: https://www.ory.com/docs/kratos/reference/api
+  - type: PostmanCollection
+    url: collections/ory-corp.postman_collection.json
+  - type: OpenCollection
+    url: collections/ory-corp.opencollection.json
+  - type: Documentation
+    url: https://www.ory.com/docs/kratos/manage-identities/overview
+  - type: Documentation
+    url: https://www.ory.com/docs/oauth2-openid-connect-do-you-need-use-cases-products
+  - type: APIReference
+    url: https://www.ory.com/docs/hydra/reference/api
+  - type: Documentation
+    url: https://www.ory.com/docs/hydra/guides/oauth2-clients
+  - type: Documentation
+    url: https://www.ory.com/docs/keto/concepts/api-overview
+  - type: APIReference
+    url: https://www.ory.com/docs/keto/reference/rest-api
+  - type: Documentation
+    url: https://www.ory.com/docs/keto/reference/ory-permission-language
+  - type: Documentation
+    url: https://www.ory.com/docs/kratos/self-service/flows/verify-email-account-activation
+  - type: Documentation
+    url: https://www.ory.com/docs/kratos/organizations
+  - type: APIReference
+    url: https://www.ory.com/docs/reference/api
+  - type: Documentation
+    url: https://www.ory.com/docs/guides/manage-project-via-api
+  - type: Documentation
+    url: https://www.ory.com/docs/concepts/personal-access-token
+  - type: APIReference
+    url: https://www.ory.com/docs/guides/manage-project-via-api
+  - type: Documentation
+    url: https://www.ory.com/docs/guides/event-streams/aws-sns
+  - type: Documentation
+    url: https://www.ory.com/pricing
+- aid: ory-corp:ory-corp-identity-admin-api
+  name: Ory Identity (Admin) API
+  description: Privileged Kratos identity and session management.
+  humanURL: https://www.ory.com/docs/kratos/reference/api
+  baseURL: https://{project-slug}.projects.oryapis.com
+  tags:
+  - Identity (Admin)
+  properties:
+  - type: OpenAPI
+    url: openapi/ory-corp-identity-admin-api-openapi.yml
+  - type: Documentation
+    url: https://www.ory.com/docs/kratos/self-service
+  - type: APIReference
+    url: https://www.ory.com/docs/kratos/reference/api
+  - type: PostmanCollection
+    url: collections/ory-corp.postman_collection.json
+  - type: OpenCollection
+    url: collections/ory-corp.opencollection.json
+  - type: Documentation
+    url: https://www.ory.com/docs/kratos/manage-identities/overview
+  - type: Documentation
+    url: https://www.ory.com/docs/oauth2-openid-connect-do-you-need-use-cases-products
+  - type: APIReference
+    url: https://www.ory.com/docs/hydra/reference/api
+  - type: Documentation
+    url: https://www.ory.com/docs/hydra/guides/oauth2-clients
+  - type: Documentation
+    url: https://www.ory.com/docs/keto/concepts/api-overview
+  - type: APIReference
+    url: https://www.ory.com/docs/keto/reference/rest-api
+  - type: Documentation
+    url: https://www.ory.com/docs/keto/reference/ory-permission-language
+  - type: Documentation
+    url: https://www.ory.com/docs/kratos/self-service/flows/verify-email-account-activation
+  - type: Documentation
+    url: https://www.ory.com/docs/kratos/organizations
+  - type: APIReference
+    url: https://www.ory.com/docs/reference/api
+  - type: Documentation
+    url: https://www.ory.com/docs/guides/manage-project-via-api
+  - type: Documentation
+    url: https://www.ory.com/docs/concepts/personal-access-token
+  - type: APIReference
+    url: https://www.ory.com/docs/guides/manage-project-via-api
+  - type: Documentation
+    url: https://www.ory.com/docs/guides/event-streams/aws-sns
+  - type: Documentation
+    url: https://www.ory.com/pricing
+- aid: ory-corp:ory-corp-identity-self-service-api
+  name: Ory Identity (Self-Service) API
+  description: >-
+    Public Kratos flows for login, registration, recovery, verification, settings, logout, and sessions.
+  humanURL: https://www.ory.com/docs/kratos/reference/api
+  baseURL: https://{project-slug}.projects.oryapis.com
+  tags:
+  - Identity (Self-Service)
+  properties:
+  - type: OpenAPI
+    url: openapi/ory-corp-identity-self-service-api-openapi.yml
+  - type: Documentation
+    url: https://www.ory.com/docs/kratos/self-service
+  - type: APIReference
+    url: https://www.ory.com/docs/kratos/reference/api
+  - type: PostmanCollection
+    url: collections/ory-corp.postman_collection.json
+  - type: OpenCollection
+    url: collections/ory-corp.opencollection.json
+  - type: Documentation
+    url: https://www.ory.com/docs/kratos/manage-identities/overview
+  - type: Documentation
+    url: https://www.ory.com/docs/oauth2-openid-connect-do-you-need-use-cases-products
+  - type: APIReference
+    url: https://www.ory.com/docs/hydra/reference/api
+  - type: Documentation
+    url: https://www.ory.com/docs/hydra/guides/oauth2-clients
+  - type: Documentation
+    url: https://www.ory.com/docs/keto/concepts/api-overview
+  - type: APIReference
+    url: https://www.ory.com/docs/keto/reference/rest-api
+  - type: Documentation
+    url: https://www.ory.com/docs/keto/reference/ory-permission-language
+  - type: Documentation
+    url: https://www.ory.com/docs/kratos/self-service/flows/verify-email-account-activation
+  - type: Documentation
+    url: https://www.ory.com/docs/kratos/organizations
+  - type: APIReference
+    url: https://www.ory.com/docs/reference/api
+  - type: Documentation
+    url: https://www.ory.com/docs/guides/manage-project-via-api
+  - type: Documentation
+    url: https://www.ory.com/docs/concepts/personal-access-token
+  - type: APIReference
+    url: https://www.ory.com/docs/guides/manage-project-via-api
+  - type: Documentation
+    url: https://www.ory.com/docs/guides/event-streams/aws-sns
+  - type: Documentation
+    url: https://www.ory.com/pricing
+- aid: ory-corp:ory-corp-oauth2-admin-api
+  name: Ory OAuth2 (Admin) API
+  description: Privileged Hydra client, token, consent, and key management.
+  humanURL: https://www.ory.com/docs/kratos/reference/api
+  baseURL: https://{project-slug}.projects.oryapis.com
+  tags:
+  - OAuth2 (Admin)
+  properties:
+  - type: OpenAPI
+    url: openapi/ory-corp-oauth2-admin-api-openapi.yml
+  - type: Documentation
+    url: https://www.ory.com/docs/kratos/self-service
+  - type: APIReference
+    url: https://www.ory.com/docs/kratos/reference/api
+  - type: PostmanCollection
+    url: collections/ory-corp.postman_collection.json
+  - type: OpenCollection
+    url: collections/ory-corp.opencollection.json
+  - type: Documentation
+    url: https://www.ory.com/docs/kratos/manage-identities/overview
+  - type: Documentation
+    url: https://www.ory.com/docs/oauth2-openid-connect-do-you-need-use-cases-products
+  - type: APIReference
+    url: https://www.ory.com/docs/hydra/reference/api
+  - type: Documentation
+    url: https://www.ory.com/docs/hydra/guides/oauth2-clients
+  - type: Documentation
+    url: https://www.ory.com/docs/keto/concepts/api-overview
+  - type: APIReference
+    url: https://www.ory.com/docs/keto/reference/rest-api
+  - type: Documentation
+    url: https://www.ory.com/docs/keto/reference/ory-permission-language
+  - type: Documentation
+    url: https://www.ory.com/docs/kratos/self-service/flows/verify-email-account-activation
+  - type: Documentation
+    url: https://www.ory.com/docs/kratos/organizations
+  - type: APIReference
+    url: https://www.ory.com/docs/reference/api
+  - type: Documentation
+    url: https://www.ory.com/docs/guides/manage-project-via-api
+  - type: Documentation
+    url: https://www.ory.com/docs/concepts/personal-access-token
+  - type: APIReference
+    url: https://www.ory.com/docs/guides/manage-project-via-api
+  - type: Documentation
+    url: https://www.ory.com/docs/guides/event-streams/aws-sns
+  - type: Documentation
+    url: https://www.ory.com/pricing
+- aid: ory-corp:ory-corp-oauth2-public-api
+  name: Ory OAuth2 (Public) API
+  description: Public OAuth2 / OpenID Connect provider endpoints (Hydra).
+  humanURL: https://www.ory.com/docs/kratos/reference/api
+  baseURL: https://{project-slug}.projects.oryapis.com
+  tags:
+  - OAuth2 (Public)
+  properties:
+  - type: OpenAPI
+    url: openapi/ory-corp-oauth2-public-api-openapi.yml
+  - type: Documentation
+    url: https://www.ory.com/docs/kratos/self-service
+  - type: APIReference
+    url: https://www.ory.com/docs/kratos/reference/api
+  - type: PostmanCollection
+    url: collections/ory-corp.postman_collection.json
+  - type: OpenCollection
+    url: collections/ory-corp.opencollection.json
+  - type: Documentation
+    url: https://www.ory.com/docs/kratos/manage-identities/overview
+  - type: Documentation
+    url: https://www.ory.com/docs/oauth2-openid-connect-do-you-need-use-cases-products
+  - type: APIReference
+    url: https://www.ory.com/docs/hydra/reference/api
+  - type: Documentation
+    url: https://www.ory.com/docs/hydra/guides/oauth2-clients
+  - type: Documentation
+    url: https://www.ory.com/docs/keto/concepts/api-overview
+  - type: APIReference
+    url: https://www.ory.com/docs/keto/reference/rest-api
+  - type: Documentation
+    url: https://www.ory.com/docs/keto/reference/ory-permission-language
+  - type: Documentation
+    url: https://www.ory.com/docs/kratos/self-service/flows/verify-email-account-activation
+  - type: Documentation
+    url: https://www.ory.com/docs/kratos/organizations
+  - type: APIReference
+    url: https://www.ory.com/docs/reference/api
+  - type: Documentation
+    url: https://www.ory.com/docs/guides/manage-project-via-api
+  - type: Documentation
+    url: https://www.ory.com/docs/concepts/personal-access-token
+  - type: APIReference
+    url: https://www.ory.com/docs/guides/manage-project-via-api
+  - type: Documentation
+    url: https://www.ory.com/docs/guides/event-streams/aws-sns
+  - type: Documentation
+    url: https://www.ory.com/pricing
+- aid: ory-corp:ory-corp-organizations-api
+  name: Ory Organizations API
+  description: B2B organization management for SSO.
+  humanURL: https://www.ory.com/docs/kratos/reference/api
+  baseURL: https://{project-slug}.projects.oryapis.com
+  tags:
+  - Organizations
+  properties:
+  - type: OpenAPI
+    url: openapi/ory-corp-organizations-api-openapi.yml
+  - type: Documentation
+    url: https://www.ory.com/docs/kratos/self-service
+  - type: APIReference
+    url: https://www.ory.com/docs/kratos/reference/api
+  - type: PostmanCollection
+    url: collections/ory-corp.postman_collection.json
+  - type: OpenCollection
+    url: collections/ory-corp.opencollection.json
+  - type: Documentation
+    url: https://www.ory.com/docs/kratos/manage-identities/overview
+  - type: Documentation
+    url: https://www.ory.com/docs/oauth2-openid-connect-do-you-need-use-cases-products
+  - type: APIReference
+    url: https://www.ory.com/docs/hydra/reference/api
+  - type: Documentation
+    url: https://www.ory.com/docs/hydra/guides/oauth2-clients
+  - type: Documentation
+    url: https://www.ory.com/docs/keto/concepts/api-overview
+  - type: APIReference
+    url: https://www.ory.com/docs/keto/reference/rest-api
+  - type: Documentation
+    url: https://www.ory.com/docs/keto/reference/ory-permission-language
+  - type: Documentation
+    url: https://www.ory.com/docs/kratos/self-service/flows/verify-email-account-activation
+  - type: Documentation
+    url: https://www.ory.com/docs/kratos/organizations
+  - type: APIReference
+    url: https://www.ory.com/docs/reference/api
+  - type: Documentation
+    url: https://www.ory.com/docs/guides/manage-project-via-api
+  - type: Documentation
+    url: https://www.ory.com/docs/concepts/personal-access-token
+  - type: APIReference
+    url: https://www.ory.com/docs/guides/manage-project-via-api
+  - type: Documentation
+    url: https://www.ory.com/docs/guides/event-streams/aws-sns
+  - type: Documentation
+    url: https://www.ory.com/pricing
+- aid: ory-corp:ory-corp-permissions-api
+  name: Ory Permissions API
+  description: Keto permission checks, expand, and namespace reads.
+  humanURL: https://www.ory.com/docs/kratos/reference/api
+  baseURL: https://{project-slug}.projects.oryapis.com
+  tags:
+  - Permissions
+  properties:
+  - type: OpenAPI
+    url: openapi/ory-corp-permissions-api-openapi.yml
+  - type: Documentation
+    url: https://www.ory.com/docs/kratos/self-service
+  - type: APIReference
+    url: https://www.ory.com/docs/kratos/reference/api
+  - type: PostmanCollection
+    url: collections/ory-corp.postman_collection.json
+  - type: OpenCollection
+    url: collections/ory-corp.opencollection.json
+  - type: Documentation
+    url: https://www.ory.com/docs/kratos/manage-identities/overview
+  - type: Documentation
+    url: https://www.ory.com/docs/oauth2-openid-connect-do-you-need-use-cases-products
+  - type: APIReference
+    url: https://www.ory.com/docs/hydra/reference/api
+  - type: Documentation
+    url: https://www.ory.com/docs/hydra/guides/oauth2-clients
+  - type: Documentation
+    url: https://www.ory.com/docs/keto/concepts/api-overview
+  - type: APIReference
+    url: https://www.ory.com/docs/keto/reference/rest-api
+  - type: Documentation
+    url: https://www.ory.com/docs/keto/reference/ory-permission-language
+  - type: Documentation
+    url: https://www.ory.com/docs/kratos/self-service/flows/verify-email-account-activation
+  - type: Documentation
+    url: https://www.ory.com/docs/kratos/organizations
+  - type: APIReference
+    url: https://www.ory.com/docs/reference/api
+  - type: Documentation
+    url: https://www.ory.com/docs/guides/manage-project-via-api
+  - type: Documentation
+    url: https://www.ory.com/docs/concepts/personal-access-token
+  - type: APIReference
+    url: https://www.ory.com/docs/guides/manage-project-via-api
+  - type: Documentation
+    url: https://www.ory.com/docs/guides/event-streams/aws-sns
+  - type: Documentation
+    url: https://www.ory.com/pricing
+- aid: ory-corp:ory-corp-project-tokens-api
+  name: Ory Project Tokens API
+  description: Ory Network project API token management.
+  humanURL: https://www.ory.com/docs/kratos/reference/api
+  baseURL: https://{project-slug}.projects.oryapis.com
+  tags:
+  - Project Tokens
+  properties:
+  - type: OpenAPI
+    url: openapi/ory-corp-project-tokens-api-openapi.yml
+  - type: Documentation
+    url: https://www.ory.com/docs/kratos/self-service
+  - type: APIReference
+    url: https://www.ory.com/docs/kratos/reference/api
+  - type: PostmanCollection
+    url: collections/ory-corp.postman_collection.json
+  - type: OpenCollection
+    url: collections/ory-corp.opencollection.json
+  - type: Documentation
+    url: https://www.ory.com/docs/kratos/manage-identities/overview
+  - type: Documentation
+    url: https://www.ory.com/docs/oauth2-openid-connect-do-you-need-use-cases-products
+  - type: APIReference
+    url: https://www.ory.com/docs/hydra/reference/api
+  - type: Documentation
+    url: https://www.ory.com/docs/hydra/guides/oauth2-clients
+  - type: Documentation
+    url: https://www.ory.com/docs/keto/concepts/api-overview
+  - type: APIReference
+    url: https://www.ory.com/docs/keto/reference/rest-api
+  - type: Documentation
+    url: https://www.ory.com/docs/keto/reference/ory-permission-language
+  - type: Documentation
+    url: https://www.ory.com/docs/kratos/self-service/flows/verify-email-account-activation
+  - type: Documentation
+    url: https://www.ory.com/docs/kratos/organizations
+  - type: APIReference
+    url: https://www.ory.com/docs/reference/api
+  - type: Documentation
+    url: https://www.ory.com/docs/guides/manage-project-via-api
+  - type: Documentation
+    url: https://www.ory.com/docs/concepts/personal-access-token
+  - type: APIReference
+    url: https://www.ory.com/docs/guides/manage-project-via-api
+  - type: Documentation
+    url: https://www.ory.com/docs/guides/event-streams/aws-sns
+  - type: Documentation
+    url: https://www.ory.com/pricing
+- aid: ory-corp:ory-corp-projects-api
+  name: Ory Projects API
+  description: Ory Network Console project management.
+  humanURL: https://www.ory.com/docs/kratos/reference/api
+  baseURL: https://{project-slug}.projects.oryapis.com
+  tags:
+  - Projects
+  properties:
+  - type: OpenAPI
+    url: openapi/ory-corp-projects-api-openapi.yml
+  - type: Documentation
+    url: https://www.ory.com/docs/kratos/self-service
+  - type: APIReference
+    url: https://www.ory.com/docs/kratos/reference/api
+  - type: PostmanCollection
+    url: collections/ory-corp.postman_collection.json
+  - type: OpenCollection
+    url: collections/ory-corp.opencollection.json
+  - type: Documentation
+    url: https://www.ory.com/docs/kratos/manage-identities/overview
+  - type: Documentation
+    url: https://www.ory.com/docs/oauth2-openid-connect-do-you-need-use-cases-products
+  - type: APIReference
+    url: https://www.ory.com/docs/hydra/reference/api
+  - type: Documentation
+    url: https://www.ory.com/docs/hydra/guides/oauth2-clients
+  - type: Documentation
+    url: https://www.ory.com/docs/keto/concepts/api-overview
+  - type: APIReference
+    url: https://www.ory.com/docs/keto/reference/rest-api
+  - type: Documentation
+    url: https://www.ory.com/docs/keto/reference/ory-permission-language
+  - type: Documentation
+    url: https://www.ory.com/docs/kratos/self-service/flows/verify-email-account-activation
+  - type: Documentation
+    url: https://www.ory.com/docs/kratos/organizations
+  - type: APIReference
+    url: https://www.ory.com/docs/reference/api
+  - type: Documentation
+    url: https://www.ory.com/docs/guides/manage-project-via-api
+  - type: Documentation
+    url: https://www.ory.com/docs/concepts/personal-access-token
+  - type: APIReference
+    url: https://www.ory.com/docs/guides/manage-project-via-api
+  - type: Documentation
+    url: https://www.ory.com/docs/guides/event-streams/aws-sns
+  - type: Documentation
+    url: https://www.ory.com/pricing
+- aid: ory-corp:ory-corp-relationships-api
+  name: Ory Relationships API
+  description: Keto relationship-tuple writes and OPL syntax checks.
+  humanURL: https://www.ory.com/docs/kratos/reference/api
+  baseURL: https://{project-slug}.projects.oryapis.com
+  tags:
+  - Relationships
+  properties:
+  - type: OpenAPI
+    url: openapi/ory-corp-relationships-api-openapi.yml
+  - type: Documentation
+    url: https://www.ory.com/docs/kratos/self-service
+  - type: APIReference
+    url: https://www.ory.com/docs/kratos/reference/api
+  - type: PostmanCollection
+    url: collections/ory-corp.postman_collection.json
+  - type: OpenCollection
+    url: collections/ory-corp.opencollection.json
+  - type: Documentation
+    url: https://www.ory.com/docs/kratos/manage-identities/overview
+  - type: Documentation
+    url: https://www.ory.com/docs/oauth2-openid-connect-do-you-need-use-cases-products
+  - type: APIReference
+    url: https://www.ory.com/docs/hydra/reference/api
+  - type: Documentation
+    url: https://www.ory.com/docs/hydra/guides/oauth2-clients
+  - type: Documentation
+    url: https://www.ory.com/docs/keto/concepts/api-overview
+  - type: APIReference
+    url: https://www.ory.com/docs/keto/reference/rest-api
+  - type: Documentation
+    url: https://www.ory.com/docs/keto/reference/ory-permission-language
+  - type: Documentation
+    url: https://www.ory.com/docs/kratos/self-service/flows/verify-email-account-activation
+  - type: Documentation
+    url: https://www.ory.com/docs/kratos/organizations
+  - type: APIReference
+    url: https://www.ory.com/docs/reference/api
+  - type: Documentation
+    url: https://www.ory.com/docs/guides/manage-project-via-api
+  - type: Documentation
+    url: https://www.ory.com/docs/concepts/personal-access-token
+  - type: APIReference
+    url: https://www.ory.com/docs/guides/manage-project-via-api
+  - type: Documentation
+    url: https://www.ory.com/docs/guides/event-streams/aws-sns
+  - type: Documentation
+    url: https://www.ory.com/pricing
 common:
 - type: AgenticAccess
   url: agentic-access/ory-corp-agentic-access.yml
