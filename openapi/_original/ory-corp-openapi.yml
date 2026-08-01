@@ -1,0 +1,1373 @@
+openapi: 3.0.3
+info:
+  title: Ory Network API
+  description: >-
+    Ory is open-source identity and access infrastructure, delivered as the Ory
+    Network managed cloud. This document models the primary public and admin REST
+    surfaces of an Ory Network project and the Ory Network Console (control plane).
+
+    Two base URLs are in play. Project data-plane endpoints - Ory Kratos
+    (identities, sessions, self-service flows), Ory Hydra (OAuth2 / OIDC), Ory
+    Keto (permissions and relationship tuples), and courier messages - are served
+    on the project-scoped host https://{project-slug}.projects.oryapis.com. The
+    Ory Network Console API (workspaces, projects, project tokens, event streams,
+    subscriptions) is served on https://api.console.ory.sh.
+
+    Public self-service and OAuth2/OIDC endpoints are unauthenticated or use the
+    end-user session; admin, Keto write, courier, and Console endpoints require an
+    Ory API key / project or workspace API token passed as a Bearer token. Ory
+    SDKs are auto-generated from these OpenAPI specifications. Endpoint set is
+    representative and grounded in Ory's published specs; consult the live
+    reference for the exhaustive parameter and schema detail.
+  version: '1.0'
+  contact:
+    name: Ory
+    url: https://www.ory.com
+  license:
+    name: Apache-2.0
+    url: https://github.com/ory/kratos/blob/master/LICENSE
+servers:
+  - url: https://{project-slug}.projects.oryapis.com
+    description: Ory Network project (Kratos, Hydra, Keto, Courier)
+    variables:
+      project-slug:
+        default: your-project-slug
+        description: The slug of your Ory Network project.
+  - url: https://api.console.ory.sh
+    description: Ory Network Console API (control plane)
+security:
+  - oryApiKey: []
+tags:
+  - name: Identity (Self-Service)
+    description: Public Kratos flows for login, registration, recovery, verification, settings, logout, and sessions.
+  - name: Identity (Admin)
+    description: Privileged Kratos identity and session management.
+  - name: OAuth2 (Public)
+    description: Public OAuth2 / OpenID Connect provider endpoints (Hydra).
+  - name: OAuth2 (Admin)
+    description: Privileged Hydra client, token, consent, and key management.
+  - name: Permissions
+    description: Keto permission checks, expand, and namespace reads.
+  - name: Relationships
+    description: Keto relationship-tuple writes and OPL syntax checks.
+  - name: Courier
+    description: Admin access to queued and dispatched courier messages.
+  - name: Organizations
+    description: B2B organization management for SSO.
+  - name: Projects
+    description: Ory Network Console project management.
+  - name: Project Tokens
+    description: Ory Network project API token management.
+  - name: Event Streams
+    description: Ory Network event stream configuration.
+  - name: Billing
+    description: Ory Network workspace / project subscriptions.
+paths:
+  # ---------------- Identity: Self-Service (public) ----------------
+  /self-service/login/browser:
+    get:
+      operationId: createBrowserLoginFlow
+      tags: [Identity (Self-Service)]
+      summary: Create a browser login flow
+      security: []
+      responses:
+        '200': { description: The initialized login flow. }
+  /self-service/login/api:
+    get:
+      operationId: createNativeLoginFlow
+      tags: [Identity (Self-Service)]
+      summary: Create a native (API) login flow
+      security: []
+      responses:
+        '200': { description: The initialized login flow. }
+  /self-service/login/flows:
+    get:
+      operationId: getLoginFlow
+      tags: [Identity (Self-Service)]
+      summary: Get a login flow
+      security: []
+      parameters:
+        - name: id
+          in: query
+          required: true
+          schema: { type: string }
+      responses:
+        '200': { description: The login flow. }
+  /self-service/login:
+    post:
+      operationId: updateLoginFlow
+      tags: [Identity (Self-Service)]
+      summary: Submit a login flow
+      security: []
+      parameters:
+        - name: flow
+          in: query
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { type: object, additionalProperties: true }
+      responses:
+        '200': { description: The session and identity after successful login. }
+        '400': { description: The login flow with validation errors. }
+  /self-service/registration/browser:
+    get:
+      operationId: createBrowserRegistrationFlow
+      tags: [Identity (Self-Service)]
+      summary: Create a browser registration flow
+      security: []
+      responses:
+        '200': { description: The initialized registration flow. }
+  /self-service/registration:
+    post:
+      operationId: updateRegistrationFlow
+      tags: [Identity (Self-Service)]
+      summary: Submit a registration flow
+      security: []
+      parameters:
+        - name: flow
+          in: query
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { type: object, additionalProperties: true }
+      responses:
+        '200': { description: The identity (and session) after successful registration. }
+  /self-service/recovery/browser:
+    get:
+      operationId: createBrowserRecoveryFlow
+      tags: [Identity (Self-Service)]
+      summary: Create a browser account recovery flow
+      security: []
+      responses:
+        '200': { description: The initialized recovery flow. }
+  /self-service/recovery:
+    post:
+      operationId: updateRecoveryFlow
+      tags: [Identity (Self-Service)]
+      summary: Submit a recovery flow
+      security: []
+      parameters:
+        - name: flow
+          in: query
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { type: object, additionalProperties: true }
+      responses:
+        '200': { description: The recovery flow state. }
+  /self-service/verification/browser:
+    get:
+      operationId: createBrowserVerificationFlow
+      tags: [Identity (Self-Service)]
+      summary: Create a browser email verification flow
+      security: []
+      responses:
+        '200': { description: The initialized verification flow. }
+  /self-service/verification:
+    post:
+      operationId: updateVerificationFlow
+      tags: [Identity (Self-Service)]
+      summary: Submit a verification flow
+      security: []
+      parameters:
+        - name: flow
+          in: query
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { type: object, additionalProperties: true }
+      responses:
+        '200': { description: The verification flow state. }
+  /self-service/settings/browser:
+    get:
+      operationId: createBrowserSettingsFlow
+      tags: [Identity (Self-Service)]
+      summary: Create a browser settings (profile) flow
+      responses:
+        '200': { description: The initialized settings flow. }
+  /self-service/settings:
+    post:
+      operationId: updateSettingsFlow
+      tags: [Identity (Self-Service)]
+      summary: Submit a settings flow
+      parameters:
+        - name: flow
+          in: query
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { type: object, additionalProperties: true }
+      responses:
+        '200': { description: The updated identity and settings flow. }
+  /self-service/logout/browser:
+    get:
+      operationId: createBrowserLogoutFlow
+      tags: [Identity (Self-Service)]
+      summary: Create a browser logout flow
+      responses:
+        '200': { description: The logout URL and token. }
+  /sessions/whoami:
+    get:
+      operationId: toSession
+      tags: [Identity (Self-Service)]
+      summary: Get the current session
+      responses:
+        '200':
+          description: The active session for the supplied cookie or token.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Session' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+  /sessions:
+    get:
+      operationId: listMySessions
+      tags: [Identity (Self-Service)]
+      summary: List the caller's sessions
+      responses:
+        '200':
+          description: The caller's active sessions.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Session' }
+    delete:
+      operationId: disableMyOtherSessions
+      tags: [Identity (Self-Service)]
+      summary: Revoke all other sessions
+      responses:
+        '200': { description: The number of sessions revoked. }
+  /sessions/{id}:
+    delete:
+      operationId: disableMySession
+      tags: [Identity (Self-Service)]
+      summary: Revoke one of the caller's sessions
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string } }
+      responses:
+        '204': { description: Session revoked. }
+
+  # ---------------- Identity: Admin ----------------
+  /admin/identities:
+    get:
+      operationId: listIdentities
+      tags: [Identity (Admin)]
+      summary: List identities
+      responses:
+        '200':
+          description: A page of identities.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Identity' }
+        '401': { $ref: '#/components/responses/Unauthorized' }
+    post:
+      operationId: createIdentity
+      tags: [Identity (Admin)]
+      summary: Create an identity
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/IdentityInput' }
+      responses:
+        '201':
+          description: The created identity.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Identity' }
+        '409': { description: Conflict - an identity with these credentials exists. }
+    patch:
+      operationId: batchPatchIdentities
+      tags: [Identity (Admin)]
+      summary: Create and delete identities in a batch
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { type: object, additionalProperties: true }
+      responses:
+        '200': { description: The batch patch result. }
+  /admin/identities/{id}:
+    parameters:
+      - { name: id, in: path, required: true, schema: { type: string, format: uuid } }
+    get:
+      operationId: getIdentity
+      tags: [Identity (Admin)]
+      summary: Get an identity
+      responses:
+        '200':
+          description: The identity.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Identity' }
+        '404': { $ref: '#/components/responses/NotFound' }
+    put:
+      operationId: updateIdentity
+      tags: [Identity (Admin)]
+      summary: Replace an identity
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/IdentityInput' }
+      responses:
+        '200':
+          description: The updated identity.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Identity' }
+    patch:
+      operationId: patchIdentity
+      tags: [Identity (Admin)]
+      summary: Patch an identity (JSON Patch)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { type: array, items: { type: object, additionalProperties: true } }
+      responses:
+        '200':
+          description: The patched identity.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Identity' }
+    delete:
+      operationId: deleteIdentity
+      tags: [Identity (Admin)]
+      summary: Delete an identity
+      responses:
+        '204': { description: Identity deleted. }
+  /admin/identities/by/external/{externalID}:
+    get:
+      operationId: getIdentityByExternalID
+      tags: [Identity (Admin)]
+      summary: Get an identity by external ID
+      parameters:
+        - { name: externalID, in: path, required: true, schema: { type: string } }
+      responses:
+        '200':
+          description: The identity.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Identity' }
+  /admin/identities/{id}/credentials/{type}:
+    parameters:
+      - { name: id, in: path, required: true, schema: { type: string, format: uuid } }
+      - { name: type, in: path, required: true, schema: { type: string, enum: [password, oidc, totp, webauthn, lookup_secret, code] } }
+    delete:
+      operationId: deleteIdentityCredentials
+      tags: [Identity (Admin)]
+      summary: Delete a credential of an identity
+      responses:
+        '204': { description: Credential deleted. }
+  /admin/identities/{id}/sessions:
+    parameters:
+      - { name: id, in: path, required: true, schema: { type: string, format: uuid } }
+    get:
+      operationId: listIdentitySessions
+      tags: [Identity (Admin)]
+      summary: List an identity's sessions
+      responses:
+        '200':
+          description: The identity's sessions.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Session' }
+    delete:
+      operationId: deleteIdentitySessions
+      tags: [Identity (Admin)]
+      summary: Revoke all of an identity's sessions
+      responses:
+        '204': { description: Sessions revoked. }
+  /admin/sessions:
+    get:
+      operationId: listSessions
+      tags: [Identity (Admin)]
+      summary: List all sessions
+      responses:
+        '200':
+          description: A page of sessions.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Session' }
+  /admin/sessions/{id}:
+    parameters:
+      - { name: id, in: path, required: true, schema: { type: string, format: uuid } }
+    get:
+      operationId: getSession
+      tags: [Identity (Admin)]
+      summary: Get a session
+      responses:
+        '200':
+          description: The session.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Session' }
+    delete:
+      operationId: disableSession
+      tags: [Identity (Admin)]
+      summary: Deactivate a session
+      responses:
+        '204': { description: Session deactivated. }
+  /admin/sessions/{id}/extend:
+    patch:
+      operationId: extendSession
+      tags: [Identity (Admin)]
+      summary: Extend a session
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string, format: uuid } }
+      responses:
+        '200':
+          description: The extended session.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Session' }
+  /admin/recovery/code:
+    post:
+      operationId: createRecoveryCodeForIdentity
+      tags: [Identity (Admin)]
+      summary: Create a recovery code for an identity
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                identity_id: { type: string, format: uuid }
+      responses:
+        '201': { description: The recovery code and flow URL. }
+  /admin/recovery/link:
+    post:
+      operationId: createRecoveryLinkForIdentity
+      tags: [Identity (Admin)]
+      summary: Create a recovery link for an identity
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                identity_id: { type: string, format: uuid }
+      responses:
+        '200': { description: The recovery link. }
+
+  # ---------------- OAuth2 / OIDC: Public ----------------
+  /oauth2/auth:
+    get:
+      operationId: oAuth2Authorize
+      tags: [OAuth2 (Public)]
+      summary: OAuth2 authorization endpoint
+      security: []
+      responses:
+        '302': { description: Redirect to login/consent or back to the client with a code. }
+  /oauth2/token:
+    post:
+      operationId: oauth2TokenExchange
+      tags: [OAuth2 (Public)]
+      summary: OAuth2 token endpoint
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                grant_type: { type: string }
+                code: { type: string }
+                refresh_token: { type: string }
+                client_id: { type: string }
+                client_secret: { type: string }
+      responses:
+        '200':
+          description: The issued tokens.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/TokenResponse' }
+  /oauth2/revoke:
+    post:
+      operationId: revokeOAuth2Token
+      tags: [OAuth2 (Public)]
+      summary: Revoke an OAuth2 token
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                token: { type: string }
+      responses:
+        '200': { description: Token revoked. }
+  /userinfo:
+    get:
+      operationId: getOidcUserInfo
+      tags: [OAuth2 (Public)]
+      summary: OpenID Connect UserInfo
+      responses:
+        '200': { description: Claims about the authenticated end-user. }
+  /.well-known/openid-configuration:
+    get:
+      operationId: discoverOidcConfiguration
+      tags: [OAuth2 (Public)]
+      summary: OpenID Connect discovery document
+      security: []
+      responses:
+        '200': { description: The OIDC provider metadata. }
+  /.well-known/jwks.json:
+    get:
+      operationId: discoverJsonWebKeys
+      tags: [OAuth2 (Public)]
+      summary: JSON Web Key Set
+      security: []
+      responses:
+        '200': { description: The public signing keys. }
+
+  # ---------------- OAuth2: Admin ----------------
+  /admin/oauth2/clients:
+    get:
+      operationId: listOAuth2Clients
+      tags: [OAuth2 (Admin)]
+      summary: List OAuth2 clients
+      responses:
+        '200':
+          description: A page of OAuth2 clients.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/OAuth2Client' }
+    post:
+      operationId: createOAuth2Client
+      tags: [OAuth2 (Admin)]
+      summary: Create an OAuth2 client
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/OAuth2Client' }
+      responses:
+        '201':
+          description: The created client.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/OAuth2Client' }
+  /admin/oauth2/clients/{id}:
+    parameters:
+      - { name: id, in: path, required: true, schema: { type: string } }
+    get:
+      operationId: getOAuth2Client
+      tags: [OAuth2 (Admin)]
+      summary: Get an OAuth2 client
+      responses:
+        '200':
+          description: The client.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/OAuth2Client' }
+    put:
+      operationId: setOAuth2Client
+      tags: [OAuth2 (Admin)]
+      summary: Replace an OAuth2 client
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/OAuth2Client' }
+      responses:
+        '200':
+          description: The updated client.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/OAuth2Client' }
+    patch:
+      operationId: patchOAuth2Client
+      tags: [OAuth2 (Admin)]
+      summary: Patch an OAuth2 client
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { type: array, items: { type: object, additionalProperties: true } }
+      responses:
+        '200':
+          description: The patched client.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/OAuth2Client' }
+    delete:
+      operationId: deleteOAuth2Client
+      tags: [OAuth2 (Admin)]
+      summary: Delete an OAuth2 client
+      responses:
+        '204': { description: Client deleted. }
+  /admin/oauth2/introspect:
+    post:
+      operationId: introspectOAuth2Token
+      tags: [OAuth2 (Admin)]
+      summary: Introspect an OAuth2 token
+      requestBody:
+        required: true
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              properties:
+                token: { type: string }
+                scope: { type: string }
+      responses:
+        '200': { description: The introspection result (active flag and claims). }
+  /admin/oauth2/auth/requests/login:
+    get:
+      operationId: getOAuth2LoginRequest
+      tags: [OAuth2 (Admin)]
+      summary: Get an OAuth2 login request
+      parameters:
+        - { name: login_challenge, in: query, required: true, schema: { type: string } }
+      responses:
+        '200': { description: The login request. }
+  /admin/oauth2/auth/requests/login/accept:
+    put:
+      operationId: acceptOAuth2LoginRequest
+      tags: [OAuth2 (Admin)]
+      summary: Accept an OAuth2 login request
+      parameters:
+        - { name: login_challenge, in: query, required: true, schema: { type: string } }
+      responses:
+        '200': { description: The redirect to continue the flow. }
+  /admin/oauth2/auth/requests/consent:
+    get:
+      operationId: getOAuth2ConsentRequest
+      tags: [OAuth2 (Admin)]
+      summary: Get an OAuth2 consent request
+      parameters:
+        - { name: consent_challenge, in: query, required: true, schema: { type: string } }
+      responses:
+        '200': { description: The consent request. }
+  /admin/oauth2/auth/requests/consent/accept:
+    put:
+      operationId: acceptOAuth2ConsentRequest
+      tags: [OAuth2 (Admin)]
+      summary: Accept an OAuth2 consent request
+      parameters:
+        - { name: consent_challenge, in: query, required: true, schema: { type: string } }
+      responses:
+        '200': { description: The redirect to complete consent. }
+  /admin/oauth2/auth/requests/logout/accept:
+    put:
+      operationId: acceptOAuth2LogoutRequest
+      tags: [OAuth2 (Admin)]
+      summary: Accept an OAuth2 logout request
+      parameters:
+        - { name: logout_challenge, in: query, required: true, schema: { type: string } }
+      responses:
+        '200': { description: The redirect to complete logout. }
+  /admin/oauth2/tokens:
+    delete:
+      operationId: deleteOAuth2Tokens
+      tags: [OAuth2 (Admin)]
+      summary: Delete OAuth2 access tokens for a client
+      parameters:
+        - { name: client_id, in: query, required: true, schema: { type: string } }
+      responses:
+        '204': { description: Tokens deleted. }
+  /admin/keys/{set}:
+    parameters:
+      - { name: set, in: path, required: true, schema: { type: string } }
+    get:
+      operationId: getJsonWebKeySet
+      tags: [OAuth2 (Admin)]
+      summary: Get a JSON Web Key Set
+      responses:
+        '200': { description: The key set. }
+    post:
+      operationId: createJsonWebKeySet
+      tags: [OAuth2 (Admin)]
+      summary: Generate a JSON Web Key Set
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { type: object, additionalProperties: true }
+      responses:
+        '201': { description: The created key set. }
+    delete:
+      operationId: deleteJsonWebKeySet
+      tags: [OAuth2 (Admin)]
+      summary: Delete a JSON Web Key Set
+      responses:
+        '204': { description: Key set deleted. }
+  /admin/trust/grants:
+    get:
+      operationId: listTrustedJwtGrantIssuers
+      tags: [OAuth2 (Admin)]
+      summary: List trusted JWT-bearer grant issuers
+      responses:
+        '200': { description: The trusted issuers. }
+    post:
+      operationId: trustJwtGrantIssuer
+      tags: [OAuth2 (Admin)]
+      summary: Trust a JWT-bearer grant issuer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { type: object, additionalProperties: true }
+      responses:
+        '201': { description: The created trust relationship. }
+
+  # ---------------- Permissions (Keto read/check) ----------------
+  /relation-tuples/check:
+    get:
+      operationId: checkPermission
+      tags: [Permissions]
+      summary: Check a permission
+      parameters:
+        - { name: namespace, in: query, required: true, schema: { type: string } }
+        - { name: object, in: query, required: true, schema: { type: string } }
+        - { name: relation, in: query, required: true, schema: { type: string } }
+        - { name: subject_id, in: query, required: false, schema: { type: string } }
+      responses:
+        '200':
+          description: Whether the relationship exists.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  allowed: { type: boolean }
+    post:
+      operationId: checkPermissionOrError
+      tags: [Permissions]
+      summary: Check a permission (POST body)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/RelationTuple' }
+      responses:
+        '200':
+          description: Whether the relationship exists.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  allowed: { type: boolean }
+  /relation-tuples/batch/check:
+    post:
+      operationId: batchCheckPermission
+      tags: [Permissions]
+      summary: Batch-check permissions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                tuples:
+                  type: array
+                  items: { $ref: '#/components/schemas/RelationTuple' }
+      responses:
+        '200': { description: The per-tuple results. }
+  /relation-tuples/expand:
+    get:
+      operationId: expandPermissions
+      tags: [Permissions]
+      summary: Expand a subject set
+      parameters:
+        - { name: namespace, in: query, required: true, schema: { type: string } }
+        - { name: object, in: query, required: true, schema: { type: string } }
+        - { name: relation, in: query, required: true, schema: { type: string } }
+        - { name: max-depth, in: query, required: false, schema: { type: integer } }
+      responses:
+        '200': { description: The expansion tree. }
+  /relation-tuples:
+    get:
+      operationId: listRelationTuples
+      tags: [Permissions]
+      summary: Query relationship tuples
+      parameters:
+        - { name: namespace, in: query, required: true, schema: { type: string } }
+        - { name: object, in: query, required: false, schema: { type: string } }
+        - { name: relation, in: query, required: false, schema: { type: string } }
+      responses:
+        '200':
+          description: The matching relationship tuples.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  relation_tuples:
+                    type: array
+                    items: { $ref: '#/components/schemas/RelationTuple' }
+  /namespaces:
+    get:
+      operationId: listRelationshipNamespaces
+      tags: [Permissions]
+      summary: List permission namespaces
+      responses:
+        '200': { description: The configured namespaces. }
+
+  # ---------------- Relationships (Keto write) ----------------
+  /admin/relation-tuples:
+    put:
+      operationId: createRelationTuple
+      tags: [Relationships]
+      summary: Create or update a relationship tuple
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/RelationTuple' }
+      responses:
+        '201':
+          description: The created relationship tuple.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/RelationTuple' }
+    patch:
+      operationId: patchRelationTuples
+      tags: [Relationships]
+      summary: Patch multiple relationship tuples
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  action: { type: string, enum: [insert, delete] }
+                  relation_tuple: { $ref: '#/components/schemas/RelationTuple' }
+      responses:
+        '204': { description: Tuples patched. }
+    delete:
+      operationId: deleteRelationTuples
+      tags: [Relationships]
+      summary: Delete relationship tuples by query
+      parameters:
+        - { name: namespace, in: query, required: true, schema: { type: string } }
+        - { name: object, in: query, required: false, schema: { type: string } }
+        - { name: relation, in: query, required: false, schema: { type: string } }
+      responses:
+        '204': { description: Tuples deleted. }
+  /opl/syntax/check:
+    post:
+      operationId: checkOplSyntax
+      tags: [Relationships]
+      summary: Check Ory Permission Language syntax
+      requestBody:
+        required: true
+        content:
+          text/plain:
+            schema: { type: string }
+      responses:
+        '200': { description: The parse result and any syntax errors. }
+
+  # ---------------- Courier ----------------
+  /admin/courier/messages:
+    get:
+      operationId: listCourierMessages
+      tags: [Courier]
+      summary: List courier messages
+      parameters:
+        - { name: status, in: query, required: false, schema: { type: string, enum: [queued, sent, processing, abandoned] } }
+      responses:
+        '200':
+          description: A page of courier messages.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/CourierMessage' }
+  /admin/courier/messages/{id}:
+    get:
+      operationId: getCourierMessage
+      tags: [Courier]
+      summary: Get a courier message
+      parameters:
+        - { name: id, in: path, required: true, schema: { type: string, format: uuid } }
+      responses:
+        '200':
+          description: The courier message.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/CourierMessage' }
+
+  # ---------------- Organizations (B2B SSO) ----------------
+  /admin/organizations:
+    get:
+      operationId: listOrganizations
+      tags: [Organizations]
+      summary: List organizations
+      responses:
+        '200':
+          description: The project's organizations.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Organization' }
+    post:
+      operationId: createOrganization
+      tags: [Organizations]
+      summary: Create an organization
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/Organization' }
+      responses:
+        '201':
+          description: The created organization.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Organization' }
+  /admin/organizations/{id}:
+    parameters:
+      - { name: id, in: path, required: true, schema: { type: string, format: uuid } }
+    get:
+      operationId: getOrganization
+      tags: [Organizations]
+      summary: Get an organization
+      responses:
+        '200':
+          description: The organization.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Organization' }
+    put:
+      operationId: updateOrganization
+      tags: [Organizations]
+      summary: Update an organization
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/Organization' }
+      responses:
+        '200':
+          description: The updated organization.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Organization' }
+    delete:
+      operationId: deleteOrganization
+      tags: [Organizations]
+      summary: Delete an organization
+      responses:
+        '204': { description: Organization deleted. }
+
+  # ---------------- Console: Projects ----------------
+  /workspaces/{workspace}/projects:
+    get:
+      operationId: listWorkspaceProjects
+      tags: [Projects]
+      summary: List a workspace's projects
+      servers:
+        - url: https://api.console.ory.sh
+      parameters:
+        - { name: workspace, in: path, required: true, schema: { type: string, format: uuid } }
+      responses:
+        '200':
+          description: The workspace's projects.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Project' }
+  /projects:
+    post:
+      operationId: createProject
+      tags: [Projects]
+      summary: Create a project
+      servers:
+        - url: https://api.console.ory.sh
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/Project' }
+      responses:
+        '201':
+          description: The created project.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Project' }
+  /projects/{projectId}:
+    parameters:
+      - { name: projectId, in: path, required: true, schema: { type: string, format: uuid } }
+    get:
+      operationId: getProject
+      tags: [Projects]
+      summary: Get a project
+      servers:
+        - url: https://api.console.ory.sh
+      responses:
+        '200':
+          description: The project.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Project' }
+    patch:
+      operationId: patchProject
+      tags: [Projects]
+      summary: Patch a project's configuration
+      servers:
+        - url: https://api.console.ory.sh
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { type: array, items: { type: object, additionalProperties: true } }
+      responses:
+        '200': { description: The updated project. }
+    put:
+      operationId: setProject
+      tags: [Projects]
+      summary: Replace a project's configuration
+      servers:
+        - url: https://api.console.ory.sh
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/Project' }
+      responses:
+        '200': { description: The updated project. }
+    delete:
+      operationId: purgeProject
+      tags: [Projects]
+      summary: Delete a project
+      servers:
+        - url: https://api.console.ory.sh
+      responses:
+        '204': { description: Project deleted. }
+
+  # ---------------- Console: Project API Tokens ----------------
+  /projects/{projectId}/tokens:
+    parameters:
+      - { name: projectId, in: path, required: true, schema: { type: string, format: uuid } }
+    get:
+      operationId: listProjectApiKeys
+      tags: [Project Tokens]
+      summary: List project API tokens
+      servers:
+        - url: https://api.console.ory.sh
+      responses:
+        '200':
+          description: The project's API tokens.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/ProjectApiKey' }
+    post:
+      operationId: createProjectApiKey
+      tags: [Project Tokens]
+      summary: Create a project API token
+      servers:
+        - url: https://api.console.ory.sh
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name: { type: string }
+      responses:
+        '201':
+          description: The created token (value shown once).
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/ProjectApiKey' }
+  /projects/{projectId}/tokens/{tokenId}:
+    delete:
+      operationId: deleteProjectApiKey
+      tags: [Project Tokens]
+      summary: Delete a project API token
+      servers:
+        - url: https://api.console.ory.sh
+      parameters:
+        - { name: projectId, in: path, required: true, schema: { type: string, format: uuid } }
+        - { name: tokenId, in: path, required: true, schema: { type: string, format: uuid } }
+      responses:
+        '204': { description: Token deleted. }
+
+  # ---------------- Console: Event Streams ----------------
+  /projects/{projectId}/eventStreams:
+    parameters:
+      - { name: projectId, in: path, required: true, schema: { type: string, format: uuid } }
+    get:
+      operationId: listEventStreams
+      tags: [Event Streams]
+      summary: List event streams
+      servers:
+        - url: https://api.console.ory.sh
+      responses:
+        '200':
+          description: The configured event streams.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/EventStream' }
+    post:
+      operationId: createEventStream
+      tags: [Event Streams]
+      summary: Create an event stream
+      servers:
+        - url: https://api.console.ory.sh
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/EventStream' }
+      responses:
+        '201':
+          description: The created event stream.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/EventStream' }
+  /projects/{projectId}/eventStreams/{eventStreamId}:
+    parameters:
+      - { name: projectId, in: path, required: true, schema: { type: string, format: uuid } }
+      - { name: eventStreamId, in: path, required: true, schema: { type: string, format: uuid } }
+    patch:
+      operationId: setEventStream
+      tags: [Event Streams]
+      summary: Update an event stream
+      servers:
+        - url: https://api.console.ory.sh
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/EventStream' }
+      responses:
+        '200':
+          description: The updated event stream.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/EventStream' }
+    delete:
+      operationId: deleteEventStream
+      tags: [Event Streams]
+      summary: Delete an event stream
+      servers:
+        - url: https://api.console.ory.sh
+      responses:
+        '204': { description: Event stream deleted. }
+
+  # ---------------- Console: Billing ----------------
+  /workspaces/{workspace}/subscription:
+    parameters:
+      - { name: workspace, in: path, required: true, schema: { type: string, format: uuid } }
+    get:
+      operationId: getWorkspaceSubscription
+      tags: [Billing]
+      summary: Get a workspace subscription
+      servers:
+        - url: https://api.console.ory.sh
+      responses:
+        '200':
+          description: The active subscription.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Subscription' }
+    post:
+      operationId: createWorkspaceSubscription
+      tags: [Billing]
+      summary: Create or change a workspace subscription
+      servers:
+        - url: https://api.console.ory.sh
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/Subscription' }
+      responses:
+        '201':
+          description: The created subscription.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Subscription' }
+components:
+  securitySchemes:
+    oryApiKey:
+      type: http
+      scheme: bearer
+      description: >-
+        Ory API key. Project admin endpoints use an Ory project API key
+        (ory_pat_...); Console endpoints use a workspace API key (ory_wak_...).
+        Passed as `Authorization: Bearer <token>`.
+  responses:
+    Unauthorized:
+      description: Missing or invalid credentials.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    NotFound:
+      description: The requested resource was not found.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code: { type: integer }
+            status: { type: string }
+            message: { type: string }
+            reason: { type: string }
+    Identity:
+      type: object
+      properties:
+        id: { type: string, format: uuid }
+        schema_id: { type: string }
+        state: { type: string, enum: [active, inactive] }
+        traits: { type: object, additionalProperties: true }
+        verifiable_addresses:
+          type: array
+          items: { type: object, additionalProperties: true }
+        created_at: { type: string, format: date-time }
+        updated_at: { type: string, format: date-time }
+    IdentityInput:
+      type: object
+      required: [schema_id, traits]
+      properties:
+        schema_id: { type: string }
+        state: { type: string, enum: [active, inactive] }
+        traits: { type: object, additionalProperties: true }
+        credentials: { type: object, additionalProperties: true }
+    Session:
+      type: object
+      properties:
+        id: { type: string, format: uuid }
+        active: { type: boolean }
+        expires_at: { type: string, format: date-time }
+        authenticated_at: { type: string, format: date-time }
+        identity: { $ref: '#/components/schemas/Identity' }
+    OAuth2Client:
+      type: object
+      properties:
+        client_id: { type: string }
+        client_name: { type: string }
+        client_secret: { type: string }
+        redirect_uris:
+          type: array
+          items: { type: string, format: uri }
+        grant_types:
+          type: array
+          items: { type: string }
+        response_types:
+          type: array
+          items: { type: string }
+        scope: { type: string }
+        token_endpoint_auth_method: { type: string }
+    TokenResponse:
+      type: object
+      properties:
+        access_token: { type: string }
+        token_type: { type: string }
+        expires_in: { type: integer }
+        refresh_token: { type: string }
+        id_token: { type: string }
+        scope: { type: string }
+    RelationTuple:
+      type: object
+      required: [namespace, object, relation]
+      properties:
+        namespace: { type: string }
+        object: { type: string }
+        relation: { type: string }
+        subject_id: { type: string }
+        subject_set:
+          type: object
+          properties:
+            namespace: { type: string }
+            object: { type: string }
+            relation: { type: string }
+    CourierMessage:
+      type: object
+      properties:
+        id: { type: string, format: uuid }
+        status: { type: string, enum: [queued, sent, processing, abandoned] }
+        type: { type: string, enum: [email, phone] }
+        recipient: { type: string }
+        subject: { type: string }
+        template_type: { type: string }
+        created_at: { type: string, format: date-time }
+    Organization:
+      type: object
+      properties:
+        id: { type: string, format: uuid }
+        label: { type: string }
+        domains:
+          type: array
+          items: { type: string }
+        created_at: { type: string, format: date-time }
+    Project:
+      type: object
+      properties:
+        id: { type: string, format: uuid }
+        name: { type: string }
+        slug: { type: string }
+        workspace_id: { type: string, format: uuid }
+        environment: { type: string, enum: [prod, stage, dev] }
+        state: { type: string }
+    ProjectApiKey:
+      type: object
+      properties:
+        id: { type: string, format: uuid }
+        name: { type: string }
+        value: { type: string }
+        created_at: { type: string, format: date-time }
+    EventStream:
+      type: object
+      properties:
+        id: { type: string, format: uuid }
+        type: { type: string, enum: [sns] }
+        topic_arn: { type: string }
+        aws_iam_role_arn: { type: string }
+        role_arn: { type: string }
+    Subscription:
+      type: object
+      properties:
+        id: { type: string, format: uuid }
+        plan: { type: string, enum: [developer, production, growth, enterprise] }
+        interval: { type: string, enum: [monthly, yearly] }
+        currency: { type: string }
+        status: { type: string }

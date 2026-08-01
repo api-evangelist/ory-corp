@@ -1,0 +1,36 @@
+{
+  "provider": "ory-corp",
+  "sources": [
+    "ory-corp-billing-api-openapi.yml",
+    "ory-corp-courier-api-openapi.yml",
+    "ory-corp-event-streams-api-openapi.yml",
+    "ory-corp-identity-admin-api-openapi.yml",
+    "ory-corp-identity-self-service-api-openapi.yml",
+    "ory-corp-oauth2-admin-api-openapi.yml",
+    "ory-corp-oauth2-public-api-openapi.yml",
+    "ory-corp-organizations-api-openapi.yml",
+    "ory-corp-permissions-api-openapi.yml",
+    "ory-corp-project-tokens-api-openapi.yml",
+    "ory-corp-projects-api-openapi.yml",
+    "ory-corp-relationships-api-openapi.yml"
+  ],
+  "outputs": [
+    "ory-corp-billing-api-openapi.yml",
+    "ory-corp-courier-api-openapi.yml",
+    "ory-corp-event-streams-api-openapi.yml",
+    "ory-corp-identity-admin-api-openapi.yml",
+    "ory-corp-identity-self-service-api-openapi.yml",
+    "ory-corp-oauth2-admin-api-openapi.yml",
+    "ory-corp-oauth2-public-api-openapi.yml",
+    "ory-corp-organizations-api-openapi.yml",
+    "ory-corp-permissions-api-openapi.yml",
+    "ory-corp-project-tokens-api-openapi.yml",
+    "ory-corp-projects-api-openapi.yml",
+    "ory-corp-relationships-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
