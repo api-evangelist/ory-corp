@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ory Network Billing Courier API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Courier",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List courier messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{project-slug}.projects.oryapis.com/admin/courier/messages",
+            "params": [
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List courier messages"
+        },
+        {
+          "info": {
+            "name": "Get a courier message",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{project-slug}.projects.oryapis.com/admin/courier/messages/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a courier message"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

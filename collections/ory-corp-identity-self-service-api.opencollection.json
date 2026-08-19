@@ -1,0 +1,280 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ory Network Billing Identity (Self-Service) API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Identity (Self-Service)",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a browser login flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{project-slug}.projects.oryapis.com/self-service/login/browser"
+          },
+          "docs": "Create a browser login flow"
+        },
+        {
+          "info": {
+            "name": "Create a native (API) login flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{project-slug}.projects.oryapis.com/self-service/login/api"
+          },
+          "docs": "Create a native (API) login flow"
+        },
+        {
+          "info": {
+            "name": "Get a login flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{project-slug}.projects.oryapis.com/self-service/login/flows",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get a login flow"
+        },
+        {
+          "info": {
+            "name": "Submit a login flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{project-slug}.projects.oryapis.com/self-service/login",
+            "params": [
+              {
+                "name": "flow",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit a login flow"
+        },
+        {
+          "info": {
+            "name": "Create a browser registration flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{project-slug}.projects.oryapis.com/self-service/registration/browser"
+          },
+          "docs": "Create a browser registration flow"
+        },
+        {
+          "info": {
+            "name": "Submit a registration flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{project-slug}.projects.oryapis.com/self-service/registration",
+            "params": [
+              {
+                "name": "flow",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit a registration flow"
+        },
+        {
+          "info": {
+            "name": "Create a browser account recovery flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{project-slug}.projects.oryapis.com/self-service/recovery/browser"
+          },
+          "docs": "Create a browser account recovery flow"
+        },
+        {
+          "info": {
+            "name": "Submit a recovery flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{project-slug}.projects.oryapis.com/self-service/recovery",
+            "params": [
+              {
+                "name": "flow",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit a recovery flow"
+        },
+        {
+          "info": {
+            "name": "Create a browser email verification flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{project-slug}.projects.oryapis.com/self-service/verification/browser"
+          },
+          "docs": "Create a browser email verification flow"
+        },
+        {
+          "info": {
+            "name": "Submit a verification flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{project-slug}.projects.oryapis.com/self-service/verification",
+            "params": [
+              {
+                "name": "flow",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit a verification flow"
+        },
+        {
+          "info": {
+            "name": "Create a browser settings (profile) flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{project-slug}.projects.oryapis.com/self-service/settings/browser"
+          },
+          "docs": "Create a browser settings (profile) flow"
+        },
+        {
+          "info": {
+            "name": "Submit a settings flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{project-slug}.projects.oryapis.com/self-service/settings",
+            "params": [
+              {
+                "name": "flow",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit a settings flow"
+        },
+        {
+          "info": {
+            "name": "Create a browser logout flow",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{project-slug}.projects.oryapis.com/self-service/logout/browser"
+          },
+          "docs": "Create a browser logout flow"
+        },
+        {
+          "info": {
+            "name": "Get the current session",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{project-slug}.projects.oryapis.com/sessions/whoami"
+          },
+          "docs": "Get the current session"
+        },
+        {
+          "info": {
+            "name": "List the caller's sessions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{project-slug}.projects.oryapis.com/sessions"
+          },
+          "docs": "List the caller's sessions"
+        },
+        {
+          "info": {
+            "name": "Revoke all other sessions",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{project-slug}.projects.oryapis.com/sessions"
+          },
+          "docs": "Revoke all other sessions"
+        },
+        {
+          "info": {
+            "name": "Revoke one of the caller's sessions",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{project-slug}.projects.oryapis.com/sessions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Revoke one of the caller's sessions"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

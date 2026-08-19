@@ -1,0 +1,386 @@
+{
+  "item": [
+    {
+      "id": "009f667b-3a3c-49bb-a15d-5a60afe717ea",
+      "name": "Project Tokens",
+      "description": {
+        "content": "Ory Network project API token management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bd2e72b5-a66c-493a-a285-fc3274709f73",
+          "name": "List project API tokens",
+          "request": {
+            "name": "List project API tokens",
+            "description": {},
+            "url": {
+              "protocol": "https",
+              "path": [
+                "projects",
+                ":projectId",
+                "tokens"
+              ],
+              "host": [
+                "api",
+                "console",
+                "ory",
+                "sh"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "projectId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b8f83087-3b83-40cc-ac1a-151e028910f9",
+              "name": "The project's API tokens.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "tokens"
+                  ],
+                  "host": [
+                    "api",
+                    "console",
+                    "ory",
+                    "sh"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"68472527-77cc-47ca-6d4a-0a339ea187cb\",\n    \"name\": \"string\",\n    \"value\": \"string\",\n    \"created_at\": \"1994-07-11T16:37:13.591Z\"\n  },\n  {\n    \"id\": \"98f1f44a-62af-194b-b8d9-a71ba2ab577e\",\n    \"name\": \"string\",\n    \"value\": \"string\",\n    \"created_at\": \"1948-06-28T10:09:59.978Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d6ad42b7-5dc2-439f-b0dc-20057ff25b01",
+          "name": "Create a project API token",
+          "request": {
+            "name": "Create a project API token",
+            "description": {},
+            "url": {
+              "protocol": "https",
+              "path": [
+                "projects",
+                ":projectId",
+                "tokens"
+              ],
+              "host": [
+                "api",
+                "console",
+                "ory",
+                "sh"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "projectId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3dc7cf4e-021e-4cdb-b079-3e359ee34167",
+              "name": "The created token (value shown once).",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "tokens"
+                  ],
+                  "host": [
+                    "api",
+                    "console",
+                    "ory",
+                    "sh"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"04891cde-e415-f5b8-a4ac-2f81c1a5c7ca\",\n  \"name\": \"string\",\n  \"value\": \"string\",\n  \"created_at\": \"2013-08-05T06:29:28.243Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9302fc47-1e66-494f-951f-1af51e37f283",
+          "name": "Delete a project API token",
+          "request": {
+            "name": "Delete a project API token",
+            "description": {},
+            "url": {
+              "protocol": "https",
+              "path": [
+                "projects",
+                ":projectId",
+                "tokens",
+                ":tokenId"
+              ],
+              "host": [
+                "api",
+                "console",
+                "ory",
+                "sh"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "projectId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "tokenId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "89c331c6-179c-4af0-a2fe-5c00250b2428",
+              "name": "Token deleted.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "tokens",
+                    ":tokenId"
+                  ],
+                  "host": [
+                    "api",
+                    "console",
+                    "ory",
+                    "sh"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "tokenId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The slug of your Ory Network project.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "your-project-slug",
+      "key": "project-slug"
+    },
+    {
+      "type": "string",
+      "value": "https://{{project-slug}}.projects.oryapis.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "af485cc6-34c8-4a04-9c3f-89e20d32a2e8",
+    "name": "Ory Network Billing Project Tokens API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Ory is open-source identity and access infrastructure, delivered as the Ory Network managed cloud. This document models the primary public and admin REST surfaces of an Ory Network project and the Ory Network Console (control plane).\nTwo base URLs are in play. Project data-plane endpoints - Ory Kratos (identities, sessions, self-service flows), Ory Hydra (OAuth2 / OIDC), Ory Keto (permissions and relationship tuples), and courier messages - are served on the project-scoped host https://{project-slug}.projects.oryapis.com. The Ory Network Console API (workspaces, projects, project tokens, event streams, subscriptions) is served on https://api.console.ory.sh.\nPublic self-service and OAuth2/OIDC endpoints are unauthenticated or use the end-user session; admin, Keto write, courier, and Console endpoints require an Ory API key / project or workspace API token passed as a Bearer token. Ory SDKs are auto-generated from these OpenAPI specifications. Endpoint set is representative and grounded in Ory's published specs; consult the live reference for the exhaustive parameter and schema detail.\n\nContact Support:\n Name: Ory",
+      "type": "text/plain"
+    }
+  }
+}

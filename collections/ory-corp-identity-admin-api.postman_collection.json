@@ -1,0 +1,2032 @@
+{
+  "item": [
+    {
+      "id": "1260a5c3-45d8-4c85-a0a5-17267fb24ef6",
+      "name": "Identity (Admin)",
+      "description": {
+        "content": "Privileged Kratos identity and session management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "752f9c6e-ae44-4bc9-8231-abf293ec5268",
+          "name": "List identities",
+          "request": {
+            "name": "List identities",
+            "description": {},
+            "url": {
+              "path": [
+                "admin",
+                "identities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a2a2bbb5-289b-4070-bfeb-71de3dd42792",
+              "name": "A page of identities.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "identities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"7ba9b76f-f60f-1af0-91e0-9dce38a1fbe8\",\n    \"schema_id\": \"string\",\n    \"state\": \"active\",\n    \"traits\": {\n      \"key_0\": 7462.071996387932,\n      \"key_1\": \"string\",\n      \"key_2\": 4341.703649993972\n    },\n    \"verifiable_addresses\": [\n      {\n        \"key_0\": \"string\"\n      },\n      {\n        \"key_0\": \"string\",\n        \"key_1\": false\n      }\n    ],\n    \"created_at\": \"1991-01-26T05:59:46.731Z\",\n    \"updated_at\": \"1971-06-06T05:22:06.388Z\"\n  },\n  {\n    \"id\": \"8ec585c5-f4a1-f37e-a36b-fa9c03d1175e\",\n    \"schema_id\": \"string\",\n    \"state\": \"inactive\",\n    \"traits\": {\n      \"key_0\": true\n    },\n    \"verifiable_addresses\": [\n      {\n        \"key_0\": 775\n      },\n      {\n        \"key_0\": 4855,\n        \"key_1\": 119,\n        \"key_2\": true\n      }\n    ],\n    \"created_at\": \"2016-08-02T08:17:15.093Z\",\n    \"updated_at\": \"1949-08-21T03:14:55.799Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ba8ab63f-d62c-4a65-a616-cec6c27eb7bb",
+              "name": "Missing or invalid credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "identities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 4775,\n    \"status\": \"string\",\n    \"message\": \"string\",\n    \"reason\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1c825d02-7a03-4300-a66d-7186fc04e402",
+          "name": "Create an identity",
+          "request": {
+            "name": "Create an identity",
+            "description": {},
+            "url": {
+              "path": [
+                "admin",
+                "identities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"schema_id\": \"<string>\",\n  \"traits\": {\n    \"key_0\": 8737.968105772297\n  },\n  \"state\": \"<string>\",\n  \"credentials\": {\n    \"key_0\": true,\n    \"key_1\": 3113.0200826792698\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c361352a-3d8c-4b3c-8676-8ea9ecee1999",
+              "name": "The created identity.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "identities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"schema_id\": \"<string>\",\n  \"traits\": {\n    \"key_0\": 5024,\n    \"key_1\": \"string\",\n    \"key_2\": 7383\n  },\n  \"state\": \"<string>\",\n  \"credentials\": {\n    \"key_0\": 4447,\n    \"key_1\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"80b780a0-7cbb-b9e7-0e8a-1401623ac790\",\n  \"schema_id\": \"string\",\n  \"state\": \"inactive\",\n  \"traits\": {\n    \"key_0\": 1960,\n    \"key_1\": \"string\",\n    \"key_2\": false\n  },\n  \"verifiable_addresses\": [\n    {\n      \"key_0\": true,\n      \"key_1\": \"string\",\n      \"key_2\": 7399\n    },\n    {\n      \"key_0\": false\n    }\n  ],\n  \"created_at\": \"1960-09-27T09:25:11.213Z\",\n  \"updated_at\": \"1986-06-05T01:32:16.437Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cf482730-019d-4bb8-b791-385964cbd3f1",
+              "name": "Conflict - an identity with these credentials exists.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "identities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"schema_id\": \"<string>\",\n  \"traits\": {\n    \"key_0\": 5024,\n    \"key_1\": \"string\",\n    \"key_2\": 7383\n  },\n  \"state\": \"<string>\",\n  \"credentials\": {\n    \"key_0\": 4447,\n    \"key_1\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "62367df7-f241-4c6f-a96a-17bca387f247",
+          "name": "Create and delete identities in a batch",
+          "request": {
+            "name": "Create and delete identities in a batch",
+            "description": {},
+            "url": {
+              "path": [
+                "admin",
+                "identities"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_0\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4041b8a5-27bf-49de-82dd-b486b16d8202",
+              "name": "The batch patch result.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "identities"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": 4497.584019273\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "dddf19c6-2f46-4a9d-9403-5960b50565aa",
+          "name": "Get an identity",
+          "request": {
+            "name": "Get an identity",
+            "description": {},
+            "url": {
+              "path": [
+                "admin",
+                "identities",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5ed6485b-21a3-4b8d-995a-7e01ea8b1b32",
+              "name": "The identity.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "identities",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"80b780a0-7cbb-b9e7-0e8a-1401623ac790\",\n  \"schema_id\": \"string\",\n  \"state\": \"inactive\",\n  \"traits\": {\n    \"key_0\": 1960,\n    \"key_1\": \"string\",\n    \"key_2\": false\n  },\n  \"verifiable_addresses\": [\n    {\n      \"key_0\": true,\n      \"key_1\": \"string\",\n      \"key_2\": 7399\n    },\n    {\n      \"key_0\": false\n    }\n  ],\n  \"created_at\": \"1960-09-27T09:25:11.213Z\",\n  \"updated_at\": \"1986-06-05T01:32:16.437Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c7f9fe3e-1499-48ea-b1a3-4d34bdb2a15d",
+              "name": "The requested resource was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "identities",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": 4775,\n    \"status\": \"string\",\n    \"message\": \"string\",\n    \"reason\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "00de1d5e-d0f9-4a3a-90ad-5aa5756289d9",
+          "name": "Replace an identity",
+          "request": {
+            "name": "Replace an identity",
+            "description": {},
+            "url": {
+              "path": [
+                "admin",
+                "identities",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"schema_id\": \"<string>\",\n  \"traits\": {\n    \"key_0\": 8737.968105772297\n  },\n  \"state\": \"<string>\",\n  \"credentials\": {\n    \"key_0\": true,\n    \"key_1\": 3113.0200826792698\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0f756359-bde6-4332-9b7d-0d6cb362131e",
+              "name": "The updated identity.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "identities",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"schema_id\": \"<string>\",\n  \"traits\": {\n    \"key_0\": 5024,\n    \"key_1\": \"string\",\n    \"key_2\": 7383\n  },\n  \"state\": \"<string>\",\n  \"credentials\": {\n    \"key_0\": 4447,\n    \"key_1\": \"string\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"80b780a0-7cbb-b9e7-0e8a-1401623ac790\",\n  \"schema_id\": \"string\",\n  \"state\": \"inactive\",\n  \"traits\": {\n    \"key_0\": 1960,\n    \"key_1\": \"string\",\n    \"key_2\": false\n  },\n  \"verifiable_addresses\": [\n    {\n      \"key_0\": true,\n      \"key_1\": \"string\",\n      \"key_2\": 7399\n    },\n    {\n      \"key_0\": false\n    }\n  ],\n  \"created_at\": \"1960-09-27T09:25:11.213Z\",\n  \"updated_at\": \"1986-06-05T01:32:16.437Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6e76bce8-2d03-489a-9f3d-2c39c8e68342",
+          "name": "Patch an identity (JSON Patch)",
+          "request": {
+            "name": "Patch an identity (JSON Patch)",
+            "description": {},
+            "url": {
+              "path": [
+                "admin",
+                "identities",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"key_0\": \"string\",\n    \"key_1\": 1471.1212278707208,\n    \"key_2\": 8269\n  },\n  {\n    \"key_0\": 7953,\n    \"key_1\": false\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c5d79da2-5f2f-4cf9-aeb1-638c79e7e9ef",
+              "name": "The patched identity.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "identities",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"key_0\": 9579,\n    \"key_1\": false\n  },\n  {\n    \"key_0\": 6205,\n    \"key_1\": 504,\n    \"key_2\": 8378\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"80b780a0-7cbb-b9e7-0e8a-1401623ac790\",\n  \"schema_id\": \"string\",\n  \"state\": \"inactive\",\n  \"traits\": {\n    \"key_0\": 1960,\n    \"key_1\": \"string\",\n    \"key_2\": false\n  },\n  \"verifiable_addresses\": [\n    {\n      \"key_0\": true,\n      \"key_1\": \"string\",\n      \"key_2\": 7399\n    },\n    {\n      \"key_0\": false\n    }\n  ],\n  \"created_at\": \"1960-09-27T09:25:11.213Z\",\n  \"updated_at\": \"1986-06-05T01:32:16.437Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6b3b4793-9c15-4b88-8348-3e0768301e71",
+          "name": "Delete an identity",
+          "request": {
+            "name": "Delete an identity",
+            "description": {},
+            "url": {
+              "path": [
+                "admin",
+                "identities",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "95ede18a-b10f-485e-8756-e8fefde29f2e",
+              "name": "Identity deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "identities",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ad752d20-7841-4495-91c8-a73514c44faf",
+          "name": "Get an identity by external ID",
+          "request": {
+            "name": "Get an identity by external ID",
+            "description": {},
+            "url": {
+              "path": [
+                "admin",
+                "identities",
+                "by",
+                "external",
+                ":externalID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "externalID",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "800c8c01-3915-42da-a64e-9decbfd48305",
+              "name": "The identity.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "identities",
+                    "by",
+                    "external",
+                    ":externalID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "externalID",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"80b780a0-7cbb-b9e7-0e8a-1401623ac790\",\n  \"schema_id\": \"string\",\n  \"state\": \"inactive\",\n  \"traits\": {\n    \"key_0\": 1960,\n    \"key_1\": \"string\",\n    \"key_2\": false\n  },\n  \"verifiable_addresses\": [\n    {\n      \"key_0\": true,\n      \"key_1\": \"string\",\n      \"key_2\": 7399\n    },\n    {\n      \"key_0\": false\n    }\n  ],\n  \"created_at\": \"1960-09-27T09:25:11.213Z\",\n  \"updated_at\": \"1986-06-05T01:32:16.437Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9afdb42d-230d-43b8-91a9-2e08f1ce7bfd",
+          "name": "Delete a credential of an identity",
+          "request": {
+            "name": "Delete a credential of an identity",
+            "description": {},
+            "url": {
+              "path": [
+                "admin",
+                "identities",
+                ":id",
+                "credentials",
+                ":type"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "type",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c0ca5a76-e7a0-4a64-a1b2-4c5df7316f6d",
+              "name": "Credential deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "identities",
+                    ":id",
+                    "credentials",
+                    ":type"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "type",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6b87cb12-d50c-42d4-9220-73ada131863c",
+          "name": "List an identity's sessions",
+          "request": {
+            "name": "List an identity's sessions",
+            "description": {},
+            "url": {
+              "path": [
+                "admin",
+                "identities",
+                ":id",
+                "sessions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5bfd3e99-dcf9-4464-bdea-564a89758207",
+              "name": "The identity's sessions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "identities",
+                    ":id",
+                    "sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"484646ff-8c30-701e-c6ca-ef43f10350fd\",\n    \"active\": false,\n    \"expires_at\": \"1955-02-27T03:48:11.638Z\",\n    \"authenticated_at\": \"1948-12-14T06:48:28.983Z\",\n    \"identity\": {\n      \"id\": \"f2de05fd-6e92-e0e6-0d9a-e0e448195445\",\n      \"schema_id\": \"string\",\n      \"state\": \"inactive\",\n      \"traits\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"verifiable_addresses\": [\n        {\n          \"key_0\": 7240,\n          \"key_1\": false,\n          \"key_2\": \"string\",\n          \"key_3\": 6160\n        },\n        {\n          \"key_0\": true,\n          \"key_1\": true\n        }\n      ],\n      \"created_at\": \"1996-12-14T04:24:34.860Z\",\n      \"updated_at\": \"1988-10-12T01:38:54.843Z\"\n    }\n  },\n  {\n    \"id\": \"a1a8e42d-8354-0c6b-bc7d-4cbd6e9a93e1\",\n    \"active\": false,\n    \"expires_at\": \"1981-09-27T03:34:41.756Z\",\n    \"authenticated_at\": \"1960-08-10T11:27:14.052Z\",\n    \"identity\": {\n      \"id\": \"d52d55e4-11eb-2877-96a7-f5f0cae45f27\",\n      \"schema_id\": \"string\",\n      \"state\": \"inactive\",\n      \"traits\": {\n        \"key_0\": \"string\",\n        \"key_1\": 1648\n      },\n      \"verifiable_addresses\": [\n        {\n          \"key_0\": 2451,\n          \"key_1\": 3535.828846965581\n        },\n        {\n          \"key_0\": \"string\",\n          \"key_1\": false,\n          \"key_2\": 3256\n        }\n      ],\n      \"created_at\": \"1964-11-19T11:29:30.898Z\",\n      \"updated_at\": \"2015-11-12T18:41:51.288Z\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8d275344-0a45-47ac-9acf-2b603d8feb73",
+          "name": "Revoke all of an identity's sessions",
+          "request": {
+            "name": "Revoke all of an identity's sessions",
+            "description": {},
+            "url": {
+              "path": [
+                "admin",
+                "identities",
+                ":id",
+                "sessions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "616c3c70-5224-4cb2-b9bc-495df55b4bd5",
+              "name": "Sessions revoked.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "identities",
+                    ":id",
+                    "sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e1121b2f-0a75-41e2-b698-19f98161b6d2",
+          "name": "List all sessions",
+          "request": {
+            "name": "List all sessions",
+            "description": {},
+            "url": {
+              "path": [
+                "admin",
+                "sessions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c8533988-2c63-4df9-8cf7-bb3dea31dfd1",
+              "name": "A page of sessions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "sessions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"484646ff-8c30-701e-c6ca-ef43f10350fd\",\n    \"active\": false,\n    \"expires_at\": \"1955-02-27T03:48:11.638Z\",\n    \"authenticated_at\": \"1948-12-14T06:48:28.983Z\",\n    \"identity\": {\n      \"id\": \"f2de05fd-6e92-e0e6-0d9a-e0e448195445\",\n      \"schema_id\": \"string\",\n      \"state\": \"inactive\",\n      \"traits\": {\n        \"key_0\": \"string\",\n        \"key_1\": \"string\"\n      },\n      \"verifiable_addresses\": [\n        {\n          \"key_0\": 7240,\n          \"key_1\": false,\n          \"key_2\": \"string\",\n          \"key_3\": 6160\n        },\n        {\n          \"key_0\": true,\n          \"key_1\": true\n        }\n      ],\n      \"created_at\": \"1996-12-14T04:24:34.860Z\",\n      \"updated_at\": \"1988-10-12T01:38:54.843Z\"\n    }\n  },\n  {\n    \"id\": \"a1a8e42d-8354-0c6b-bc7d-4cbd6e9a93e1\",\n    \"active\": false,\n    \"expires_at\": \"1981-09-27T03:34:41.756Z\",\n    \"authenticated_at\": \"1960-08-10T11:27:14.052Z\",\n    \"identity\": {\n      \"id\": \"d52d55e4-11eb-2877-96a7-f5f0cae45f27\",\n      \"schema_id\": \"string\",\n      \"state\": \"inactive\",\n      \"traits\": {\n        \"key_0\": \"string\",\n        \"key_1\": 1648\n      },\n      \"verifiable_addresses\": [\n        {\n          \"key_0\": 2451,\n          \"key_1\": 3535.828846965581\n        },\n        {\n          \"key_0\": \"string\",\n          \"key_1\": false,\n          \"key_2\": 3256\n        }\n      ],\n      \"created_at\": \"1964-11-19T11:29:30.898Z\",\n      \"updated_at\": \"2015-11-12T18:41:51.288Z\"\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "74234f04-61a4-49b9-ae4e-ca07e8bef1a9",
+          "name": "Get a session",
+          "request": {
+            "name": "Get a session",
+            "description": {},
+            "url": {
+              "path": [
+                "admin",
+                "sessions",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6db238be-c113-4e65-b9b6-c75357a6b79d",
+              "name": "The session.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "sessions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"0e710f09-e30e-9fc3-716b-9308ebbabf13\",\n  \"active\": true,\n  \"expires_at\": \"1961-09-27T04:42:03.405Z\",\n  \"authenticated_at\": \"2010-11-23T19:44:07.858Z\",\n  \"identity\": {\n    \"id\": \"667778b2-3d01-e446-32b7-1819c70d1c37\",\n    \"schema_id\": \"string\",\n    \"state\": \"active\",\n    \"traits\": {\n      \"key_0\": true,\n      \"key_1\": \"string\"\n    },\n    \"verifiable_addresses\": [\n      {\n        \"key_0\": 8482,\n        \"key_1\": 9656\n      },\n      {\n        \"key_0\": 7456.133092404202\n      }\n    ],\n    \"created_at\": \"1965-09-22T09:43:10.263Z\",\n    \"updated_at\": \"2019-06-08T17:17:16.203Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "33386581-d91a-438c-9bff-1a2c26401a90",
+          "name": "Deactivate a session",
+          "request": {
+            "name": "Deactivate a session",
+            "description": {},
+            "url": {
+              "path": [
+                "admin",
+                "sessions",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9adfe2a1-869c-479b-a0e8-92c489bfa463",
+              "name": "Session deactivated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "sessions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e7c66795-f1a0-44f7-9eee-cab3418ba556",
+          "name": "Extend a session",
+          "request": {
+            "name": "Extend a session",
+            "description": {},
+            "url": {
+              "path": [
+                "admin",
+                "sessions",
+                ":id",
+                "extend"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a46c7d60-7d6e-4ad5-b4f6-774461a2975d",
+              "name": "The extended session.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "sessions",
+                    ":id",
+                    "extend"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"0e710f09-e30e-9fc3-716b-9308ebbabf13\",\n  \"active\": true,\n  \"expires_at\": \"1961-09-27T04:42:03.405Z\",\n  \"authenticated_at\": \"2010-11-23T19:44:07.858Z\",\n  \"identity\": {\n    \"id\": \"667778b2-3d01-e446-32b7-1819c70d1c37\",\n    \"schema_id\": \"string\",\n    \"state\": \"active\",\n    \"traits\": {\n      \"key_0\": true,\n      \"key_1\": \"string\"\n    },\n    \"verifiable_addresses\": [\n      {\n        \"key_0\": 8482,\n        \"key_1\": 9656\n      },\n      {\n        \"key_0\": 7456.133092404202\n      }\n    ],\n    \"created_at\": \"1965-09-22T09:43:10.263Z\",\n    \"updated_at\": \"2019-06-08T17:17:16.203Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6fc38a97-c2f1-4a64-86dc-2580a8c87ced",
+          "name": "Create a recovery code for an identity",
+          "request": {
+            "name": "Create a recovery code for an identity",
+            "description": {},
+            "url": {
+              "path": [
+                "admin",
+                "recovery",
+                "code"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"identity_id\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "191bdb01-a37b-434c-b29a-025728235ced",
+              "name": "The recovery code and flow URL.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "recovery",
+                    "code"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"identity_id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9d599ab2-a781-44fe-9f1d-040c0ae3cad9",
+          "name": "Create a recovery link for an identity",
+          "request": {
+            "name": "Create a recovery link for an identity",
+            "description": {},
+            "url": {
+              "path": [
+                "admin",
+                "recovery",
+                "link"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"identity_id\": \"<uuid>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e5df443a-1ebf-4432-8144-e75e3ec7ceb5",
+              "name": "The recovery link.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "recovery",
+                    "link"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"identity_id\": \"<uuid>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The slug of your Ory Network project.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "your-project-slug",
+      "key": "project-slug"
+    },
+    {
+      "type": "string",
+      "value": "https://{{project-slug}}.projects.oryapis.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c6a1ed93-6c53-47a1-9b13-5cab88d187f6",
+    "name": "Ory Network Billing Identity (Admin) API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Ory is open-source identity and access infrastructure, delivered as the Ory Network managed cloud. This document models the primary public and admin REST surfaces of an Ory Network project and the Ory Network Console (control plane).\nTwo base URLs are in play. Project data-plane endpoints - Ory Kratos (identities, sessions, self-service flows), Ory Hydra (OAuth2 / OIDC), Ory Keto (permissions and relationship tuples), and courier messages - are served on the project-scoped host https://{project-slug}.projects.oryapis.com. The Ory Network Console API (workspaces, projects, project tokens, event streams, subscriptions) is served on https://api.console.ory.sh.\nPublic self-service and OAuth2/OIDC endpoints are unauthenticated or use the end-user session; admin, Keto write, courier, and Console endpoints require an Ory API key / project or workspace API token passed as a Bearer token. Ory SDKs are auto-generated from these OpenAPI specifications. Endpoint set is representative and grounded in Ory's published specs; consult the live reference for the exhaustive parameter and schema detail.\n\nContact Support:\n Name: Ory",
+      "type": "text/plain"
+    }
+  }
+}

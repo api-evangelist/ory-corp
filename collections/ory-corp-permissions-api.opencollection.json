@@ -1,0 +1,159 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ory Network Billing Permissions API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Permissions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Check a permission",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{project-slug}.projects.oryapis.com/relation-tuples/check",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "object",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "relation",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "subject_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Check a permission"
+        },
+        {
+          "info": {
+            "name": "Check a permission (POST body)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{project-slug}.projects.oryapis.com/relation-tuples/check",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Check a permission (POST body)"
+        },
+        {
+          "info": {
+            "name": "Batch-check permissions",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{project-slug}.projects.oryapis.com/relation-tuples/batch/check",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Batch-check permissions"
+        },
+        {
+          "info": {
+            "name": "Expand a subject set",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{project-slug}.projects.oryapis.com/relation-tuples/expand",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "object",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "relation",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "max-depth",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Expand a subject set"
+        },
+        {
+          "info": {
+            "name": "Query relationship tuples",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{project-slug}.projects.oryapis.com/relation-tuples",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "object",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "relation",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Query relationship tuples"
+        },
+        {
+          "info": {
+            "name": "List permission namespaces",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{project-slug}.projects.oryapis.com/namespaces"
+          },
+          "docs": "List permission namespaces"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

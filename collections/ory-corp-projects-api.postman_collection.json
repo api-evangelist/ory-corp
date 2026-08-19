@@ -1,0 +1,677 @@
+{
+  "item": [
+    {
+      "id": "4ea0f782-2b95-45e1-b78e-81cfe661a271",
+      "name": "Projects",
+      "description": {
+        "content": "Ory Network Console project management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2d9f2975-7ba2-434c-a640-ef82607060b4",
+          "name": "List a workspace's projects",
+          "request": {
+            "name": "List a workspace's projects",
+            "description": {},
+            "url": {
+              "protocol": "https",
+              "path": [
+                "workspaces",
+                ":workspace",
+                "projects"
+              ],
+              "host": [
+                "api",
+                "console",
+                "ory",
+                "sh"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "workspace",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "17e7f3aa-16f2-48d9-b935-b59d97452932",
+              "name": "The workspace's projects.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "workspaces",
+                    ":workspace",
+                    "projects"
+                  ],
+                  "host": [
+                    "api",
+                    "console",
+                    "ory",
+                    "sh"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "workspace",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"9081babe-32c4-63f8-243e-469702fed6b4\",\n    \"name\": \"string\",\n    \"slug\": \"string\",\n    \"workspace_id\": \"46741684-106c-7c14-29f6-91f644a82e91\",\n    \"environment\": \"prod\",\n    \"state\": \"string\"\n  },\n  {\n    \"id\": \"50ea2727-5468-e672-06c7-ffcde1113334\",\n    \"name\": \"string\",\n    \"slug\": \"string\",\n    \"workspace_id\": \"6c7bb8b3-8953-1d6e-3a4c-06145d1d1977\",\n    \"environment\": \"stage\",\n    \"state\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fbc9aa7d-f52e-4cda-80af-e24cd5599bc8",
+          "name": "Create a project",
+          "request": {
+            "name": "Create a project",
+            "description": {},
+            "url": {
+              "protocol": "https",
+              "path": [
+                "projects"
+              ],
+              "host": [
+                "api",
+                "console",
+                "ory",
+                "sh"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"workspace_id\": \"<uuid>\",\n  \"environment\": \"<string>\",\n  \"state\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "81510d7b-5a89-48df-b707-989a7aa18dd1",
+              "name": "The created project.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "projects"
+                  ],
+                  "host": [
+                    "api",
+                    "console",
+                    "ory",
+                    "sh"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"workspace_id\": \"<uuid>\",\n  \"environment\": \"<string>\",\n  \"state\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"workspace_id\": \"<uuid>\",\n  \"environment\": \"<string>\",\n  \"state\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1d1fcf46-7532-4525-ae39-be4d6973bff5",
+          "name": "Get a project",
+          "request": {
+            "name": "Get a project",
+            "description": {},
+            "url": {
+              "protocol": "https",
+              "path": [
+                "projects",
+                ":projectId"
+              ],
+              "host": [
+                "api",
+                "console",
+                "ory",
+                "sh"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "projectId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c087c557-40c5-4291-ae50-c436c14ae128",
+              "name": "The project.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "api",
+                    "console",
+                    "ory",
+                    "sh"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"workspace_id\": \"<uuid>\",\n  \"environment\": \"<string>\",\n  \"state\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "23883804-7251-450c-8858-99937bdf55c8",
+          "name": "Patch a project's configuration",
+          "request": {
+            "name": "Patch a project's configuration",
+            "description": {},
+            "url": {
+              "protocol": "https",
+              "path": [
+                "projects",
+                ":projectId"
+              ],
+              "host": [
+                "api",
+                "console",
+                "ory",
+                "sh"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "projectId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"key_0\": true\n  },\n  {\n    \"key_0\": 8417,\n    \"key_1\": \"string\",\n    \"key_2\": 8508.931643776028\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b574bfba-66b8-467a-9e07-ad5c79b9d26a",
+              "name": "The updated project.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "api",
+                    "console",
+                    "ory",
+                    "sh"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"key_0\": 8067.647630516224,\n    \"key_1\": \"string\"\n  },\n  {\n    \"key_0\": \"string\",\n    \"key_1\": true,\n    \"key_2\": 1637,\n    \"key_3\": false\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "455b0930-fada-4e91-b267-7982a3451237",
+          "name": "Replace a project's configuration",
+          "request": {
+            "name": "Replace a project's configuration",
+            "description": {},
+            "url": {
+              "protocol": "https",
+              "path": [
+                "projects",
+                ":projectId"
+              ],
+              "host": [
+                "api",
+                "console",
+                "ory",
+                "sh"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "projectId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"workspace_id\": \"<uuid>\",\n  \"environment\": \"<string>\",\n  \"state\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8b9a6bbd-67ab-4dbd-8384-28377c5f8275",
+              "name": "The updated project.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "api",
+                    "console",
+                    "ory",
+                    "sh"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"name\": \"<string>\",\n  \"slug\": \"<string>\",\n  \"workspace_id\": \"<uuid>\",\n  \"environment\": \"<string>\",\n  \"state\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e10c4c9c-ad38-4085-9541-4ff63e9c5616",
+          "name": "Delete a project",
+          "request": {
+            "name": "Delete a project",
+            "description": {},
+            "url": {
+              "protocol": "https",
+              "path": [
+                "projects",
+                ":projectId"
+              ],
+              "host": [
+                "api",
+                "console",
+                "ory",
+                "sh"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "projectId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ec01dc47-91c3-44d2-a495-593acfd9bf1a",
+              "name": "Project deleted.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "api",
+                    "console",
+                    "ory",
+                    "sh"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The slug of your Ory Network project.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "your-project-slug",
+      "key": "project-slug"
+    },
+    {
+      "type": "string",
+      "value": "https://{{project-slug}}.projects.oryapis.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "193b0040-99d6-458a-bd73-1536ec042f31",
+    "name": "Ory Network Billing Projects API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Ory is open-source identity and access infrastructure, delivered as the Ory Network managed cloud. This document models the primary public and admin REST surfaces of an Ory Network project and the Ory Network Console (control plane).\nTwo base URLs are in play. Project data-plane endpoints - Ory Kratos (identities, sessions, self-service flows), Ory Hydra (OAuth2 / OIDC), Ory Keto (permissions and relationship tuples), and courier messages - are served on the project-scoped host https://{project-slug}.projects.oryapis.com. The Ory Network Console API (workspaces, projects, project tokens, event streams, subscriptions) is served on https://api.console.ory.sh.\nPublic self-service and OAuth2/OIDC endpoints are unauthenticated or use the end-user session; admin, Keto write, courier, and Console endpoints require an Ory API key / project or workspace API token passed as a Bearer token. Ory SDKs are auto-generated from these OpenAPI specifications. Endpoint set is representative and grounded in Ory's published specs; consult the live reference for the exhaustive parameter and schema detail.\n\nContact Support:\n Name: Ory",
+      "type": "text/plain"
+    }
+  }
+}

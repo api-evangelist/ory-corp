@@ -1,0 +1,632 @@
+{
+  "item": [
+    {
+      "id": "a36b1876-b942-4a30-9929-ec1bf6185fe1",
+      "name": "OAuth2 (Public)",
+      "description": {
+        "content": "Public OAuth2 / OpenID Connect provider endpoints (Hydra).",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4f0e41d3-2409-4828-96f8-789bdc52383c",
+          "name": "OAuth2 authorization endpoint",
+          "request": {
+            "name": "OAuth2 authorization endpoint",
+            "description": {},
+            "url": {
+              "path": [
+                "oauth2",
+                "auth"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a366928b-afdf-4c7a-b7e6-2772107f099e",
+              "name": "Redirect to login/consent or back to the client with a code.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "auth"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Found",
+              "code": 302,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bbfd6850-d14b-49b8-b510-3afeadcd69c8",
+          "name": "OAuth2 token endpoint",
+          "request": {
+            "name": "OAuth2 token endpoint",
+            "description": {},
+            "url": {
+              "path": [
+                "oauth2",
+                "token"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "grant_type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "code",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "refresh_token",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "client_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "client_secret",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "3635ce2c-599e-4638-b18c-a3c96c564604",
+              "name": "The issued tokens.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "token"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "grant_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "code",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "refresh_token",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "client_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "client_secret",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"access_token\": \"string\",\n  \"token_type\": \"string\",\n  \"expires_in\": 798,\n  \"refresh_token\": \"string\",\n  \"id_token\": \"string\",\n  \"scope\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3ef6176e-b4eb-4f5d-82ce-0f6834a337f5",
+          "name": "Revoke an OAuth2 token",
+          "request": {
+            "name": "Revoke an OAuth2 token",
+            "description": {},
+            "url": {
+              "path": [
+                "oauth2",
+                "revoke"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "token",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "44ca1960-8015-47f2-ae6a-c0c9a7426198",
+              "name": "Token revoked.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "oauth2",
+                    "revoke"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "token",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f2e36c0d-1d6e-417e-b438-1d0a7e38b104",
+          "name": "OpenID Connect UserInfo",
+          "request": {
+            "name": "OpenID Connect UserInfo",
+            "description": {},
+            "url": {
+              "path": [
+                "userinfo"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c05ba4b8-1594-4449-b66c-42dbf025bcec",
+              "name": "Claims about the authenticated end-user.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "userinfo"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c4459e73-7982-43d4-a3f8-6285214d1895",
+          "name": "OpenID Connect discovery document",
+          "request": {
+            "name": "OpenID Connect discovery document",
+            "description": {},
+            "url": {
+              "path": [
+                ".well-known",
+                "openid-configuration"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ed61d0f9-9d0f-45d9-8356-c95b564c6e7f",
+              "name": "The OIDC provider metadata.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ".well-known",
+                    "openid-configuration"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f327446b-38b9-484d-a220-90019fe4e621",
+          "name": "JSON Web Key Set",
+          "request": {
+            "name": "JSON Web Key Set",
+            "description": {},
+            "url": {
+              "path": [
+                ".well-known",
+                "jwks.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3eeadc7b-8c40-4bba-a78b-5e569a15381d",
+              "name": "The public signing keys.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ".well-known",
+                    "jwks.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The slug of your Ory Network project.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "your-project-slug",
+      "key": "project-slug"
+    },
+    {
+      "type": "string",
+      "value": "https://{{project-slug}}.projects.oryapis.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f6d202a2-0395-4180-94db-56548d13e7d3",
+    "name": "Ory Network Billing OAuth2 (Public) API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Ory is open-source identity and access infrastructure, delivered as the Ory Network managed cloud. This document models the primary public and admin REST surfaces of an Ory Network project and the Ory Network Console (control plane).\nTwo base URLs are in play. Project data-plane endpoints - Ory Kratos (identities, sessions, self-service flows), Ory Hydra (OAuth2 / OIDC), Ory Keto (permissions and relationship tuples), and courier messages - are served on the project-scoped host https://{project-slug}.projects.oryapis.com. The Ory Network Console API (workspaces, projects, project tokens, event streams, subscriptions) is served on https://api.console.ory.sh.\nPublic self-service and OAuth2/OIDC endpoints are unauthenticated or use the end-user session; admin, Keto write, courier, and Console endpoints require an Ory API key / project or workspace API token passed as a Bearer token. Ory SDKs are auto-generated from these OpenAPI specifications. Endpoint set is representative and grounded in Ory's published specs; consult the live reference for the exhaustive parameter and schema detail.\n\nContact Support:\n Name: Ory",
+      "type": "text/plain"
+    }
+  }
+}

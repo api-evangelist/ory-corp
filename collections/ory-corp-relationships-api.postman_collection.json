@@ -1,0 +1,473 @@
+{
+  "item": [
+    {
+      "id": "c3f8495c-68bd-4094-8457-5aeecb0e84a6",
+      "name": "Relationships",
+      "description": {
+        "content": "Keto relationship-tuple writes and OPL syntax checks.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "84de047d-81bd-4928-aeea-7690d696f56c",
+          "name": "Create or update a relationship tuple",
+          "request": {
+            "name": "Create or update a relationship tuple",
+            "description": {},
+            "url": {
+              "path": [
+                "admin",
+                "relation-tuples"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"namespace\": \"<string>\",\n  \"object\": \"<string>\",\n  \"relation\": \"<string>\",\n  \"subject_id\": \"<string>\",\n  \"subject_set\": {\n    \"namespace\": \"<string>\",\n    \"object\": \"<string>\",\n    \"relation\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c156c204-15af-4319-88a8-e5ec74fc2e63",
+              "name": "The created relationship tuple.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "relation-tuples"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"namespace\": \"<string>\",\n  \"object\": \"<string>\",\n  \"relation\": \"<string>\",\n  \"subject_id\": \"<string>\",\n  \"subject_set\": {\n    \"namespace\": \"<string>\",\n    \"object\": \"<string>\",\n    \"relation\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"namespace\": \"<string>\",\n  \"object\": \"<string>\",\n  \"relation\": \"<string>\",\n  \"subject_id\": \"<string>\",\n  \"subject_set\": {\n    \"namespace\": \"<string>\",\n    \"object\": \"<string>\",\n    \"relation\": \"<string>\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "15c1d745-972c-4b53-9d69-486e4af20028",
+          "name": "Patch multiple relationship tuples",
+          "request": {
+            "name": "Patch multiple relationship tuples",
+            "description": {},
+            "url": {
+              "path": [
+                "admin",
+                "relation-tuples"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"action\": \"<string>\",\n    \"relation_tuple\": {\n      \"namespace\": \"<string>\",\n      \"object\": \"<string>\",\n      \"relation\": \"<string>\",\n      \"subject_id\": \"<string>\",\n      \"subject_set\": {\n        \"namespace\": \"<string>\",\n        \"object\": \"<string>\",\n        \"relation\": \"<string>\"\n      }\n    }\n  },\n  {\n    \"action\": \"<string>\",\n    \"relation_tuple\": {\n      \"namespace\": \"<string>\",\n      \"object\": \"<string>\",\n      \"relation\": \"<string>\",\n      \"subject_id\": \"<string>\",\n      \"subject_set\": {\n        \"namespace\": \"<string>\",\n        \"object\": \"<string>\",\n        \"relation\": \"<string>\"\n      }\n    }\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2c9848f2-16a3-478e-9eb9-f6cd72efa408",
+              "name": "Tuples patched.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "relation-tuples"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"action\": \"<string>\",\n    \"relation_tuple\": {\n      \"namespace\": \"<string>\",\n      \"object\": \"<string>\",\n      \"relation\": \"<string>\",\n      \"subject_id\": \"<string>\",\n      \"subject_set\": {\n        \"namespace\": \"<string>\",\n        \"object\": \"<string>\",\n        \"relation\": \"<string>\"\n      }\n    }\n  },\n  {\n    \"action\": \"<string>\",\n    \"relation_tuple\": {\n      \"namespace\": \"<string>\",\n      \"object\": \"<string>\",\n      \"relation\": \"<string>\",\n      \"subject_id\": \"<string>\",\n      \"subject_set\": {\n        \"namespace\": \"<string>\",\n        \"object\": \"<string>\",\n        \"relation\": \"<string>\"\n      }\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "98ff9e40-502a-4378-bad9-69eaeaba9eb2",
+          "name": "Delete relationship tuples by query",
+          "request": {
+            "name": "Delete relationship tuples by query",
+            "description": {},
+            "url": {
+              "path": [
+                "admin",
+                "relation-tuples"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "namespace",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "object",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "relation",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ea4c534e-e088-4cb2-bc30-41191461b012",
+              "name": "Tuples deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "relation-tuples"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "namespace",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "object",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "relation",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cf770158-b224-4542-a423-e2409bbf1d71",
+          "name": "Check Ory Permission Language syntax",
+          "request": {
+            "name": "Check Ory Permission Language syntax",
+            "description": {},
+            "url": {
+              "path": [
+                "opl",
+                "syntax",
+                "check"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<string>"
+            }
+          },
+          "response": [
+            {
+              "id": "276fbcad-b8b5-4a0d-8b3f-5a56b059a3eb",
+              "name": "The parse result and any syntax errors.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "opl",
+                    "syntax",
+                    "check"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>"
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The slug of your Ory Network project.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "your-project-slug",
+      "key": "project-slug"
+    },
+    {
+      "type": "string",
+      "value": "https://{{project-slug}}.projects.oryapis.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "eddf7216-07c7-4baa-be6c-409821537efa",
+    "name": "Ory Network Billing Relationships API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Ory is open-source identity and access infrastructure, delivered as the Ory Network managed cloud. This document models the primary public and admin REST surfaces of an Ory Network project and the Ory Network Console (control plane).\nTwo base URLs are in play. Project data-plane endpoints - Ory Kratos (identities, sessions, self-service flows), Ory Hydra (OAuth2 / OIDC), Ory Keto (permissions and relationship tuples), and courier messages - are served on the project-scoped host https://{project-slug}.projects.oryapis.com. The Ory Network Console API (workspaces, projects, project tokens, event streams, subscriptions) is served on https://api.console.ory.sh.\nPublic self-service and OAuth2/OIDC endpoints are unauthenticated or use the end-user session; admin, Keto write, courier, and Console endpoints require an Ory API key / project or workspace API token passed as a Bearer token. Ory SDKs are auto-generated from these OpenAPI specifications. Endpoint set is representative and grounded in Ory's published specs; consult the live reference for the exhaustive parameter and schema detail.\n\nContact Support:\n Name: Ory",
+      "type": "text/plain"
+    }
+  }
+}

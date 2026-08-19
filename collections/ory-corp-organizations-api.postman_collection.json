@@ -1,0 +1,585 @@
+{
+  "item": [
+    {
+      "id": "113e37ad-b252-4235-ac4c-5bdd7e3f9d03",
+      "name": "Organizations",
+      "description": {
+        "content": "B2B organization management for SSO.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "51d0e3d3-3551-4bfd-bc6c-84c0f502e619",
+          "name": "List organizations",
+          "request": {
+            "name": "List organizations",
+            "description": {},
+            "url": {
+              "path": [
+                "admin",
+                "organizations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "de1769dc-3155-4e6a-830e-88f2d42bf792",
+              "name": "The project's organizations.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "organizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"e34e5940-67ad-a490-9e5e-566136523bba\",\n    \"label\": \"string\",\n    \"domains\": [\n      \"string\",\n      \"string\"\n    ],\n    \"created_at\": \"1955-05-30T09:07:14.228Z\"\n  },\n  {\n    \"id\": \"3df32377-e780-6623-3b53-e726167a287e\",\n    \"label\": \"string\",\n    \"domains\": [\n      \"string\",\n      \"string\"\n    ],\n    \"created_at\": \"1989-04-29T23:14:00.346Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0c557259-e03a-425a-8ab0-8d28b5e26ff4",
+          "name": "Create an organization",
+          "request": {
+            "name": "Create an organization",
+            "description": {},
+            "url": {
+              "path": [
+                "admin",
+                "organizations"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<uuid>\",\n  \"label\": \"<string>\",\n  \"domains\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"created_at\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b68fa601-eb8d-43b4-9370-5ea2fda36ec4",
+              "name": "The created organization.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "organizations"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"label\": \"<string>\",\n  \"domains\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"created_at\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<uuid>\",\n  \"label\": \"<string>\",\n  \"domains\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"created_at\": \"<dateTime>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "daf5182c-76cf-4c90-a70b-ea4d585a9fcc",
+          "name": "Get an organization",
+          "request": {
+            "name": "Get an organization",
+            "description": {},
+            "url": {
+              "path": [
+                "admin",
+                "organizations",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7b7e2413-fcca-4d47-ba28-46ff3df5dc20",
+              "name": "The organization.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "organizations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<uuid>\",\n  \"label\": \"<string>\",\n  \"domains\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"created_at\": \"<dateTime>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a5de285e-42b7-4c49-bcb8-e064d61a29c4",
+          "name": "Update an organization",
+          "request": {
+            "name": "Update an organization",
+            "description": {},
+            "url": {
+              "path": [
+                "admin",
+                "organizations",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<uuid>\",\n  \"label\": \"<string>\",\n  \"domains\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"created_at\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1435adf4-9571-4d58-98b3-a41bdf4d7241",
+              "name": "The updated organization.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "organizations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"label\": \"<string>\",\n  \"domains\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"created_at\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<uuid>\",\n  \"label\": \"<string>\",\n  \"domains\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"created_at\": \"<dateTime>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b2becdfb-8f62-4bf1-9dc7-390854fc6b08",
+          "name": "Delete an organization",
+          "request": {
+            "name": "Delete an organization",
+            "description": {},
+            "url": {
+              "path": [
+                "admin",
+                "organizations",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "39567ad6-08d4-484e-aa5f-761cb558c7d1",
+              "name": "Organization deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "organizations",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The slug of your Ory Network project.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "your-project-slug",
+      "key": "project-slug"
+    },
+    {
+      "type": "string",
+      "value": "https://{{project-slug}}.projects.oryapis.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4515e48b-6d77-4805-9675-4f6bfc383fb8",
+    "name": "Ory Network Billing Organizations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Ory is open-source identity and access infrastructure, delivered as the Ory Network managed cloud. This document models the primary public and admin REST surfaces of an Ory Network project and the Ory Network Console (control plane).\nTwo base URLs are in play. Project data-plane endpoints - Ory Kratos (identities, sessions, self-service flows), Ory Hydra (OAuth2 / OIDC), Ory Keto (permissions and relationship tuples), and courier messages - are served on the project-scoped host https://{project-slug}.projects.oryapis.com. The Ory Network Console API (workspaces, projects, project tokens, event streams, subscriptions) is served on https://api.console.ory.sh.\nPublic self-service and OAuth2/OIDC endpoints are unauthenticated or use the end-user session; admin, Keto write, courier, and Console endpoints require an Ory API key / project or workspace API token passed as a Bearer token. Ory SDKs are auto-generated from these OpenAPI specifications. Endpoint set is representative and grounded in Ory's published specs; consult the live reference for the exhaustive parameter and schema detail.\n\nContact Support:\n Name: Ory",
+      "type": "text/plain"
+    }
+  }
+}

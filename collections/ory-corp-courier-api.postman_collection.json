@@ -1,0 +1,263 @@
+{
+  "item": [
+    {
+      "id": "5b6d17f3-fb5b-40bc-b809-0076261407a1",
+      "name": "Courier",
+      "description": {
+        "content": "Admin access to queued and dispatched courier messages.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "984cbc64-3628-4070-bcca-b05afe9e0691",
+          "name": "List courier messages",
+          "request": {
+            "name": "List courier messages",
+            "description": {},
+            "url": {
+              "path": [
+                "admin",
+                "courier",
+                "messages"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fe0e8e99-f725-4ade-b66a-566af50c13e9",
+              "name": "A page of courier messages.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "courier",
+                    "messages"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"2bc86824-c974-1d70-034d-0cd6da61cfb6\",\n    \"status\": \"abandoned\",\n    \"type\": \"phone\",\n    \"recipient\": \"string\",\n    \"subject\": \"string\",\n    \"template_type\": \"string\",\n    \"created_at\": \"2015-02-19T11:49:36.129Z\"\n  },\n  {\n    \"id\": \"6a4acbce-88e7-ac37-1cae-0d5e318cce3e\",\n    \"status\": \"queued\",\n    \"type\": \"phone\",\n    \"recipient\": \"string\",\n    \"subject\": \"string\",\n    \"template_type\": \"string\",\n    \"created_at\": \"2010-07-06T16:42:30.216Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f8406ef0-9609-4dbf-a975-2515fb869303",
+          "name": "Get a courier message",
+          "request": {
+            "name": "Get a courier message",
+            "description": {},
+            "url": {
+              "path": [
+                "admin",
+                "courier",
+                "messages",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b16564ee-9381-4056-b3ed-953e9ba16ae2",
+              "name": "The courier message.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "courier",
+                    "messages",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"b00e99e3-da68-647a-5ab3-52677bd1078c\",\n  \"status\": \"processing\",\n  \"type\": \"phone\",\n  \"recipient\": \"string\",\n  \"subject\": \"string\",\n  \"template_type\": \"string\",\n  \"created_at\": \"1948-06-18T17:52:58.971Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The slug of your Ory Network project.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "your-project-slug",
+      "key": "project-slug"
+    },
+    {
+      "type": "string",
+      "value": "https://{{project-slug}}.projects.oryapis.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ad3dc6b2-b64a-42fb-a4ff-894062de7856",
+    "name": "Ory Network Billing Courier API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Ory is open-source identity and access infrastructure, delivered as the Ory Network managed cloud. This document models the primary public and admin REST surfaces of an Ory Network project and the Ory Network Console (control plane).\nTwo base URLs are in play. Project data-plane endpoints - Ory Kratos (identities, sessions, self-service flows), Ory Hydra (OAuth2 / OIDC), Ory Keto (permissions and relationship tuples), and courier messages - are served on the project-scoped host https://{project-slug}.projects.oryapis.com. The Ory Network Console API (workspaces, projects, project tokens, event streams, subscriptions) is served on https://api.console.ory.sh.\nPublic self-service and OAuth2/OIDC endpoints are unauthenticated or use the end-user session; admin, Keto write, courier, and Console endpoints require an Ory API key / project or workspace API token passed as a Bearer token. Ory SDKs are auto-generated from these OpenAPI specifications. Endpoint set is representative and grounded in Ory's published specs; consult the live reference for the exhaustive parameter and schema detail.\n\nContact Support:\n Name: Ory",
+      "type": "text/plain"
+    }
+  }
+}

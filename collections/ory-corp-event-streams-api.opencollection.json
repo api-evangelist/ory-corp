@@ -1,0 +1,114 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ory Network Billing Event Streams API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Event Streams",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List event streams",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{project-slug}.projects.oryapis.com/projects/:projectId/eventStreams",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List event streams"
+        },
+        {
+          "info": {
+            "name": "Create an event stream",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{project-slug}.projects.oryapis.com/projects/:projectId/eventStreams",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an event stream"
+        },
+        {
+          "info": {
+            "name": "Update an event stream",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{project-slug}.projects.oryapis.com/projects/:projectId/eventStreams/:eventStreamId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "eventStreamId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an event stream"
+        },
+        {
+          "info": {
+            "name": "Delete an event stream",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{project-slug}.projects.oryapis.com/projects/:projectId/eventStreams/:eventStreamId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "eventStreamId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete an event stream"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,124 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ory Network Billing OAuth2 (Public) API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "OAuth2 (Public)",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "OAuth2 authorization endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{project-slug}.projects.oryapis.com/oauth2/auth"
+          },
+          "docs": "OAuth2 authorization endpoint"
+        },
+        {
+          "info": {
+            "name": "OAuth2 token endpoint",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{project-slug}.projects.oryapis.com/oauth2/token",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "grant_type",
+                  "value": ""
+                },
+                {
+                  "name": "code",
+                  "value": ""
+                },
+                {
+                  "name": "refresh_token",
+                  "value": ""
+                },
+                {
+                  "name": "client_id",
+                  "value": ""
+                },
+                {
+                  "name": "client_secret",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "OAuth2 token endpoint"
+        },
+        {
+          "info": {
+            "name": "Revoke an OAuth2 token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{project-slug}.projects.oryapis.com/oauth2/revoke",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "token",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Revoke an OAuth2 token"
+        },
+        {
+          "info": {
+            "name": "OpenID Connect UserInfo",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{project-slug}.projects.oryapis.com/userinfo"
+          },
+          "docs": "OpenID Connect UserInfo"
+        },
+        {
+          "info": {
+            "name": "OpenID Connect discovery document",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{project-slug}.projects.oryapis.com/.well-known/openid-configuration"
+          },
+          "docs": "OpenID Connect discovery document"
+        },
+        {
+          "info": {
+            "name": "JSON Web Key Set",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{project-slug}.projects.oryapis.com/.well-known/jwks.json"
+          },
+          "docs": "JSON Web Key Set"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

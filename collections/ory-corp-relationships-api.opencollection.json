@@ -1,0 +1,93 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ory Network Billing Relationships API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Relationships",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create or update a relationship tuple",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{project-slug}.projects.oryapis.com/admin/relation-tuples",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create or update a relationship tuple"
+        },
+        {
+          "info": {
+            "name": "Patch multiple relationship tuples",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{project-slug}.projects.oryapis.com/admin/relation-tuples",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch multiple relationship tuples"
+        },
+        {
+          "info": {
+            "name": "Delete relationship tuples by query",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{project-slug}.projects.oryapis.com/admin/relation-tuples",
+            "params": [
+              {
+                "name": "namespace",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "object",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "relation",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Delete relationship tuples by query"
+        },
+        {
+          "info": {
+            "name": "Check Ory Permission Language syntax",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{project-slug}.projects.oryapis.com/opl/syntax/check"
+          },
+          "docs": "Check Ory Permission Language syntax"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

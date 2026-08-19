@@ -1,0 +1,1942 @@
+{
+  "item": [
+    {
+      "id": "f57d468e-326f-48a2-bf9a-2b893af463f2",
+      "name": "OAuth2 (Admin)",
+      "description": {
+        "content": "Privileged Hydra client, token, consent, and key management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "151ca4b9-a069-4a2f-832d-f117fe569717",
+          "name": "List OAuth2 clients",
+          "request": {
+            "name": "List OAuth2 clients",
+            "description": {},
+            "url": {
+              "path": [
+                "admin",
+                "oauth2",
+                "clients"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "17b7daf5-a7df-4141-8824-777272ec50d6",
+              "name": "A page of OAuth2 clients.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "oauth2",
+                    "clients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"client_id\": \"string\",\n    \"client_name\": \"string\",\n    \"client_secret\": \"string\",\n    \"redirect_uris\": [\n      \"https://DqKCQDKcRKYnskucEVyXnuGMAfhHkfcG.wrB5jVPG6vsxpdgRA-DWcaqbRsJ\",\n      \"http://wbzdncsrLtZXFT.teuLpLWXoZtVa4kqLQDXcbXcrqLzJ1ClWZtZIKnvnK\"\n    ],\n    \"grant_types\": [\n      \"string\",\n      \"string\"\n    ],\n    \"response_types\": [\n      \"string\",\n      \"string\"\n    ],\n    \"scope\": \"string\",\n    \"token_endpoint_auth_method\": \"string\"\n  },\n  {\n    \"client_id\": \"string\",\n    \"client_name\": \"string\",\n    \"client_secret\": \"string\",\n    \"redirect_uris\": [\n      \"http://XJrcZN.nxoTVmvmn,bIlTaHc90RpbVb2x.jdaqWx\",\n      \"https://FxSfkuYJEXrfdnluHYknRImUcoeytqvKb.hhunthrqy4LtnUF0exMVze3xhIC7RBLXiFF.AlK7NqgkiZM\"\n    ],\n    \"grant_types\": [\n      \"string\",\n      \"string\"\n    ],\n    \"response_types\": [\n      \"string\",\n      \"string\"\n    ],\n    \"scope\": \"string\",\n    \"token_endpoint_auth_method\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b9869824-ed83-4754-a208-60ce90f4ef46",
+          "name": "Create an OAuth2 client",
+          "request": {
+            "name": "Create an OAuth2 client",
+            "description": {},
+            "url": {
+              "path": [
+                "admin",
+                "oauth2",
+                "clients"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"client_id\": \"<string>\",\n  \"client_name\": \"<string>\",\n  \"client_secret\": \"<string>\",\n  \"redirect_uris\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"grant_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"response_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"scope\": \"<string>\",\n  \"token_endpoint_auth_method\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6d962fa4-78c9-4a86-b860-ad4c795d1783",
+              "name": "The created client.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "oauth2",
+                    "clients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_id\": \"<string>\",\n  \"client_name\": \"<string>\",\n  \"client_secret\": \"<string>\",\n  \"redirect_uris\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"grant_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"response_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"scope\": \"<string>\",\n  \"token_endpoint_auth_method\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"client_id\": \"<string>\",\n  \"client_name\": \"<string>\",\n  \"client_secret\": \"<string>\",\n  \"redirect_uris\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"grant_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"response_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"scope\": \"<string>\",\n  \"token_endpoint_auth_method\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4b3554f8-0d54-406f-bda4-f711adcd8dd5",
+          "name": "Get an OAuth2 client",
+          "request": {
+            "name": "Get an OAuth2 client",
+            "description": {},
+            "url": {
+              "path": [
+                "admin",
+                "oauth2",
+                "clients",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dbd79932-371b-4776-a686-f2d37696fd57",
+              "name": "The client.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "oauth2",
+                    "clients",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"client_id\": \"<string>\",\n  \"client_name\": \"<string>\",\n  \"client_secret\": \"<string>\",\n  \"redirect_uris\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"grant_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"response_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"scope\": \"<string>\",\n  \"token_endpoint_auth_method\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e266f587-e04e-46d4-803e-10a8fdc288b4",
+          "name": "Replace an OAuth2 client",
+          "request": {
+            "name": "Replace an OAuth2 client",
+            "description": {},
+            "url": {
+              "path": [
+                "admin",
+                "oauth2",
+                "clients",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"client_id\": \"<string>\",\n  \"client_name\": \"<string>\",\n  \"client_secret\": \"<string>\",\n  \"redirect_uris\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"grant_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"response_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"scope\": \"<string>\",\n  \"token_endpoint_auth_method\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2cff2557-401a-4ef1-a520-d28b70dc1b6a",
+              "name": "The updated client.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "oauth2",
+                    "clients",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"client_id\": \"<string>\",\n  \"client_name\": \"<string>\",\n  \"client_secret\": \"<string>\",\n  \"redirect_uris\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"grant_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"response_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"scope\": \"<string>\",\n  \"token_endpoint_auth_method\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"client_id\": \"<string>\",\n  \"client_name\": \"<string>\",\n  \"client_secret\": \"<string>\",\n  \"redirect_uris\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"grant_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"response_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"scope\": \"<string>\",\n  \"token_endpoint_auth_method\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c34567f6-4e29-4e55-820a-36943c13e93b",
+          "name": "Patch an OAuth2 client",
+          "request": {
+            "name": "Patch an OAuth2 client",
+            "description": {},
+            "url": {
+              "path": [
+                "admin",
+                "oauth2",
+                "clients",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"key_0\": true,\n    \"key_1\": 1292.830734110635\n  },\n  {\n    \"key_0\": 4162\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ef22e558-5186-4e0b-8f5b-ccd369843ed4",
+              "name": "The patched client.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "oauth2",
+                    "clients",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"key_0\": \"string\"\n  },\n  {\n    \"key_0\": \"string\"\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"client_id\": \"<string>\",\n  \"client_name\": \"<string>\",\n  \"client_secret\": \"<string>\",\n  \"redirect_uris\": [\n    \"<uri>\",\n    \"<uri>\"\n  ],\n  \"grant_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"response_types\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"scope\": \"<string>\",\n  \"token_endpoint_auth_method\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2daad353-46ef-4b1d-93f7-86c8745dd754",
+          "name": "Delete an OAuth2 client",
+          "request": {
+            "name": "Delete an OAuth2 client",
+            "description": {},
+            "url": {
+              "path": [
+                "admin",
+                "oauth2",
+                "clients",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "149179ea-7416-450c-9262-8cd4b9499a06",
+              "name": "Client deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "oauth2",
+                    "clients",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5c47ac27-ca05-45f8-8c9e-128f28dcb14b",
+          "name": "Introspect an OAuth2 token",
+          "request": {
+            "name": "Introspect an OAuth2 token",
+            "description": {},
+            "url": {
+              "path": [
+                "admin",
+                "oauth2",
+                "introspect"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "token",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "scope",
+                  "value": "<string>"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "c35aa558-7f7f-40bb-b158-802195b5ae0e",
+              "name": "The introspection result (active flag and claims).",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "oauth2",
+                    "introspect"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "key": "token",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "key": "scope",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "79c9dfde-7417-49de-ab9b-929979eb50ee",
+          "name": "Get an OAuth2 login request",
+          "request": {
+            "name": "Get an OAuth2 login request",
+            "description": {},
+            "url": {
+              "path": [
+                "admin",
+                "oauth2",
+                "auth",
+                "requests",
+                "login"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "login_challenge",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1c56115f-5f29-4f38-aeb1-6885e9deb1e3",
+              "name": "The login request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "oauth2",
+                    "auth",
+                    "requests",
+                    "login"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "login_challenge",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "12cd9ce0-5429-4d63-a218-f508e6c14d28",
+          "name": "Accept an OAuth2 login request",
+          "request": {
+            "name": "Accept an OAuth2 login request",
+            "description": {},
+            "url": {
+              "path": [
+                "admin",
+                "oauth2",
+                "auth",
+                "requests",
+                "login",
+                "accept"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "login_challenge",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "889de3b7-99cd-4422-a5e8-6e747d2f4a64",
+              "name": "The redirect to continue the flow.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "oauth2",
+                    "auth",
+                    "requests",
+                    "login",
+                    "accept"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "login_challenge",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b940bdc4-5168-4344-b8c1-17c27779abb0",
+          "name": "Get an OAuth2 consent request",
+          "request": {
+            "name": "Get an OAuth2 consent request",
+            "description": {},
+            "url": {
+              "path": [
+                "admin",
+                "oauth2",
+                "auth",
+                "requests",
+                "consent"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "consent_challenge",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "80b4e3a1-52aa-4d45-9810-9cd8a9acc508",
+              "name": "The consent request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "oauth2",
+                    "auth",
+                    "requests",
+                    "consent"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "consent_challenge",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "58be2be1-d9f5-4680-9b74-9470237b73f6",
+          "name": "Accept an OAuth2 consent request",
+          "request": {
+            "name": "Accept an OAuth2 consent request",
+            "description": {},
+            "url": {
+              "path": [
+                "admin",
+                "oauth2",
+                "auth",
+                "requests",
+                "consent",
+                "accept"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "consent_challenge",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "07696da1-bad8-42a9-85a9-5aef1c0d0365",
+              "name": "The redirect to complete consent.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "oauth2",
+                    "auth",
+                    "requests",
+                    "consent",
+                    "accept"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "consent_challenge",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "354044e8-510d-4433-9a9c-d2357a0ca97d",
+          "name": "Accept an OAuth2 logout request",
+          "request": {
+            "name": "Accept an OAuth2 logout request",
+            "description": {},
+            "url": {
+              "path": [
+                "admin",
+                "oauth2",
+                "auth",
+                "requests",
+                "logout",
+                "accept"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "logout_challenge",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "af2376a4-239b-4d80-9e70-f2fa05754c7d",
+              "name": "The redirect to complete logout.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "oauth2",
+                    "auth",
+                    "requests",
+                    "logout",
+                    "accept"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "logout_challenge",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a969281a-7741-4d46-b5db-968703bdf888",
+          "name": "Delete OAuth2 access tokens for a client",
+          "request": {
+            "name": "Delete OAuth2 access tokens for a client",
+            "description": {},
+            "url": {
+              "path": [
+                "admin",
+                "oauth2",
+                "tokens"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "client_id",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "28e2273c-351e-4bb5-9d59-44c4db257c9c",
+              "name": "Tokens deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "oauth2",
+                    "tokens"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "client_id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "65bcf836-7e2e-45ec-97ea-d0cbe5dc3319",
+          "name": "Get a JSON Web Key Set",
+          "request": {
+            "name": "Get a JSON Web Key Set",
+            "description": {},
+            "url": {
+              "path": [
+                "admin",
+                "keys",
+                ":set"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "set",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9100ad1e-8c04-4145-93ac-b5cfb02c2e9f",
+              "name": "The key set.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "keys",
+                    ":set"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "set",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d9fd0a73-6dce-4643-9e4f-43d06437dc1e",
+          "name": "Generate a JSON Web Key Set",
+          "request": {
+            "name": "Generate a JSON Web Key Set",
+            "description": {},
+            "url": {
+              "path": [
+                "admin",
+                "keys",
+                ":set"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "set",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_0\": 4.081838065664867,\n  \"key_1\": 2617.741879341342,\n  \"key_2\": \"string\",\n  \"key_3\": 6697.024531489106,\n  \"key_4\": 1664.9222282117425\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "14956d31-7aff-4692-a914-773bb2caea7f",
+              "name": "The created key set.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "keys",
+                    ":set"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "set",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "04be8735-55ca-495b-a306-3bcbebee6373",
+          "name": "Delete a JSON Web Key Set",
+          "request": {
+            "name": "Delete a JSON Web Key Set",
+            "description": {},
+            "url": {
+              "path": [
+                "admin",
+                "keys",
+                ":set"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "set",
+                  "description": "(Required) "
+                },
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d08c66f4-3af3-4134-b0ab-4f712b615a97",
+              "name": "Key set deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "keys",
+                    ":set"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "set",
+                      "description": "(Required) "
+                    },
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "00e25ce1-fcdf-441b-81f6-d50227533a19",
+          "name": "List trusted JWT-bearer grant issuers",
+          "request": {
+            "name": "List trusted JWT-bearer grant issuers",
+            "description": {},
+            "url": {
+              "path": [
+                "admin",
+                "trust",
+                "grants"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "053031f5-4689-4b83-a55d-b45adee7fa22",
+              "name": "The trusted issuers.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "trust",
+                    "grants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "54222f61-6dd2-4f28-8499-baa3a9156983",
+          "name": "Trust a JWT-bearer grant issuer",
+          "request": {
+            "name": "Trust a JWT-bearer grant issuer",
+            "description": {},
+            "url": {
+              "path": [
+                "admin",
+                "trust",
+                "grants"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "The slug of your Ory Network project.",
+                  "type": "any",
+                  "value": "{{project-slug}}",
+                  "key": "project-slug"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_0\": 4.081838065664867,\n  \"key_1\": 2617.741879341342,\n  \"key_2\": \"string\",\n  \"key_3\": 6697.024531489106,\n  \"key_4\": 1664.9222282117425\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "38f64790-c758-425f-91b8-281d50f03b91",
+              "name": "The created trust relationship.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "trust",
+                    "grants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "The slug of your Ory Network project.",
+                      "type": "any",
+                      "value": "{{project-slug}}",
+                      "key": "project-slug"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"key_0\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The slug of your Ory Network project.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "your-project-slug",
+      "key": "project-slug"
+    },
+    {
+      "type": "string",
+      "value": "https://{{project-slug}}.projects.oryapis.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d7bb4704-1a2e-4cb8-9ceb-90daada8a168",
+    "name": "Ory Network Billing OAuth2 (Admin) API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Ory is open-source identity and access infrastructure, delivered as the Ory Network managed cloud. This document models the primary public and admin REST surfaces of an Ory Network project and the Ory Network Console (control plane).\nTwo base URLs are in play. Project data-plane endpoints - Ory Kratos (identities, sessions, self-service flows), Ory Hydra (OAuth2 / OIDC), Ory Keto (permissions and relationship tuples), and courier messages - are served on the project-scoped host https://{project-slug}.projects.oryapis.com. The Ory Network Console API (workspaces, projects, project tokens, event streams, subscriptions) is served on https://api.console.ory.sh.\nPublic self-service and OAuth2/OIDC endpoints are unauthenticated or use the end-user session; admin, Keto write, courier, and Console endpoints require an Ory API key / project or workspace API token passed as a Bearer token. Ory SDKs are auto-generated from these OpenAPI specifications. Endpoint set is representative and grounded in Ory's published specs; consult the live reference for the exhaustive parameter and schema detail.\n\nContact Support:\n Name: Ory",
+      "type": "text/plain"
+    }
+  }
+}

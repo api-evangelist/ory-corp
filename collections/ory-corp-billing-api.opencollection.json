@@ -1,0 +1,64 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ory Network Billing API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Billing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a workspace subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{project-slug}.projects.oryapis.com/workspaces/:workspace/subscription",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a workspace subscription"
+        },
+        {
+          "info": {
+            "name": "Create or change a workspace subscription",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{project-slug}.projects.oryapis.com/workspaces/:workspace/subscription",
+            "params": [
+              {
+                "name": "workspace",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create or change a workspace subscription"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

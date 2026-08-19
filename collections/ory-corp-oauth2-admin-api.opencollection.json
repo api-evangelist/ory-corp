@@ -1,0 +1,346 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ory Network Billing OAuth2 (Admin) API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "OAuth2 (Admin)",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List OAuth2 clients",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{project-slug}.projects.oryapis.com/admin/oauth2/clients"
+          },
+          "docs": "List OAuth2 clients"
+        },
+        {
+          "info": {
+            "name": "Create an OAuth2 client",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{project-slug}.projects.oryapis.com/admin/oauth2/clients",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an OAuth2 client"
+        },
+        {
+          "info": {
+            "name": "Get an OAuth2 client",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{project-slug}.projects.oryapis.com/admin/oauth2/clients/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get an OAuth2 client"
+        },
+        {
+          "info": {
+            "name": "Replace an OAuth2 client",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{project-slug}.projects.oryapis.com/admin/oauth2/clients/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace an OAuth2 client"
+        },
+        {
+          "info": {
+            "name": "Patch an OAuth2 client",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{project-slug}.projects.oryapis.com/admin/oauth2/clients/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch an OAuth2 client"
+        },
+        {
+          "info": {
+            "name": "Delete an OAuth2 client",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{project-slug}.projects.oryapis.com/admin/oauth2/clients/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete an OAuth2 client"
+        },
+        {
+          "info": {
+            "name": "Introspect an OAuth2 token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{project-slug}.projects.oryapis.com/admin/oauth2/introspect",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "token",
+                  "value": ""
+                },
+                {
+                  "name": "scope",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Introspect an OAuth2 token"
+        },
+        {
+          "info": {
+            "name": "Get an OAuth2 login request",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{project-slug}.projects.oryapis.com/admin/oauth2/auth/requests/login",
+            "params": [
+              {
+                "name": "login_challenge",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get an OAuth2 login request"
+        },
+        {
+          "info": {
+            "name": "Accept an OAuth2 login request",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{project-slug}.projects.oryapis.com/admin/oauth2/auth/requests/login/accept",
+            "params": [
+              {
+                "name": "login_challenge",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Accept an OAuth2 login request"
+        },
+        {
+          "info": {
+            "name": "Get an OAuth2 consent request",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{project-slug}.projects.oryapis.com/admin/oauth2/auth/requests/consent",
+            "params": [
+              {
+                "name": "consent_challenge",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get an OAuth2 consent request"
+        },
+        {
+          "info": {
+            "name": "Accept an OAuth2 consent request",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{project-slug}.projects.oryapis.com/admin/oauth2/auth/requests/consent/accept",
+            "params": [
+              {
+                "name": "consent_challenge",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Accept an OAuth2 consent request"
+        },
+        {
+          "info": {
+            "name": "Accept an OAuth2 logout request",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{project-slug}.projects.oryapis.com/admin/oauth2/auth/requests/logout/accept",
+            "params": [
+              {
+                "name": "logout_challenge",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Accept an OAuth2 logout request"
+        },
+        {
+          "info": {
+            "name": "Delete OAuth2 access tokens for a client",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{project-slug}.projects.oryapis.com/admin/oauth2/tokens",
+            "params": [
+              {
+                "name": "client_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Delete OAuth2 access tokens for a client"
+        },
+        {
+          "info": {
+            "name": "Get a JSON Web Key Set",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{project-slug}.projects.oryapis.com/admin/keys/:set",
+            "params": [
+              {
+                "name": "set",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a JSON Web Key Set"
+        },
+        {
+          "info": {
+            "name": "Generate a JSON Web Key Set",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{project-slug}.projects.oryapis.com/admin/keys/:set",
+            "params": [
+              {
+                "name": "set",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generate a JSON Web Key Set"
+        },
+        {
+          "info": {
+            "name": "Delete a JSON Web Key Set",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{project-slug}.projects.oryapis.com/admin/keys/:set",
+            "params": [
+              {
+                "name": "set",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a JSON Web Key Set"
+        },
+        {
+          "info": {
+            "name": "List trusted JWT-bearer grant issuers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{project-slug}.projects.oryapis.com/admin/trust/grants"
+          },
+          "docs": "List trusted JWT-bearer grant issuers"
+        },
+        {
+          "info": {
+            "name": "Trust a JWT-bearer grant issuer",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{project-slug}.projects.oryapis.com/admin/trust/grants",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Trust a JWT-bearer grant issuer"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

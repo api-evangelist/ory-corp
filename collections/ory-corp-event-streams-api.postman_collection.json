@@ -1,0 +1,526 @@
+{
+  "item": [
+    {
+      "id": "42da6b90-a435-4fa4-acdb-a7becaeb5a2c",
+      "name": "Event Streams",
+      "description": {
+        "content": "Ory Network event stream configuration.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a95d97d3-9025-41e3-9809-acd1a7fe39db",
+          "name": "List event streams",
+          "request": {
+            "name": "List event streams",
+            "description": {},
+            "url": {
+              "protocol": "https",
+              "path": [
+                "projects",
+                ":projectId",
+                "eventStreams"
+              ],
+              "host": [
+                "api",
+                "console",
+                "ory",
+                "sh"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "projectId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "06360094-3c7e-497c-8878-f8be2971b504",
+              "name": "The configured event streams.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "eventStreams"
+                  ],
+                  "host": [
+                    "api",
+                    "console",
+                    "ory",
+                    "sh"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"199e0283-49bf-cb1c-61c0-05eff05e5083\",\n    \"type\": \"sns\",\n    \"topic_arn\": \"string\",\n    \"aws_iam_role_arn\": \"string\",\n    \"role_arn\": \"string\"\n  },\n  {\n    \"id\": \"5480dacf-9d5c-d075-f892-fc4fcf06ec1e\",\n    \"type\": \"sns\",\n    \"topic_arn\": \"string\",\n    \"aws_iam_role_arn\": \"string\",\n    \"role_arn\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a7359628-b9e4-478c-b92f-bb85d0614a07",
+          "name": "Create an event stream",
+          "request": {
+            "name": "Create an event stream",
+            "description": {},
+            "url": {
+              "protocol": "https",
+              "path": [
+                "projects",
+                ":projectId",
+                "eventStreams"
+              ],
+              "host": [
+                "api",
+                "console",
+                "ory",
+                "sh"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "projectId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<uuid>\",\n  \"type\": \"<string>\",\n  \"topic_arn\": \"<string>\",\n  \"aws_iam_role_arn\": \"<string>\",\n  \"role_arn\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e1c293d7-06c8-48db-a45d-97a1386b112d",
+              "name": "The created event stream.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "eventStreams"
+                  ],
+                  "host": [
+                    "api",
+                    "console",
+                    "ory",
+                    "sh"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"type\": \"<string>\",\n  \"topic_arn\": \"<string>\",\n  \"aws_iam_role_arn\": \"<string>\",\n  \"role_arn\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<uuid>\",\n  \"type\": \"<string>\",\n  \"topic_arn\": \"<string>\",\n  \"aws_iam_role_arn\": \"<string>\",\n  \"role_arn\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5b951c0e-e19d-42df-9dfc-7070457792d9",
+          "name": "Update an event stream",
+          "request": {
+            "name": "Update an event stream",
+            "description": {},
+            "url": {
+              "protocol": "https",
+              "path": [
+                "projects",
+                ":projectId",
+                "eventStreams",
+                ":eventStreamId"
+              ],
+              "host": [
+                "api",
+                "console",
+                "ory",
+                "sh"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "projectId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "eventStreamId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<uuid>\",\n  \"type\": \"<string>\",\n  \"topic_arn\": \"<string>\",\n  \"aws_iam_role_arn\": \"<string>\",\n  \"role_arn\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4eee7e21-5f63-4df8-ad23-9b8791d0d6cb",
+              "name": "The updated event stream.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "eventStreams",
+                    ":eventStreamId"
+                  ],
+                  "host": [
+                    "api",
+                    "console",
+                    "ory",
+                    "sh"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "eventStreamId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<uuid>\",\n  \"type\": \"<string>\",\n  \"topic_arn\": \"<string>\",\n  \"aws_iam_role_arn\": \"<string>\",\n  \"role_arn\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"<uuid>\",\n  \"type\": \"<string>\",\n  \"topic_arn\": \"<string>\",\n  \"aws_iam_role_arn\": \"<string>\",\n  \"role_arn\": \"<string>\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "28033007-83ae-4418-83fa-f3266ce4e5a9",
+          "name": "Delete an event stream",
+          "request": {
+            "name": "Delete an event stream",
+            "description": {},
+            "url": {
+              "protocol": "https",
+              "path": [
+                "projects",
+                ":projectId",
+                "eventStreams",
+                ":eventStreamId"
+              ],
+              "host": [
+                "api",
+                "console",
+                "ory",
+                "sh"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "projectId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "eventStreamId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "647a64e8-17ae-4932-b3a3-9e32b44b7e99",
+              "name": "Event stream deleted.",
+              "originalRequest": {
+                "url": {
+                  "protocol": "https",
+                  "path": [
+                    "projects",
+                    ":projectId",
+                    "eventStreams",
+                    ":eventStreamId"
+                  ],
+                  "host": [
+                    "api",
+                    "console",
+                    "ory",
+                    "sh"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "eventStreamId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "The slug of your Ory Network project.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "your-project-slug",
+      "key": "project-slug"
+    },
+    {
+      "type": "string",
+      "value": "https://{{project-slug}}.projects.oryapis.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "90ce44a0-2c6c-42f9-a2f5-b8668c1a4d26",
+    "name": "Ory Network Billing Event Streams API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Ory is open-source identity and access infrastructure, delivered as the Ory Network managed cloud. This document models the primary public and admin REST surfaces of an Ory Network project and the Ory Network Console (control plane).\nTwo base URLs are in play. Project data-plane endpoints - Ory Kratos (identities, sessions, self-service flows), Ory Hydra (OAuth2 / OIDC), Ory Keto (permissions and relationship tuples), and courier messages - are served on the project-scoped host https://{project-slug}.projects.oryapis.com. The Ory Network Console API (workspaces, projects, project tokens, event streams, subscriptions) is served on https://api.console.ory.sh.\nPublic self-service and OAuth2/OIDC endpoints are unauthenticated or use the end-user session; admin, Keto write, courier, and Console endpoints require an Ory API key / project or workspace API token passed as a Bearer token. Ory SDKs are auto-generated from these OpenAPI specifications. Endpoint set is representative and grounded in Ory's published specs; consult the live reference for the exhaustive parameter and schema detail.\n\nContact Support:\n Name: Ory",
+      "type": "text/plain"
+    }
+  }
+}

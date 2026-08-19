@@ -1,0 +1,317 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Ory Network Billing Identity (Admin) API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Identity (Admin)",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List identities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{project-slug}.projects.oryapis.com/admin/identities"
+          },
+          "docs": "List identities"
+        },
+        {
+          "info": {
+            "name": "Create an identity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{project-slug}.projects.oryapis.com/admin/identities",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an identity"
+        },
+        {
+          "info": {
+            "name": "Create and delete identities in a batch",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{project-slug}.projects.oryapis.com/admin/identities",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create and delete identities in a batch"
+        },
+        {
+          "info": {
+            "name": "Get an identity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{project-slug}.projects.oryapis.com/admin/identities/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get an identity"
+        },
+        {
+          "info": {
+            "name": "Replace an identity",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{project-slug}.projects.oryapis.com/admin/identities/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Replace an identity"
+        },
+        {
+          "info": {
+            "name": "Patch an identity (JSON Patch)",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{project-slug}.projects.oryapis.com/admin/identities/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch an identity (JSON Patch)"
+        },
+        {
+          "info": {
+            "name": "Delete an identity",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{project-slug}.projects.oryapis.com/admin/identities/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete an identity"
+        },
+        {
+          "info": {
+            "name": "Get an identity by external ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{project-slug}.projects.oryapis.com/admin/identities/by/external/:externalID",
+            "params": [
+              {
+                "name": "externalID",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get an identity by external ID"
+        },
+        {
+          "info": {
+            "name": "Delete a credential of an identity",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{project-slug}.projects.oryapis.com/admin/identities/:id/credentials/:type",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a credential of an identity"
+        },
+        {
+          "info": {
+            "name": "List an identity's sessions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{project-slug}.projects.oryapis.com/admin/identities/:id/sessions",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "List an identity's sessions"
+        },
+        {
+          "info": {
+            "name": "Revoke all of an identity's sessions",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{project-slug}.projects.oryapis.com/admin/identities/:id/sessions",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Revoke all of an identity's sessions"
+        },
+        {
+          "info": {
+            "name": "List all sessions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{project-slug}.projects.oryapis.com/admin/sessions"
+          },
+          "docs": "List all sessions"
+        },
+        {
+          "info": {
+            "name": "Get a session",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{project-slug}.projects.oryapis.com/admin/sessions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a session"
+        },
+        {
+          "info": {
+            "name": "Deactivate a session",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{project-slug}.projects.oryapis.com/admin/sessions/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Deactivate a session"
+        },
+        {
+          "info": {
+            "name": "Extend a session",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{project-slug}.projects.oryapis.com/admin/sessions/:id/extend",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Extend a session"
+        },
+        {
+          "info": {
+            "name": "Create a recovery code for an identity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{project-slug}.projects.oryapis.com/admin/recovery/code",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a recovery code for an identity"
+        },
+        {
+          "info": {
+            "name": "Create a recovery link for an identity",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{project-slug}.projects.oryapis.com/admin/recovery/link",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a recovery link for an identity"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
