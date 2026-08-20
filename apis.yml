@@ -29,6 +29,14 @@ image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/ory-corp.p
 tags:
 - Identity
 - Authentication
+- OpenID Connect
+- Authorization
+- Permissions
+- IAM
+- Open-Source
+tags_raw:
+- Identity
+- Authentication
 - OAuth2
 - OpenID Connect
 - Authorization
@@ -93,6 +101,8 @@ apis:
   humanURL: https://www.ory.com/docs/kratos/reference/api
   baseURL: https://{project-slug}.projects.oryapis.com
   tags:
+  - Couriers
+  tags_raw:
   - Courier
   properties:
   - type: OpenAPI
@@ -382,6 +392,8 @@ apis:
   humanURL: https://www.ory.com/docs/kratos/reference/api
   baseURL: https://{project-slug}.projects.oryapis.com
   tags:
+  - Organization
+  tags_raw:
   - Organizations
   properties:
   - type: OpenAPI
@@ -526,6 +538,8 @@ apis:
   humanURL: https://www.ory.com/docs/kratos/reference/api
   baseURL: https://{project-slug}.projects.oryapis.com
   tags:
+  - Project
+  tags_raw:
   - Projects
   properties:
   - type: OpenAPI
